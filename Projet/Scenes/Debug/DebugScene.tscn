@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://l2wvjjpnjul4"]
+
+[ext_resource type="PackedScene" uid="uid://y542tm5v30rt" path="res://Scenes/Map/Map.tscn" id="1_lfq0a"]
+[ext_resource type="PackedScene" uid="uid://b433p5ck6nm4g" path="res://Scenes/Player/Player.tscn" id="2_vo8i1"]
+[ext_resource type="PackedScene" uid="uid://cb8lmdavcema" path="res://Scenes/Mob/Mob.tscn" id="3_ml7sv"]
+[ext_resource type="PackedScene" uid="uid://c07qpjoa0naiq" path="res://Scenes/Material/Material.tscn" id="4_j1540"]
+
+[node name="DebugScene" type="Node"]
+
+[node name="Map" parent="." instance=ExtResource("1_lfq0a")]
+
+[node name="Player" parent="." instance=ExtResource("2_vo8i1")]
+position = Vector2(586, 373)
+collision_mask = 9
+
+[node name="Mob" parent="." instance=ExtResource("3_ml7sv")]
+position = Vector2(23.8597, 562.404)
+
+[node name="Material_1" parent="." instance=ExtResource("4_j1540")]
+position = Vector2(546, 284)
+type = 1
+
+[node name="Material_1(2)" parent="." instance=ExtResource("4_j1540")]
+position = Vector2(645, 268)
+type = 8
+
+[node name="Material_2" parent="." instance=ExtResource("4_j1540")]
+position = Vector2(544, 223)
+type = 1
+
+[node name="Material_3" parent="." instance=ExtResource("4_j1540")]
+position = Vector2(598, 248)
+type = 3
+
+[node name="Material_8?" parent="." instance=ExtResource("4_j1540")]
+position = Vector2(487, 257)
+type = 8

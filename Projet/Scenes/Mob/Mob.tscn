@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cb8lmdavcema"]
+
+[ext_resource type="Script" path="res://Scenes/Mob/Mob.gd" id="1_3u8mo"]
+[ext_resource type="PackedScene" uid="uid://qks2cmf75chg" path="res://Scenes/Component/runToNearestEnnemie.tscn" id="2_1cl5f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_itvn1"]
+radius = 23.0868
+
+[node name="Mob" type="CharacterBody2D"]
+script = ExtResource("1_3u8mo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_itvn1")
+
+[node name="RunToNearestEnnemie" parent="." instance=ExtResource("2_1cl5f")]
+range = 200.0
