@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=3 uid="uid://bwc4ic0f204gq"]
+
+[ext_resource type="PackedScene" uid="uid://bo0ukg5akkk7i" path="res://Scenes/UserInterface/slot.tscn" id="1_4jp4i"]
+[ext_resource type="Script" path="res://Scenes/UserInterface/hotbar.gd" id="1_usyy2"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_eae5c"]
+device = -1
+keycode = 49
+unicode = 49
+
+[sub_resource type="InputEventKey" id="InputEventKey_iisfl"]
+device = -1
+keycode = 50
+unicode = 50
+
+[sub_resource type="InputEventKey" id="InputEventKey_6ut7r"]
+device = -1
+keycode = 51
+unicode = 51
+
+[sub_resource type="InputEventKey" id="InputEventKey_aknxl"]
+device = -1
+keycode = 52
+unicode = 52
+
+[sub_resource type="InputEventKey" id="InputEventKey_1ttkj"]
+device = -1
+keycode = 53
+unicode = 53
+
+[node name="Hotbar" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -986.0
+offset_bottom = -618.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_usyy2")
+
+[node name="Slot0" parent="." instance=ExtResource("1_4jp4i")]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+key = SubResource("InputEventKey_eae5c")
+
+[node name="Slot1" parent="." instance=ExtResource("1_4jp4i")]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+key = SubResource("InputEventKey_iisfl")
+
+[node name="Slot2" parent="." instance=ExtResource("1_4jp4i")]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+key = SubResource("InputEventKey_6ut7r")
+
+[node name="Slot3" parent="." instance=ExtResource("1_4jp4i")]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+key = SubResource("InputEventKey_aknxl")
+
+[node name="Slot4" parent="." instance=ExtResource("1_4jp4i")]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+key = SubResource("InputEventKey_1ttkj")
+
+[connection signal="pressed" from="Slot0" to="." method="_on_slot_0_pressed"]
+[connection signal="toggled" from="Slot0" to="." method="_on_slot_0_toggled"]
+[connection signal="pressed" from="Slot1" to="." method="_on_slot_1_pressed"]
+[connection signal="toggled" from="Slot1" to="." method="_on_slot_1_toggled"]
+[connection signal="pressed" from="Slot2" to="." method="_on_slot_2_pressed"]
+[connection signal="toggled" from="Slot2" to="." method="_on_slot_2_toggled"]
+[connection signal="pressed" from="Slot3" to="." method="_on_slot_3_pressed"]
+[connection signal="toggled" from="Slot3" to="." method="_on_slot_3_toggled"]
+[connection signal="pressed" from="Slot4" to="." method="_on_slot_4_pressed"]
+[connection signal="toggled" from="Slot4" to="." method="_on_slot_4_toggled"]
