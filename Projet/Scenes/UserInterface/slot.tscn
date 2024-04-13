@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bo0ukg5akkk7i"]
+
+[ext_resource type="Texture2D" uid="uid://bhpv0bjh78x5s" path="res://Ressources/UI/Slot_UI.png" id="1_8kcyh"]
+[ext_resource type="Script" path="res://Scenes/UserInterface/Slot.gd" id="2_4ur33"]
+[ext_resource type="Texture2D" uid="uid://bduhbjqk7hwpw" path="res://Ressources/UI/Slot_UI_Toggle.png" id="2_fn3x6"]
+
+[sub_resource type="Shortcut" id="Shortcut_3cax2"]
+
+[node name="Slot" type="TextureButton"]
+custom_minimum_size = Vector2(30, 30)
+anchors_preset = -1
+anchor_right = 0.067
+anchor_bottom = 0.117
+offset_right = -0.184006
+offset_bottom = 0.183998
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+toggle_mode = true
+shortcut = SubResource("Shortcut_3cax2")
+texture_normal = ExtResource("1_8kcyh")
+texture_pressed = ExtResource("2_fn3x6")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("2_4ur33")
