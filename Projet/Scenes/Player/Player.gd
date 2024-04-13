@@ -1,6 +1,7 @@
 class_name PlayerClass extends CharacterBody2D
 
 @export var projectileScene: PackedScene
+@export var projectileShapeResource: Shape2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
@@ -38,8 +39,11 @@ func _physics_process(_delta):
 func _process(_delta):
 	if Input.is_action_pressed("primary_action"):
 		var projectile : Projectile = projectileScene.instantiate()
-		var direction = get_global_mouse_position() - global_position
-		projectile.direction = direction.normalized()
+		projectile.get_node("CollisionShape2D").shape = projectileShapeResource
+		var projectileDirection = global_position.direction_to(get_global_mouse_position())
+		var projectileRotation = projectileDirection.angle()
+		projectile.rotation = projectileRotation
+		projectile.direction = projectileDirection
 		projectile.global_position = global_position
 		projectile.set_as_top_level(true)
 		add_child(projectile)
