@@ -5,10 +5,15 @@ class_name Entity extends Node2D
 @export var foeDistance: float = 0.0
 @export var speed: float = 300.0
 
-var target: Vector2
+var hasTarget: bool
+var targetPosition: Vector2
+
+var playerTeam: bool
 
 	
 func _physics_process(delta):
-	if position.distance_to(target) > foeDistance:
-		var direction: Vector2 = position.direction_to(target)
-		position += direction * speed * delta
+	
+	if hasTarget:
+		if position.distance_to(targetPosition) > foeDistance:
+			var direction: Vector2 = position.direction_to(targetPosition)
+			position += direction * speed * delta
