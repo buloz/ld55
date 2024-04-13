@@ -8,4 +8,4 @@ var playerPosition: Vector2 = Vector2.ZERO
 
 var Player: PlayerClass
 
-var nbMaterials: int = 4
+var nbMaterials: int = 5

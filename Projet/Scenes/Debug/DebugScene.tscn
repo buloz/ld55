@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://l2wvjjpnjul4"]
+[gd_scene load_steps=8 format=3 uid="uid://l2wvjjpnjul4"]
 
 [ext_resource type="Script" path="res://Scenes/Debug/DebugScene.gd" id="1_2lmlw"]
 [ext_resource type="PackedScene" uid="uid://y542tm5v30rt" path="res://Scenes/Map/Map.tscn" id="1_lfq0a"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://m41t5ox7dpkj" path="res://Scenes/Attacks/Strike/Strike.tscn" id="4_iacae"]
 [ext_resource type="PackedScene" uid="uid://c07qpjoa0naiq" path="res://Scenes/Material/Material.tscn" id="4_j1540"]
 [ext_resource type="PackedScene" uid="uid://c4xat6u8vnn5l" path="res://Scenes/Spawner/MobSpawner/MobSpawner.tscn" id="4_r331g"]
+[ext_resource type="PackedScene" uid="uid://bwc4ic0f204gq" path="res://Scenes/UserInterface/hotbar.tscn" id="5_u160v"]
 
 [node name="DebugScene" type="Node"]
 script = ExtResource("1_2lmlw")
@@ -41,3 +42,18 @@ type = 3
 [node name="Material_8?" parent="." instance=ExtResource("4_j1540")]
 position = Vector2(487, 257)
 type = 8
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Hotbar" parent="UI" instance=ExtResource("5_u160v")]
+custom_minimum_size = Vector2(1000, 0)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+offset_left = -504.0
+offset_top = -78.0
+offset_right = 496.0
+offset_bottom = -8.0
+grow_vertical = 0
+alignment = 2
