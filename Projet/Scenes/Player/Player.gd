@@ -48,6 +48,10 @@ func _process(_delta):
 		projectile.global_position = global_position
 		projectile.set_as_top_level(true)
 		add_child(projectile)
+	
+	if Input.is_action_just_pressed("test"):
+		$SummonSpawner.spawnSummon(get_global_mouse_position())
+		
 		
 func _unhandled_input(event):
 	if event is InputEventKey:

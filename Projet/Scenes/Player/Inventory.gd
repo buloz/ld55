@@ -8,7 +8,6 @@ var storedMaterials: PackedInt32Array
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	storedMaterials.resize(get_node("/root/Global").nbMaterials)
-	print(storedMaterials)
 
 
 func addMaterial(materialType: int, quantity: int):

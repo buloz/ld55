@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2mtxhyk88bpb"]
+[gd_scene load_steps=5 format=3 uid="uid://c2mtxhyk88bpb"]
 
 [ext_resource type="Script" path="res://Scenes/Entity/Summon/Summon.gd" id="1_8wfjq"]
 [ext_resource type="PackedScene" uid="uid://qks2cmf75chg" path="res://Scenes/Component/NearestEnemyFinder.tscn" id="2_sqcwc"]
+[ext_resource type="PackedScene" uid="uid://deuhf0wkjf2jw" path="res://Scenes/Component/hitboxComponent.tscn" id="3_d1y05"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ikrt"]
+size = Vector2(40, 40)
 
 [node name="Summon" type="Node2D"]
 script = ExtResource("1_8wfjq")
@@ -13,3 +17,9 @@ offset_left = -20.0
 offset_top = -20.0
 offset_right = 20.0
 offset_bottom = 20.0
+
+[node name="HitBoxComponent" parent="." instance=ExtResource("3_d1y05")]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+shape = SubResource("RectangleShape2D_5ikrt")

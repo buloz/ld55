@@ -18,29 +18,39 @@ var playerTeam: bool
 
 func _ready():
 	playerTeam = get_parent().playerTeam
-
+	$Area2D.collision_mask = 0b01
+	
+	if playerTeam:
+		$Area2D.collision_mask <<= 1
 
 #TODO: Courir sur l'entité de la team ennemie la plus proche
-func _process(_delta):
+func _physics_process(delta):
 	
 	get_parent().hasTarget = false
 	
-	if $Area2D.has_overlapping_bodies():
+	#To compute the s target
+	var shortestDistance = 100000000000
+	
+	if $Area2D.has_overlapping_areas():
 		
 		var targetBody
-		var shortestDistance = 1000000
-		for body in $Area2D.get_overlapping_bodies():
-			var dist : float = get_parent().position.distance_to(body.position)
+		for body in $Area2D.get_overlapping_areas():
+			var dist : float = get_parent().global_position.distance_to(body.global_position)
 			if dist < shortestDistance:
 				targetBody = body
-			
-		get_parent().targetPosition = targetBody.position
+				shortestDistance = dist
+		
+		#print("Target position: ", targetBody.global_position, ", ", targetBody.get_parent().name)
+		get_parent().targetPosition = targetBody.global_position
 		get_parent().hasTarget = true
 	
-	else:
-
-		if not playerTeam:
+	if not playerTeam:
+		
+		var playerDist: float = get_parent().position.distance_to(get_node("/root/Global").playerPosition)
+		
+		if playerDist < shortestDistance:
+			
 			get_parent().hasTarget = true
 			get_parent().targetPosition = get_node("/root/Global").playerPosition
-			
 		
+	

@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://l2wvjjpnjul4"]
+[gd_scene load_steps=6 format=3 uid="uid://l2wvjjpnjul4"]
 
 [ext_resource type="Script" path="res://Scenes/Debug/DebugScene.gd" id="1_2lmlw"]
 [ext_resource type="PackedScene" uid="uid://y542tm5v30rt" path="res://Scenes/Map/Map.tscn" id="1_lfq0a"]
 [ext_resource type="PackedScene" uid="uid://b433p5ck6nm4g" path="res://Scenes/Player/Player.tscn" id="2_vo8i1"]
-[ext_resource type="PackedScene" uid="uid://cb8lmdavcema" path="res://Scenes/Entity/Mob/Mob.tscn" id="3_ml7sv"]
 [ext_resource type="PackedScene" uid="uid://c07qpjoa0naiq" path="res://Scenes/Material/Material.tscn" id="4_j1540"]
-[ext_resource type="PackedScene" uid="uid://c4xat6u8vnn5l" path="res://Scenes/MobSpawner/MobSpawner.tscn" id="4_r331g"]
+[ext_resource type="PackedScene" uid="uid://c4xat6u8vnn5l" path="res://Scenes/Spawner/MobSpawner/MobSpawner.tscn" id="4_r331g"]
 
 [node name="DebugScene" type="Node"]
 script = ExtResource("1_2lmlw")
@@ -18,9 +17,6 @@ collision_mask = 9
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.605, 0.605)
-
-[node name="Mob" parent="." instance=ExtResource("3_ml7sv")]
-position = Vector2(23.8597, 562.404)
 
 [node name="MobSpawner" parent="." instance=ExtResource("4_r331g")]
 

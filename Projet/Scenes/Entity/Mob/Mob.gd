@@ -1,4 +1,6 @@
-class_name Summon extends "res://Scenes/Entity/Entity.gd"
+class_name Mob extends "res://Scenes/Entity/Entity.gd"
 
-func _ready():
+func _init():
 	playerTeam = false
+	chaseTarget = true
+	

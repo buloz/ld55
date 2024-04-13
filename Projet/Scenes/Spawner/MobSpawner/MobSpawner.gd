@@ -5,14 +5,14 @@ class_name MobSpawner extends Node
 
 
 
-var spawnBoundary: Vector2 = Vector2(500, 700)
+var spawnBoundary: Vector2 = Vector2(1200, 2000)
 
 
 
 func spawnMob(count: int):
 	
 	for i in count:
-		var newMob = mobScene.instantiate()
+		var newMob: Mob = mobScene.instantiate()
 		
 		var spawnDirection: Vector2 = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)).normalized()
 		var spawnDistance: float = randf_range(spawnBoundary.x, spawnBoundary.y)

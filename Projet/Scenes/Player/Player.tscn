@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://b433p5ck6nm4g"]
+[gd_scene load_steps=8 format=3 uid="uid://b433p5ck6nm4g"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_sxh4x"]
 [ext_resource type="PackedScene" uid="uid://cev6kffqmrxuq" path="res://Scenes/Projectile/projectile.tscn" id="2_348b1"]
 [ext_resource type="PackedScene" uid="uid://d3giiljxtfpns" path="res://Scenes/Player/Inventory.tscn" id="2_lnnje"]
-[ext_resource type="PackedScene" uid="uid://3y8njbt42ijg" path="res://Scenes/Blast/Blast.tscn" id="3_guh1v"]
+[ext_resource type="PackedScene" uid="uid://3y8njbt42ijg" path="res://Scenes/Blast/Blast.tscn" id="3_fqhl8"]
 [ext_resource type="Shape2D" uid="uid://byjssba2o48vl" path="res://Scenes/Projectile/Arrow.tres" id="3_xtamv"]
+[ext_resource type="PackedScene" uid="uid://c26ht80nke8hf" path="res://Scenes/Spawner/SummonSpawner/SummonSpawner.tscn" id="6_ua7c7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epjvm"]
 size = Vector2(54, 84)
@@ -14,10 +15,18 @@ collision_layer = 9
 collision_mask = 7
 script = ExtResource("1_sxh4x")
 projectileScene = ExtResource("2_348b1")
-blastScene = ExtResource("3_guh1v")
+blastScene = ExtResource("3_fqhl8")
 projectileShapeResource = ExtResource("3_xtamv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_epjvm")
 
 [node name="Inventory" parent="." instance=ExtResource("2_lnnje")]
+
+[node name="SummonSpawner" parent="." instance=ExtResource("6_ua7c7")]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -27.0
+offset_top = -42.0
+offset_right = 28.0
+offset_bottom = 42.0
