@@ -1,5 +1,6 @@
 class_name PlayerClass extends CharacterBody2D
 
+@export var projectileScene: PackedScene
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
@@ -33,3 +34,12 @@ func _physics_process(_delta):
 	
 	#Update global
 	get_node("/root/Global").playerPosition = position
+	
+func _process(_delta):
+	if Input.is_action_pressed("primary_action"):
+		var projectile : Projectile = projectileScene.instantiate()
+		var direction = get_global_mouse_position() - global_position
+		projectile.direction = direction.normalized()
+		projectile.global_position = global_position
+		projectile.set_as_top_level(true)
+		add_child(projectile)
