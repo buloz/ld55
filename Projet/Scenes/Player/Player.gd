@@ -1,6 +1,7 @@
 class_name PlayerClass extends CharacterBody2D
 
 @export var projectileScene: PackedScene
+@export var blastScene: PackedScene
 @export var projectileShapeResource: Shape2D
 
 const SPEED = 300.0
@@ -47,3 +48,9 @@ func _process(_delta):
 		projectile.global_position = global_position
 		projectile.set_as_top_level(true)
 		add_child(projectile)
+		
+func _unhandled_input(event):
+	if event is InputEventKey:
+		if event.pressed and event.keycode == KEY_SPACE:
+			var blast : Blast = blastScene.instantiate()
+			add_child(blast)

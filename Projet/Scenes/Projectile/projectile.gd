@@ -4,7 +4,7 @@ class_name Projectile extends Area2D
 @export var speed: float
 
 @export var isPiercing: bool
-@export var piercingEntities: int = 0.0
+@export var piercingEntities: int = 0
 
 @export var lifeSpan: float = 1.0
 
@@ -16,7 +16,6 @@ func _ready():
 
 func _process(delta):
 	global_position += direction * speed * delta
-	
 
 func _on_area_entered(area):
 	if area is HitboxComponent and area.healthComponent:
