@@ -24,7 +24,7 @@ func _ready():
 		$Area2D.collision_mask <<= 1
 
 #TODO: Courir sur l'entité de la team ennemie la plus proche
-func _physics_process(delta):
+func _physics_process(_delta):
 	
 	get_parent().hasTarget = false
 	
@@ -52,5 +52,3 @@ func _physics_process(delta):
 			
 			get_parent().hasTarget = true
 			get_parent().targetPosition = get_node("/root/Global").playerPosition
-		
-	

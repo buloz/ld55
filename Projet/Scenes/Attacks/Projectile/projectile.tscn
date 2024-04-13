@@ -1,18 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://cev6kffqmrxuq"]
 
-[ext_resource type="Script" path="res://Scenes/Projectile/projectile.gd" id="1_iofra"]
-[ext_resource type="PackedScene" uid="uid://blc1sjka6ahc6" path="res://Scenes/Component/attackComponent.tscn" id="2_o4ryo"]
+[ext_resource type="Script" path="res://Scenes/Attacks/Projectile/projectile.gd" id="1_5dd7b"]
+[ext_resource type="PackedScene" uid="uid://blc1sjka6ahc6" path="res://Scenes/Component/attackComponent.tscn" id="2_pu6d6"]
 
 [node name="Projectile" type="Area2D" node_paths=PackedStringArray("attack")]
 collision_layer = 0
 collision_mask = 2
-script = ExtResource("1_iofra")
+script = ExtResource("1_5dd7b")
 attack = NodePath("AttackComponent")
 speed = 1000.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
-[node name="AttackComponent" parent="." instance=ExtResource("2_o4ryo")]
+[node name="AttackComponent" parent="." instance=ExtResource("2_pu6d6")]
 attack_damage = 2.0
 
 [node name="LifeSpan" type="Timer" parent="."]
