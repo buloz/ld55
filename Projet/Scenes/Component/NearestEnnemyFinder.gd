@@ -16,18 +16,8 @@ extends Node
 @export var PlayerTeam: bool = false
 
 
-#TODO: ces attributs là devrait être stocké dans un component de l'entité qui contient ses propriété (range, speed, etc)
-#A quel distance l'ennemi doit allez de la cible
-@export var foeDistance: float = 0.0
-@export var speed: float = 300.0
-
 
 #TODO: Courir sur l'entité de la team ennemie la plus proche
 func _process(_delta):
+	get_parent().target = get_node("/root/Global").playerPosition
 	
-	var distanceToTarget: float = get_parent().position.distance_to(get_node("/root/Global").playerPosition)
-	
-	if distanceToTarget > foeDistance:
-		get_parent().velocity = (get_node("/root/Global").playerPosition - get_parent().position).normalized() * speed
-	else:
-		get_parent().velocity = Vector2.ZERO

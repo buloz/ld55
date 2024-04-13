@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://qks2cmf75chg"]
-
-[ext_resource type="Script" path="res://Scenes/Component/runToNearestEnnemy.gd" id="1_lbl31"]
-
-[node name="RunToNearestEnnemie" type="Node"]
-script = ExtResource("1_lbl31")

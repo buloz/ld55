@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://c4xat6u8vnn5l"]
+[gd_scene load_steps=3 format=3 uid="uid://c4xat6u8vnn5l"]
 
 [ext_resource type="Script" path="res://Scenes/MobSpawner/MobSpawner.gd" id="1_kgpnj"]
+[ext_resource type="PackedScene" uid="uid://cb8lmdavcema" path="res://Scenes/Entity/Mob/Mob.tscn" id="2_8uuyr"]
 
 [node name="MobSpawner" type="Node"]
 script = ExtResource("1_kgpnj")
+mobScene = ExtResource("2_8uuyr")
