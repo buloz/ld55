@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b433p5ck6nm4g"]
+[gd_scene load_steps=7 format=3 uid="uid://b433p5ck6nm4g"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_sxh4x"]
 [ext_resource type="PackedScene" uid="uid://cev6kffqmrxuq" path="res://Scenes/Projectile/projectile.tscn" id="2_348b1"]
 [ext_resource type="PackedScene" uid="uid://d3giiljxtfpns" path="res://Scenes/Player/Inventory.tscn" id="2_lnnje"]
+[ext_resource type="PackedScene" uid="uid://3y8njbt42ijg" path="res://Scenes/Blast/Blast.tscn" id="3_guh1v"]
 [ext_resource type="Shape2D" uid="uid://byjssba2o48vl" path="res://Scenes/Projectile/Arrow.tres" id="3_xtamv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epjvm"]
@@ -13,6 +14,7 @@ collision_layer = 9
 collision_mask = 7
 script = ExtResource("1_sxh4x")
 projectileScene = ExtResource("2_348b1")
+blastScene = ExtResource("3_guh1v")
 projectileShapeResource = ExtResource("3_xtamv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

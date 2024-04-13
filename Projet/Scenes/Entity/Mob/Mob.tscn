@@ -14,9 +14,6 @@ foeDistance = 250.0
 
 [node name="RunToNearestEnnemie" parent="." instance=ExtResource("2_wbegk")]
 
-[node name="HealthComponent" parent="." instance=ExtResource("3_50md8")]
-MaxHealth = 20.0
-
 [node name="HitBoxComponent" parent="." node_paths=PackedStringArray("healthComponent") instance=ExtResource("4_il1u3")]
 collision_layer = 16
 collision_mask = 16
@@ -24,3 +21,6 @@ healthComponent = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="HitBoxComponent"]
 shape = SubResource("CircleShape2D_itvn1")
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_50md8")]
+MaxHealth = 20.0
