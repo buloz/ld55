@@ -2,6 +2,7 @@ class_name PlayerClass extends CharacterBody2D
 
 @export var projectileScene: PackedScene
 @export var blastScene: PackedScene
+@export var strikeScene: PackedScene
 @export var projectileShapeResource: Shape2D
 
 const SPEED = 300.0
@@ -58,3 +59,9 @@ func _unhandled_input(event):
 		if event.pressed and event.keycode == KEY_SPACE:
 			var blast : Blast = blastScene.instantiate()
 			add_child(blast)
+		if event.pressed and event.keycode == KEY_R:
+			var strike : Strike = strikeScene.instantiate()
+			strike.playerTeam = true
+			strike.position = global_position
+			strike.set_as_top_level(true)
+			add_child(strike)
