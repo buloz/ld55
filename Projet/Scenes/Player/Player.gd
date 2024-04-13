@@ -15,7 +15,7 @@ func _ready():
 	get_node("/root/Global").Player = self
 
 #TODO: faire un déplacement plus smooooooooth
-func _physics_process(delta):
+func _physics_process(_delta):
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():

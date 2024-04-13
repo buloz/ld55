@@ -7,7 +7,7 @@ extends Node
 
 #Il va falloir utiliser un algo un minimum performant pour savoir vers quel mob courrir
 #idée: avoir un area 2D symbolisant la portée d'agro de notre mob (ou portée d'attaque si il ne se déplace pas ou qu'il se déplace vers le joueur)
-#et agir quand une entitée de la boite de collision ennemie rentre dans l'area
+#et agir quand une entitée de la boite de collision ennemi rentre dans l'area
 
 #Pareil pour les mobs mais si personne dans leur area courrir vers le joueur par défaut ?
 
@@ -17,17 +17,17 @@ extends Node
 
 
 #TODO: ces attributs là devrait être stocké dans un component de l'entité qui contient ses propriété (range, speed, etc)
-#A quel distance l'ennemie doit allez de la cible
-@export var range: float = 0.0
+#A quel distance l'ennemi doit allez de la cible
+@export var foeDistance: float = 0.0
 @export var speed: float = 300.0
 
 
 #TODO: Courir sur l'entité de la team ennemie la plus proche
-func _process(delta):
+func _process(_delta):
 	
 	var distanceToTarget: float = get_parent().position.distance_to(get_node("/root/Global").playerPosition)
 	
-	if distanceToTarget > range:
+	if distanceToTarget > foeDistance:
 		get_parent().velocity = (get_node("/root/Global").playerPosition - get_parent().position).normalized() * speed
 	else:
 		get_parent().velocity = Vector2.ZERO
