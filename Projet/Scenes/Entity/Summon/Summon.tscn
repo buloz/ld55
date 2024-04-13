@@ -1,14 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2mtxhyk88bpb"]
+[gd_scene load_steps=10 format=3 uid="uid://c2mtxhyk88bpb"]
 
 [ext_resource type="Script" path="res://Scenes/Entity/Summon/Summon.gd" id="1_8wfjq"]
+[ext_resource type="PackedScene" uid="uid://dm7wjxq1yhhha" path="res://Scenes/Component/healthComponent.tscn" id="2_n0cvy"]
 [ext_resource type="PackedScene" uid="uid://qks2cmf75chg" path="res://Scenes/Component/NearestEnemyFinder.tscn" id="2_sqcwc"]
 [ext_resource type="PackedScene" uid="uid://deuhf0wkjf2jw" path="res://Scenes/Component/hitboxComponent.tscn" id="3_d1y05"]
+[ext_resource type="PackedScene" uid="uid://bgteusoge6g2t" path="res://Scenes/Component/DamageReceiver.tscn" id="3_klaw6"]
+[ext_resource type="PackedScene" uid="uid://blc1sjka6ahc6" path="res://Scenes/Component/attackComponent.tscn" id="6_y6iwy"]
+[ext_resource type="PackedScene" uid="uid://dbsrn80uwk8oo" path="res://Scenes/Component/CasterComponent.tscn" id="7_54uiq"]
+[ext_resource type="PackedScene" uid="uid://cev6kffqmrxuq" path="res://Scenes/Attacks/Projectile/projectile.tscn" id="8_tl8yr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ikrt"]
 size = Vector2(40, 40)
 
 [node name="Summon" type="Node2D"]
 script = ExtResource("1_8wfjq")
+foeDistance = 500.0
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_n0cvy")]
+MaxHealth = 20.0
 
 [node name="NearestEnnemyFinder" parent="." instance=ExtResource("2_sqcwc")]
 
@@ -18,8 +27,20 @@ offset_top = -20.0
 offset_right = 20.0
 offset_bottom = 20.0
 
-[node name="HitBoxComponent" parent="." instance=ExtResource("3_d1y05")]
+[node name="DamageReceiver" parent="." node_paths=PackedStringArray("hitBoxComponent") instance=ExtResource("3_klaw6")]
+hitBoxComponent = NodePath("../HitBoxComponent")
+
+[node name="HitBoxComponent" parent="." node_paths=PackedStringArray("healthComponent") instance=ExtResource("3_d1y05")]
 collision_mask = 2
+healthComponent = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
 shape = SubResource("RectangleShape2D_5ikrt")
+
+[node name="AttackComponent" parent="." instance=ExtResource("6_y6iwy")]
+attack_damage = 5.0
+attack_cooldown = 0.1
+
+[node name="CasterComponent" parent="." node_paths=PackedStringArray("attackComponent") instance=ExtResource("7_54uiq")]
+spellScene = ExtResource("8_tl8yr")
+attackComponent = NodePath("../AttackComponent")

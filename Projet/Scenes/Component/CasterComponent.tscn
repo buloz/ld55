@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbsrn80uwk8oo"]
+
+[ext_resource type="Script" path="res://Scenes/Component/CasterComponent.gd" id="1_2qdi5"]
+
+[node name="CasterComponent" type="Node"]
+script = ExtResource("1_2qdi5")
+distanceToCast = 500.0

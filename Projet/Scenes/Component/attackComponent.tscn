@@ -4,3 +4,5 @@
 
 [node name="AttackComponent" type="Node"]
 script = ExtResource("1_2625d")
+
+[node name="Cooldown" type="Timer" parent="."]

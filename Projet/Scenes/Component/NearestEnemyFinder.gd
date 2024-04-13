@@ -14,7 +14,7 @@ extends Node
 
 #Indicate if the entity is in the player team or not
 var playerTeam: bool
-	
+
 
 func _ready():
 	playerTeam = get_parent().playerTeam
@@ -23,8 +23,11 @@ func _ready():
 	if playerTeam:
 		$Area2D.collision_mask <<= 1
 
-#TODO: Courir sur l'entité de la team ennemie la plus proche
+
 func _physics_process(_delta):
+	
+	if Engine.get_physics_frames() % 3 != 0:
+		return
 	
 	get_parent().hasTarget = false
 	

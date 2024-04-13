@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cb8lmdavcema"]
+[gd_scene load_steps=7 format=3 uid="uid://cb8lmdavcema"]
 
 [ext_resource type="Script" path="res://Scenes/Entity/Mob/Mob.gd" id="1_3u8mo"]
 [ext_resource type="PackedScene" uid="uid://qks2cmf75chg" path="res://Scenes/Component/NearestEnemyFinder.tscn" id="2_easnx"]
 [ext_resource type="PackedScene" uid="uid://dm7wjxq1yhhha" path="res://Scenes/Component/healthComponent.tscn" id="3_50md8"]
 [ext_resource type="PackedScene" uid="uid://deuhf0wkjf2jw" path="res://Scenes/Component/hitboxComponent.tscn" id="4_il1u3"]
+[ext_resource type="PackedScene" uid="uid://blc1sjka6ahc6" path="res://Scenes/Component/attackComponent.tscn" id="5_o00wj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_itvn1"]
 radius = 23.0868
@@ -25,3 +26,7 @@ shape = SubResource("CircleShape2D_itvn1")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 polygon = PackedVector2Array(0, -23, 6, -22, 12, -19, 19, -12, 22, 0, 19, 11, 10, 19, 0, 20, -10, 18, -15, 13, -19, 6, -20, -4, -16, -13, -9, -20, 0, -23, 0, -23)
+
+[node name="AttackComponent" parent="." instance=ExtResource("5_o00wj")]
+attack_damage = 10.0
+attack_cooldown = 0.5

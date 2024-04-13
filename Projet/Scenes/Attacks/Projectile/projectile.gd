@@ -10,9 +10,25 @@ class_name Projectile extends Area2D
 
 var direction
 
+#Default shapers
+const arrowShape = preload("res://Scenes/Attacks/Projectile/Arrow.tres")
+
 func _ready():
 	await get_tree().create_timer(lifeSpan).timeout
 	queue_free()
+	
+func initialize(senderPosition, targetPosition):
+	#var projectile : Projectile = projectileScene.instantiate()
+	
+	$CollisionShape2D.shape = arrowShape
+	
+	global_position = senderPosition
+	
+	direction = senderPosition.direction_to(targetPosition)
+	rotation = direction.angle()
+
+	set_as_top_level(true)
+	
 
 func _process(delta):
 	global_position += direction * speed * delta
@@ -25,3 +41,5 @@ func _on_area_entered(area):
 			piercingEntities -= 1
 			if piercingEntities < 0:
 				queue_free()
+
+ 
