@@ -13,4 +13,4 @@ time_between_projectile = 0.02
 
 [node name="AttackComponent" parent="." instance=ExtResource("2_lh170")]
 attack_damage = 2.0
-attack_cooldown = 5.0
+attack_cooldown = 20.0

@@ -59,7 +59,8 @@ func _physics_process(delta):
 	
 func _process(_delta):
 	if Input.is_action_just_pressed("primary_action"):
-		$SummonSpawner.spawnSummon(get_global_mouse_position(), ballScene)
+		var summon:SummonInfo = SummonInfo.new(randi_range(0, 3), randi_range(0, 11), 40, 25, 5, 800, 600)
+		$SummonSpawner.spawnSummon(get_global_mouse_position(), summon)
 	
 	if Input.is_action_just_pressed("test"):
 		$SummonSpawner.spawnSummon(get_global_mouse_position(), multiProjectileScene)

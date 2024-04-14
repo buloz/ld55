@@ -19,6 +19,7 @@ func _ready():
 		newProjectile.direction = Vector2.from_angle(projectile.direction.angle() + -spreadAngle/2 + (spreadAngle/count)*i)
 		add_child(newProjectile)
 		await get_tree().create_timer(time_between_projectile).timeout
+	await get_tree().create_timer(projectile.lifeSpan).timeout
 
 func initialize(senderPosition: Vector2, _targetPosition: Vector2, _playerTeam: bool):
 	playerTeam = _playerTeam
