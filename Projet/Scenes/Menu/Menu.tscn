@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://c2vgwq4l557w5"]
+[gd_scene load_steps=54 format=3 uid="uid://c2vgwq4l557w5"]
 
 [ext_resource type="Script" path="res://Scenes/Menu/Menu.gd" id="1_u7bgu"]
 [ext_resource type="Texture2D" uid="uid://c7l10bjuekbac" path="res://Ressources/menu/Arbrev2.png" id="2_6m2tl"]
@@ -28,6 +28,30 @@ colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0.266667)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_covwf"]
 gradient = SubResource("Gradient_3njgm")
+
+[sub_resource type="Gradient" id="Gradient_wbw0i"]
+offsets = PackedFloat32Array(0, 0.477941, 0.830882, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bi1rj"]
+gradient = SubResource("Gradient_wbw0i")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_767ye"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(707, 1, 1)
+angle_min = 8.0
+angle_max = 12.0
+direction = Vector3(0.32, 1, 0)
+spread = 5.0
+initial_velocity_min = 475.0
+initial_velocity_max = 1000.0
+gravity = Vector3(0, 98, 0)
+scale_min = 24.0
+scale_max = 32.0
+color = Color(1, 1, 1, 0.0784314)
+color_ramp = SubResource("GradientTexture1D_bi1rj")
+color_initial_ramp = SubResource("GradientTexture1D_covwf")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_eveei"]
 particle_flag_disable_z = true
@@ -264,21 +288,6 @@ tracks/3/keys = {
 _data = {
 "select_play": SubResource("Animation_b4w7k"),
 "select_quit": SubResource("Animation_6ffu2")
-}
-
-[sub_resource type="Animation" id="Animation_sn62a"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Ambience/lapin:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_qhwo0"]
@@ -664,10 +673,33 @@ tracks/29/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/30/type = "value"
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/path = NodePath("Ambience/GPUParticles2D4:emitting")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/keys = {
+"times": PackedFloat32Array(0, 7.39098),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/31/type = "value"
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/path = NodePath("Ambience/GPUParticles2D4:modulate")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/keys = {
+"times": PackedFloat32Array(6.6, 11.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iwb5s"]
 _data = {
-"RESET": SubResource("Animation_sn62a"),
 "intro": SubResource("Animation_qhwo0")
 }
 
@@ -693,13 +725,20 @@ width = 1024.0
 
 [node name="Ambience" type="Node2D" parent="."]
 
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="Ambience"]
+position = Vector2(515, 0)
+emitting = false
+amount = 512
+process_material = SubResource("ParticleProcessMaterial_767ye")
+texture = ExtResource("2_ua2pe")
+fixed_fps = 0
+
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="Ambience"]
-position = Vector2(579, 0)
+position = Vector2(515, 0)
 emitting = false
 amount = 1024
 process_material = SubResource("ParticleProcessMaterial_eveei")
 texture = ExtResource("2_ua2pe")
-lifetime = 2.0
 fixed_fps = 0
 
 [node name="thunder" type="AnimatedSprite2D" parent="Ambience"]
@@ -723,30 +762,27 @@ modulate = Color(0.372549, 0.372549, 0.372549, 1)
 scale = Vector2(0.4, 0.4)
 
 [node name="Sprite2D3" type="Sprite2D" parent="Ambience/foret"]
-visible = false
 position = Vector2(1162.7, 587.5)
 scale = Vector2(1.2, 1)
 texture = ExtResource("2_6m2tl")
 flip_h = true
 
 [node name="Sprite2D2" type="Sprite2D" parent="Ambience/foret"]
-visible = false
 position = Vector2(1464.7, 647.5)
 texture = ExtResource("2_6m2tl")
 
 [node name="Sprite2D" type="Sprite2D" parent="Ambience/foret"]
-visible = false
 position = Vector2(966.7, 653.5)
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("3_elte4")
 
 [node name="soleil" type="Sprite2D" parent="Ambience"]
-visible = false
 scale = Vector2(0.62, 0.62)
 texture = ExtResource("2_8k8hk")
 centered = false
 
 [node name="lapin" type="Sprite2D" parent="Ambience"]
+modulate = Color(0.25641, 0.25641, 0.25641, 0.25641)
 scale = Vector2(0.62, 0.62)
 texture = ExtResource("5_rw4cc")
 centered = false
@@ -779,8 +815,8 @@ frame = 7
 frame_progress = 1.0
 
 [node name="GPUParticles2D3" type="GPUParticles2D" parent="Ambience"]
+modulate = Color(1, 1, 1, 0.392157)
 position = Vector2(579, 96)
-emitting = false
 amount = 128
 process_material = SubResource("ParticleProcessMaterial_rh3is")
 texture = ExtResource("14_a6n4p")
@@ -794,21 +830,22 @@ texture = ExtResource("3_ur7j4")
 centered = false
 
 [node name="perso" type="Sprite2D" parent="Ambience"]
-modulate = Color(0, 0, 0, 0)
+modulate = Color(0, 0, 0, 0.28)
 scale = Vector2(0.62, 0.62)
 texture = ExtResource("4_lsid2")
 centered = false
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Ambience"]
-position = Vector2(579, 0)
+position = Vector2(515, 0)
 emitting = false
 amount = 1024
 process_material = SubResource("ParticleProcessMaterial_bjdci")
 texture = ExtResource("2_ua2pe")
-lifetime = 2.0
+lifetime = 1.25
 fixed_fps = 0
 
 [node name="Line2D" type="Line2D" parent="Ambience"]
+visible = false
 points = PackedVector2Array(819, 616, 1047, 609)
 width = 64.0
 default_color = Color(0, 0, 0, 1)
@@ -889,6 +926,7 @@ width = 128.0
 default_color = Color(0, 0, 0, 1)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+visible = false
 custom_minimum_size = Vector2(1152, 648)
 offset_right = 1152.0
 offset_bottom = 648.0
@@ -899,24 +937,28 @@ layout_mode = 2
 alignment = 1
 
 [node name="Magnat" type="Label" parent="HBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Magnat"
 label_settings = SubResource("LabelSettings_6lu0w")
 horizontal_alignment = 1
 
 [node name="Buloz" type="Label" parent="HBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Buloz"
 label_settings = SubResource("LabelSettings_ime43")
 horizontal_alignment = 1
 
 [node name="Kryspou" type="Label" parent="HBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Kryspou"
 label_settings = SubResource("LabelSettings_x4v3a")
 horizontal_alignment = 1
 
 [node name="ObaniGarage" type="Label" parent="HBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "ObaniGarage"
 label_settings = SubResource("LabelSettings_gt8d4")
