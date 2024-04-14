@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c07qpjoa0naiq" path="res://Scenes/Material/Material.tscn" id="4_j1540"]
 [ext_resource type="PackedScene" uid="uid://c4xat6u8vnn5l" path="res://Scenes/Spawner/MobSpawner/MobSpawner.tscn" id="4_r331g"]
 [ext_resource type="PackedScene" uid="uid://bwc4ic0f204gq" path="res://Scenes/UserInterface/hotbar.tscn" id="5_u160v"]
-[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="8_1q62j"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://Ressources/assets/virtual_joystick/virtual_joystick_scene.tscn" id="8_gi643"]
 
 [node name="DebugScene" type="Node"]
 script = ExtResource("1_2lmlw")
