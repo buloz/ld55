@@ -8,7 +8,7 @@ extends Node
 
 
 func _ready():
-	attackComponent.cooldowns.connect(activate)
+	attackComponent.cooldown.connect(activate)
 	activate(attackComponent.on_cooldown)
 
 func activate(b : bool):

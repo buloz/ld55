@@ -1,6 +1,7 @@
 class_name PlayerClass extends CharacterBody2D
 
 @export var projectileScene: PackedScene
+@export var ballScene: PackedScene
 @export var blastScene: PackedScene
 @export var strikeScene: PackedScene
 @export var projectileShapeResource: Shape2D
@@ -56,16 +57,10 @@ func _physics_process(delta):
 	
 func _process(_delta):
 	if Input.is_action_just_pressed("primary_action"):
-		#var projectile : Projectile = projectileScene.instantiate()
-		#
-		#projectile.initialize(position, get_global_mouse_position(), true)
-#
-		#add_child(projectile)
-		var multiprojectile : MultiProjectile = projectileScene.instantiate()
-		
-		multiprojectile.initialize(position, get_global_mouse_position(), true)
-#
-		add_child(multiprojectile)
+		var projectile : MultiProjectile = ballScene.instantiate()
+		projectile.initialize(Vector2.ZERO, get_global_mouse_position(), true)
+		projectile.set_as_top_level(false)
+		add_child(projectile)
 	
 	if Input.is_action_just_pressed("test"):
 		$SummonSpawner.spawnSummon(get_global_mouse_position())

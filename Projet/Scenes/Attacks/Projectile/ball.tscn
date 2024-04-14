@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://w3mwqfxftwqx"]
+
+[ext_resource type="Script" path="res://Scenes/Attacks/Projectile/ball.gd" id="1_vh0vv"]
+[ext_resource type="Shape2D" uid="uid://co8ah52svqai0" path="res://Scenes/Attacks/Projectile/Circle.tres" id="2_o5dde"]
+[ext_resource type="PackedScene" uid="uid://blc1sjka6ahc6" path="res://Scenes/Component/attackComponent.tscn" id="3_5hufo"]
+[ext_resource type="Texture2D" uid="uid://dmpvb2jeaiokg" path="res://Ressources/sprites/projectile.png" id="4_xj1i1"]
+
+[node name="Ball" type="Area2D" node_paths=PackedStringArray("attack")]
+script = ExtResource("1_vh0vv")
+attack = NodePath("AttackComponent")
+speed = 200.0
+max_distance = 180.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = ExtResource("2_o5dde")
+
+[node name="AttackComponent" parent="." instance=ExtResource("3_5hufo")]
+attack_damage = 8.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_xj1i1")
+region_enabled = true
+region_rect = Rect2(0, 0, 256, 256)
