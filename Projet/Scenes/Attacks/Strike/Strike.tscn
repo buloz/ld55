@@ -28,3 +28,4 @@ color = Color(0, 0.486275, 1, 1)
 
 [node name="AttackComponent" parent="." instance=ExtResource("3_2ij0x")]
 attack_damage = 200.0
+attack_cooldown = 5.0

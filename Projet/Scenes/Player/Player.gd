@@ -1,11 +1,11 @@
 class_name PlayerClass extends CharacterBody2D
 
 @export var projectileScene: PackedScene
+@export var multiProjectileScene: PackedScene
 @export var ballScene: PackedScene
 @export var blastScene: PackedScene
 @export var strikeScene: PackedScene
 @export var projectileShapeResource: Shape2D
-
 
 @export var maxSpeed: float = 700.0
 @export var acceleration: float = 6000.0
@@ -57,22 +57,15 @@ func _physics_process(delta):
 	
 func _process(_delta):
 	if Input.is_action_just_pressed("primary_action"):
-		var projectile : MultiProjectile = ballScene.instantiate()
-		projectile.initialize(Vector2.ZERO, get_global_mouse_position(), true)
-		projectile.set_as_top_level(false)
-		add_child(projectile)
+		$SummonSpawner.spawnSummon(get_global_mouse_position(), ballScene)
 	
 	if Input.is_action_just_pressed("test"):
-		$SummonSpawner.spawnSummon(get_global_mouse_position())
+		$SummonSpawner.spawnSummon(get_global_mouse_position(), multiProjectileScene)
 		
 		
 func _unhandled_input(event):
 	if event is InputEventKey:
 		if event.pressed and event.keycode == KEY_SPACE:
-			var blast : Blast = blastScene.instantiate()
-			blast.initialize(global_position, get_global_mouse_position(), true)
-			add_child(blast)
+			$SummonSpawner.spawnSummon(get_global_mouse_position(), blastScene)
 		if event.pressed and event.keycode == KEY_R:
-			var strike : Strike = strikeScene.instantiate()
-			strike.initialize(global_position, get_global_mouse_position(), true)
-			add_child(strike)
+			$SummonSpawner.spawnSummon(get_global_mouse_position(), strikeScene)

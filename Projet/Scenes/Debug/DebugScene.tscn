@@ -1,14 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://l2wvjjpnjul4"]
+[gd_scene load_steps=8 format=3 uid="uid://l2wvjjpnjul4"]
 
 [ext_resource type="Script" path="res://Scenes/Debug/DebugScene.gd" id="1_2lmlw"]
 [ext_resource type="PackedScene" uid="uid://y542tm5v30rt" path="res://Scenes/Map/Map.tscn" id="1_lfq0a"]
 [ext_resource type="PackedScene" uid="uid://b433p5ck6nm4g" path="res://Scenes/Player/Player.tscn" id="2_vo8i1"]
-[ext_resource type="PackedScene" uid="uid://m41t5ox7dpkj" path="res://Scenes/Attacks/Strike/Strike.tscn" id="4_iacae"]
 [ext_resource type="PackedScene" uid="uid://c07qpjoa0naiq" path="res://Scenes/Material/Material.tscn" id="4_j1540"]
 [ext_resource type="PackedScene" uid="uid://c4xat6u8vnn5l" path="res://Scenes/Spawner/MobSpawner/MobSpawner.tscn" id="4_r331g"]
 [ext_resource type="PackedScene" uid="uid://bwc4ic0f204gq" path="res://Scenes/UserInterface/hotbar.tscn" id="5_u160v"]
-[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="8_1q62j"]
-[ext_resource type="Texture2D" uid="uid://5chuuaxbue13" path="res://Ressources/background/Tile01.png" id="9_il4p0"]
 [ext_resource type="Texture2D" uid="uid://dkn7p0w1mugk" path="res://Ressources/background/Tiling.png" id="10_ttqea"]
 
 [node name="DebugScene" type="Node"]
@@ -20,7 +17,6 @@ visible = false
 [node name="Player" parent="." instance=ExtResource("2_vo8i1")]
 position = Vector2(586, 373)
 collision_mask = 9
-strikeScene = ExtResource("4_iacae")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.4, 0.4)
@@ -61,6 +57,7 @@ offset_right = 496.0
 offset_bottom = -8.0
 grow_vertical = 0
 alignment = 2
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scale = Vector2(0.15, 0.15)
 transform = Transform2D(0.15, 0, 0, 0.15, 0, 0)
@@ -68,14 +65,6 @@ transform = Transform2D(0.15, 0, 0, 0.15, 0, 0)
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(6, 6)
 motion_mirroring = Vector2(38880, 38880)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-visible = false
-texture_repeat = 2
-scale = Vector2(3, 3)
-texture = ExtResource("9_il4p0")
-region_enabled = true
-region_rect = Rect2(0, 0, 21600, 21600)
 
 [node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 texture_repeat = 2

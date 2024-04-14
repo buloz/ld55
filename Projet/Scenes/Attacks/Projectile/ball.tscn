@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dmpvb2jeaiokg" path="res://Ressources/sprites/projectile.png" id="4_xj1i1"]
 
 [node name="Ball" type="Area2D" node_paths=PackedStringArray("attack")]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_vh0vv")
 attack = NodePath("AttackComponent")
 speed = 200.0
@@ -21,3 +23,5 @@ attack_damage = 8.0
 texture = ExtResource("4_xj1i1")
 region_enabled = true
 region_rect = Rect2(0, 0, 256, 256)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

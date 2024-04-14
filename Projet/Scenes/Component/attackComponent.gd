@@ -19,4 +19,4 @@ func setOnCooldown():
 
 func offCooldown():
 	if attack_cooldown != 0 and on_cooldown:
-		_set_cooldown(true)
+		_set_cooldown(false)
