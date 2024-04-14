@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://cod1nguf5sfab"]
+
+[ext_resource type="Script" path="res://Scenes/UserInterface/Tutorial.gd" id="1_bodge"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u3x6f"]
+font_size = 96
+
+[sub_resource type="LabelSettings" id="LabelSettings_ksrms"]
+font_size = 32
+
+[node name="Tutorial" type="CanvasLayer"]
+process_mode = 3
+layer = 100
+script = ExtResource("1_bodge")
+
+[node name="bg" type="Line2D" parent="."]
+points = PackedVector2Array(0, 324, 1152, 324)
+width = 648.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_right = 1152.0
+offset_bottom = 128.0
+text = "Tutorial"
+label_settings = SubResource("LabelSettings_u3x6f")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="one" type="VBoxContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(1152, 648)
+alignment = 1
+
+[node name="Label" type="Label" parent="one"]
+layout_mode = 2
+text = "Welcome to Undead Survivor!
+
+In this game, your goal is to survive as long as possible,
+with nothing but spells and dodging skills
+
+Despite the small ressemblance with a reknown game franchise,
+this game doesn't feature any vampires"
+label_settings = SubResource("LabelSettings_ksrms")
+horizontal_alignment = 1
+
+[node name="two" type="VBoxContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(1152, 648)
+alignment = 1
+
+[node name="Label" type="Label" parent="two"]
+layout_mode = 2
+text = "Spells can be crafted with materials you pick
+from the floor or drop from enemies"
+label_settings = SubResource("LabelSettings_ksrms")
+horizontal_alignment = 1

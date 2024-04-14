@@ -23,3 +23,5 @@ attack_damage = 8.0
 texture = ExtResource("4_xj1i1")
 region_enabled = true
 region_rect = Rect2(0, 0, 256, 256)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

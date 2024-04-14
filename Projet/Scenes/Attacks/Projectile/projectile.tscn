@@ -14,6 +14,7 @@ speed = 1000.0
 
 [node name="AttackComponent" parent="." instance=ExtResource("2_pu6d6")]
 attack_damage = 2.0
+attack_cooldown = 5.0
 
 [node name="LifeSpan" type="Timer" parent="."]
 

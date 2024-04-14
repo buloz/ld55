@@ -1,12 +1,12 @@
 [gd_scene load_steps=5 format=3 uid="uid://cdicoao7olj7t"]
 
-[ext_resource type="Script" path="res://Scenes/Attacks/Projectile/multiprojectile.gd" id="1_pnysf"]
-[ext_resource type="PackedScene" uid="uid://dfckik3n3ft43" path="res://Scenes/Attacks/Projectile/ball.tscn" id="2_p6yck"]
+[ext_resource type="Script" path="res://Scenes/Attacks/Projectile/multiball.gd" id="1_812mj"]
+[ext_resource type="PackedScene" uid="uid://w3mwqfxftwqx" path="res://Scenes/Attacks/Projectile/ball.tscn" id="2_p6yck"]
 [ext_resource type="PackedScene" uid="uid://blc1sjka6ahc6" path="res://Scenes/Component/attackComponent.tscn" id="3_tfkit"]
 [ext_resource type="Script" path="res://Scenes/Attacks/Projectile/RotationComponent.gd" id="3_un7j7"]
 
 [node name="MultiBall" type="Node2D"]
-script = ExtResource("1_pnysf")
+script = ExtResource("1_812mj")
 count = 8
 spreadAngle = 6.283
 projectileScene = ExtResource("2_p6yck")
