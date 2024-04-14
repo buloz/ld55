@@ -32,7 +32,7 @@ func initialize(senderPosition: Vector2, targetPosition: Vector2, playerTeam: bo
 	set_as_top_level(true)
 	
 
-func _process(delta):
+func _physics_process(delta):
 	global_position += direction * speed * delta
 
 func _on_area_entered(area):

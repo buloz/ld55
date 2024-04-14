@@ -5,7 +5,12 @@ class_name PlayerClass extends CharacterBody2D
 @export var strikeScene: PackedScene
 @export var projectileShapeResource: Shape2D
 
-@export var speed = 500.0
+
+@export var maxSpeed: float = 700
+@export var acceleration: float = 6000
+@export var friction: float = 4000
+
+@onready var animationState: AnimationState = $ShaderAnimation.get_node("AnimationState")
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -18,15 +23,32 @@ func _ready():
 	get_node("/root/Global").Player = self
 
 #TODO: faire un déplacement plus smooooooooth
-func _physics_process(_delta):
+func _physics_process(delta):
 	
-	
-
 	var direction = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down")).normalized()
 	
-	velocity.x = direction.x * speed if direction.x else move_toward(velocity.x, 0, speed)
-	velocity.y = direction.y * speed if direction.y else move_toward(velocity.y, 0, speed)
-	
+	if direction == Vector2.ZERO:
+		if velocity.length() > (friction * delta):			
+			velocity -= velocity.normalized() * (friction * delta)
+		
+		else:
+			velocity = Vector2.ZERO
+			
+		animationState.walking = false
+		animationState.orientation = 0.0
+		
+	else:
+		velocity += direction * acceleration * delta
+		velocity = velocity.limit_length(maxSpeed)
+		
+		animationState.walking = true
+		animationState.orientation = sign(direction.x)
+
+
+		#
+	#velocity.x = direction.x * speed if direction.x else move_toward(velocity.x, 0, speed)
+	#velocity.y = direction.y * speed if direction.y else move_toward(velocity.y, 0, speed)
+	#
 	move_and_slide()
 	
 	#Update global

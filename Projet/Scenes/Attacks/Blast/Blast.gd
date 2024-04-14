@@ -19,7 +19,7 @@ func _ready():
 	await get_tree().create_timer(travelTime).timeout
 	queue_free()
 	
-func _process(delta):
+func _physics_process(delta):
 	if blastShape is CircleShape2D:
 		blastShape.set_radius(blastShape.radius + delta/travelTime * (targetRadius - offsetRadius))
 

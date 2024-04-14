@@ -20,7 +20,7 @@ collision_mask = 9
 strikeScene = ExtResource("4_iacae")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(0.605, 0.605)
+zoom = Vector2(0.4, 0.4)
 
 [node name="MobSpawner" parent="." instance=ExtResource("4_r331g")]
 
@@ -60,6 +60,7 @@ grow_vertical = 0
 alignment = 2
 
 [node name="Virtual Joystick" parent="UI" instance=ExtResource("8_1q62j")]
+visible = false
 pressed_color = Color(0.745098, 0.745098, 0.745098, 0.286275)
 joystick_mode = 2
 action_left = "move_left"
