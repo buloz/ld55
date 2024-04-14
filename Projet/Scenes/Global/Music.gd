@@ -1,6 +1,7 @@
 extends Node
 
 const MIN_DB := -50.0
+const MAX_DB := -10.0
 const TRANS = 2.0
 
 var current_music = null
@@ -22,4 +23,4 @@ func play(n : String):
 		tween.set_ease(Tween.EASE_IN_OUT)
 		tween.set_trans(Tween.TRANS_SINE)
 		
-		tween.tween_property(former_music, "volume_db", MIN_DB, TRANS).chain().tween_property(current_music, "volume_db", -5, TRANS).tween_callback(former_music.stop)
+		tween.tween_property(former_music, "volume_db", MIN_DB, TRANS).chain().tween_property(current_music, "volume_db", MAX_DB, TRANS).tween_callback(former_music.stop)

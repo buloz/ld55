@@ -9,8 +9,7 @@ func _ready():
 	if os_name == "HTML5":
 		$UI/Quit.queue_free()
 	
-	$UI/Play/Sprite2D.hide()
-	$UI/Quit/Sprite2D.hide()
+	unselect()
 	
 	Music.play("Intro")
 	$AnimationPlayer.play("intro")
@@ -27,6 +26,11 @@ func quit():
 	print("MENU: Quit")
 	get_tree().quit()
 
+func unselect():
+	selected = null
+	$UI/Play/Sprite2D.hide()
+	$UI/Quit/Sprite2D.hide()
+
 func select(obj, anim : String):
 	if selected == obj:
 		return
@@ -41,6 +45,10 @@ func accept():
 		quit()
 
 func _input(event):
+	##debug helper
+	if event is InputEventKey and event.physical_keycode == KEY_INSERT:
+		start_game()
+	
 	if event.is_action_pressed("ui_up"):
 		select($UI/Play, "select_play")
 	elif event.is_action_pressed("ui_down"):
@@ -52,5 +60,7 @@ func _input(event):
 			select($UI/Play, "select_play")
 		elif $UI/Quit.is_hovered():
 			select($UI/Quit, "select_quit")
+		else:
+			unselect()
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		accept()
