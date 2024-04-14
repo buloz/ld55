@@ -12,7 +12,7 @@ var playerTeam
 var strike:bool = false
 
 
-func initialize(senderPosition: Vector2, targetPosition: Vector2, playerTeam: bool):
+func initialize(senderPosition: Vector2, _targetPosition: Vector2, _playerTeam: bool):
 	self.playerTeam = playerTeam
 	
 	collision_mask = 0b10 if playerTeam else 0b01

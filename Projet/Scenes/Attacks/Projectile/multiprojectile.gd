@@ -32,6 +32,3 @@ func initialize(senderPosition: Vector2, targetPosition: Vector2, playerTeam: bo
 
 	set_as_top_level(true)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

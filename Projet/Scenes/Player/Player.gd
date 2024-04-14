@@ -6,9 +6,9 @@ class_name PlayerClass extends CharacterBody2D
 @export var projectileShapeResource: Shape2D
 
 
-@export var maxSpeed: float = 700
-@export var acceleration: float = 6000
-@export var friction: float = 4000
+@export var maxSpeed: float = 700.0
+@export var acceleration: float = 6000.0
+@export var friction: float = 4000.0
 
 @onready var animationState: AnimationState = $ShaderAnimation.get_node("AnimationState")
 
@@ -35,7 +35,7 @@ func _physics_process(delta):
 			velocity = Vector2.ZERO
 			
 		animationState.walking = false
-		animationState.orientation = 0.0
+		animationState.orientation = 0
 		
 	else:
 		velocity += direction * acceleration * delta

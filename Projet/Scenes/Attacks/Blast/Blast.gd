@@ -8,7 +8,7 @@ class_name Blast extends Area2D
 
 @onready var blastShape = $CollisionShape2D.shape
 
-func initialize(senderPosition: Vector2, targetPosition: Vector2, playerTeam: bool):
+func initialize(_senderPosition: Vector2, _targetPosition: Vector2, playerTeam: bool):
 	collision_mask = 0b10 if playerTeam else 0b01
 	offsetRadius = 100.0
 

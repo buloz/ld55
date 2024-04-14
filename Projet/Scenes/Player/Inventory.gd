@@ -13,7 +13,6 @@ func _ready():
 	hotbar.slotbar.connect(_slotbar_pressed)
 
 func addMaterial(materialType: int, quantity: int):
-	
 	if materialType >= storedMaterials.size():
 		print("Unknown material type")
 		return
@@ -34,7 +33,7 @@ func _slotbar_pressed(value, toggled_on):
 func _input(event):
 	if floatingMaterials.size() > 0 and event.is_action_pressed("primary_action"):
 		_try_craft(floatingMaterials)
-		
+
 func _try_craft(materials):
 	#if materials is Array[int]:
 	pass
