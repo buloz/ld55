@@ -41,6 +41,10 @@ func accept():
 		quit()
 
 func _input(event):
+	##debug helper
+	if event is InputEventKey and event.physical_keycode == KEY_INSERT:
+		start_game()
+	
 	if event.is_action_pressed("ui_up"):
 		select($UI/Play, "select_play")
 	elif event.is_action_pressed("ui_down"):
