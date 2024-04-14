@@ -2,14 +2,13 @@
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_sxh4x"]
 [ext_resource type="PackedScene" uid="uid://cev6kffqmrxuq" path="res://Scenes/Attacks/Projectile/projectile.tscn" id="2_348b1"]
-[ext_resource type="PackedScene" uid="uid://bk872iy3q6pbl" path="res://Scenes/Attacks/Projectile/multiprojectile.tscn" id="2_e0u2x"]
 [ext_resource type="PackedScene" uid="uid://d3giiljxtfpns" path="res://Scenes/Player/Inventory.tscn" id="2_lnnje"]
 [ext_resource type="PackedScene" uid="uid://3y8njbt42ijg" path="res://Scenes/Attacks/Blast/Blast.tscn" id="3_guh1v"]
 [ext_resource type="PackedScene" uid="uid://bj1ctidibit2r" path="res://Scenes/Attacks/Projectile/multiprojectile.tscn" id="3_tyl87"]
 [ext_resource type="Shape2D" uid="uid://byjssba2o48vl" path="res://Scenes/Attacks/Projectile/Arrow.tres" id="3_xtamv"]
+[ext_resource type="PackedScene" uid="uid://dfckik3n3ft43" path="res://Scenes/Attacks/Projectile/ball.tscn" id="4_udxop"]
 [ext_resource type="PackedScene" uid="uid://m41t5ox7dpkj" path="res://Scenes/Attacks/Strike/Strike.tscn" id="5_mc306"]
 [ext_resource type="PackedScene" uid="uid://c26ht80nke8hf" path="res://Scenes/Spawner/SummonSpawner/SummonSpawner.tscn" id="6_ua7c7"]
-[ext_resource type="PackedScene" uid="uid://m41t5ox7dpkj" path="res://Scenes/Attacks/Strike/Strike.tscn" id="6_vnnh3"]
 [ext_resource type="Texture2D" uid="uid://ct74omi3gprcy" path="res://Ressources/sprites/Perso_Principal.png" id="7_foaxm"]
 [ext_resource type="Shader" path="res://Scenes/Player/Player.gdshader" id="7_h3iq2"]
 [ext_resource type="PackedScene" uid="uid://b3w25xcfvrnug" path="res://Scenes/Animation/ShaderAnimation.tscn" id="9_hk5ia"]
@@ -29,10 +28,10 @@ collision_layer = 9
 collision_mask = 7
 script = ExtResource("1_sxh4x")
 projectileScene = ExtResource("2_348b1")
-multiProjectileScene = ExtResource("2_e0u2x")
-ballScene = ExtResource("3_xyuyv")
+multiProjectileScene = ExtResource("3_tyl87")
+ballScene = ExtResource("4_udxop")
 blastScene = ExtResource("3_guh1v")
-strikeScene = ExtResource("6_vnnh3")
+strikeScene = ExtResource("5_mc306")
 projectileShapeResource = ExtResource("3_xtamv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
