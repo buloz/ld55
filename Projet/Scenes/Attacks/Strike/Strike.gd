@@ -11,12 +11,20 @@ var targetPosition
 var playerTeam
 var strike:bool = false
 
+
+func initialize(senderPosition: Vector2, targetPosition: Vector2, playerTeam: bool):
+	self.playerTeam = playerTeam
+	
+	collision_mask = 0b10 if playerTeam else 0b01
+		
+	position = senderPosition
+	set_as_top_level(true)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	collision_mask = 0b01
-	if playerTeam:
-		collision_mask <<= 1
+
 	await get_tree().create_timer(delay).timeout
+	
 	for area in get_overlapping_areas():
 		if area is HitboxComponent and area.healthComponent and hasTarget:
 			area.damage(attack)

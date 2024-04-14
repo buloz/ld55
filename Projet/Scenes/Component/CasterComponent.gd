@@ -20,7 +20,7 @@ func _process(delta):
 			#Create and add new spell instance
 			var newSpell = spellScene.instantiate()
 			
-			newSpell.initialize(get_parent().global_position, get_parent().targetPosition)
+			newSpell.initialize(get_parent().global_position, get_parent().targetPosition, get_parent().playerTeam)
 			
 			newSpell.get_node("AttackComponent").attack_damage = attackComponent.attack_damage
 			add_child(newSpell)

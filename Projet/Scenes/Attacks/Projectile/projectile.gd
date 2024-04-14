@@ -17,8 +17,10 @@ func _ready():
 	await get_tree().create_timer(lifeSpan).timeout
 	queue_free()
 	
-func initialize(senderPosition, targetPosition):
+func initialize(senderPosition: Vector2, targetPosition: Vector2, playerTeam: bool):
 	#var projectile : Projectile = projectileScene.instantiate()
+	
+	collision_mask = 0b10 if playerTeam else 0b01
 	
 	$CollisionShape2D.shape = arrowShape
 	

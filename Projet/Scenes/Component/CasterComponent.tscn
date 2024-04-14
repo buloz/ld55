@@ -2,6 +2,6 @@
 
 [ext_resource type="Script" path="res://Scenes/Component/CasterComponent.gd" id="1_2qdi5"]
 
-[node name="CasterComponent" type="Node"]
+[node name="CasterComponent" type="Node2D"]
 script = ExtResource("1_2qdi5")
 distanceToCast = 500.0
