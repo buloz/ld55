@@ -33,12 +33,17 @@ func _physics_process(_delta):
 	get_node("/root/Global").playerPosition = position
 	
 func _process(_delta):
-	if Input.is_action_pressed("primary_action"):
-		var projectile : Projectile = projectileScene.instantiate()
+	if Input.is_action_just_pressed("primary_action"):
+		#var projectile : Projectile = projectileScene.instantiate()
+		#
+		#projectile.initialize(position, get_global_mouse_position(), true)
+#
+		#add_child(projectile)
+		var multiprojectile : MultiProjectile = projectileScene.instantiate()
 		
-		projectile.initialize(position, get_global_mouse_position(), true)
-
-		add_child(projectile)
+		multiprojectile.initialize(position, get_global_mouse_position(), true)
+#
+		add_child(multiprojectile)
 	
 	if Input.is_action_just_pressed("test"):
 		$SummonSpawner.spawnSummon(get_global_mouse_position())
