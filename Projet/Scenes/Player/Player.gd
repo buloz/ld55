@@ -1,14 +1,15 @@
 class_name PlayerClass extends CharacterBody2D
 
 @export var projectileScene: PackedScene
+@export var ballScene: PackedScene
 @export var blastScene: PackedScene
 @export var strikeScene: PackedScene
 @export var projectileShapeResource: Shape2D
 
 
-@export var maxSpeed: float = 700
-@export var acceleration: float = 6000
-@export var friction: float = 4000
+@export var maxSpeed: float = 700.0
+@export var acceleration: float = 6000.0
+@export var friction: float = 4000.0
 
 @onready var animationState: AnimationState = $ShaderAnimation.get_node("AnimationState")
 
@@ -35,7 +36,7 @@ func _physics_process(delta):
 			velocity = Vector2.ZERO
 			
 		animationState.walking = false
-		animationState.orientation = 0.0
+		animationState.orientation = 0
 		
 	else:
 		velocity += direction * acceleration * delta
@@ -55,17 +56,11 @@ func _physics_process(delta):
 	get_node("/root/Global").playerPosition = position
 	
 func _process(_delta):
-	if Input.is_action_pressed("primary_action"):
-		#var projectile : Projectile = projectileScene.instantiate()
-		#
-		#projectile.initialize(position, get_global_mouse_position(), true)
-#
-		#add_child(projectile)
-		var multiprojectile : Projectile = projectileScene.instantiate()
-		
-		multiprojectile.initialize(position, get_global_mouse_position(), true)
-#
-		add_child(multiprojectile)
+	if Input.is_action_just_pressed("primary_action"):
+		var projectile : MultiProjectile = ballScene.instantiate()
+		projectile.initialize(Vector2.ZERO, get_global_mouse_position(), true)
+		projectile.set_as_top_level(false)
+		add_child(projectile)
 	
 	if Input.is_action_just_pressed("test"):
 		$SummonSpawner.spawnSummon(get_global_mouse_position())

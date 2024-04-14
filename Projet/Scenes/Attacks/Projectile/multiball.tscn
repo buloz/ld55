@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://8ica7wi24n4k"]
+
+[ext_resource type="Script" path="res://Scenes/Attacks/Projectile/multiprojectile.gd" id="1_pnysf"]
+[ext_resource type="PackedScene" uid="uid://w3mwqfxftwqx" path="res://Scenes/Attacks/Projectile/ball.tscn" id="2_p6yck"]
+[ext_resource type="PackedScene" uid="uid://blc1sjka6ahc6" path="res://Scenes/Component/attackComponent.tscn" id="3_tfkit"]
+[ext_resource type="Script" path="res://Scenes/Attacks/Projectile/RotationComponent.gd" id="3_un7j7"]
+
+[node name="MultiBall" type="Node2D"]
+script = ExtResource("1_pnysf")
+count = 8
+spreadAngle = 6.283
+projectileScene = ExtResource("2_p6yck")
+time_between_projectile = 0.15
+
+[node name="AttackComponent" parent="." instance=ExtResource("3_tfkit")]
+attack_damage = 8.0
+
+[node name="RotationComponent" type="Node" parent="."]
+script = ExtResource("3_un7j7")
+revolution_time = 2.0

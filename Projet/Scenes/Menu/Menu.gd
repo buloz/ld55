@@ -13,6 +13,10 @@ func _ready():
 	
 	Music.play("Intro")
 	$AnimationPlayer.play("intro")
+	$AnimationPlayer.animation_finished.connect(set_rain)
+
+func set_rain(_anim: String):
+	Music.play("Rain")
 
 func start_game():
 	print("MENU: Start game")

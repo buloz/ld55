@@ -8,7 +8,6 @@ func _ready():
 	currentHealth = MaxHealth
 
 func damage(attack: AttackComponent):
-			
 	currentHealth -= attack.attack_damage
 	print("took ", attack.attack_damage, " damage")
 	

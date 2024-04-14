@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://c2vgwq4l557w5"]
+[gd_scene load_steps=58 format=3 uid="uid://c2vgwq4l557w5"]
 
 [ext_resource type="Script" path="res://Scenes/Menu/Menu.gd" id="1_u7bgu"]
 [ext_resource type="Texture2D" uid="uid://c7l10bjuekbac" path="res://Ressources/menu/Arbrev2.png" id="2_6m2tl"]
@@ -19,15 +19,41 @@
 [ext_resource type="Texture2D" uid="uid://nyu6h3u6cax8" path="res://Ressources/menu/thunder8.png" id="10_ldu07"]
 [ext_resource type="Texture2D" uid="uid://xie88bmls10y" path="res://Ressources/menu/sphere1024.png" id="14_a6n4p"]
 [ext_resource type="Texture2D" uid="uid://cd3cqscecawe1" path="res://Ressources/menu/sphere_120.png" id="15_qbu6j"]
+[ext_resource type="Texture2D" uid="uid://by3j7hart0a5x" path="res://Ressources/menu/Title.png" id="18_0qv0n"]
 [ext_resource type="Texture2D" uid="uid://dgld6ggq1dr5d" path="res://Ressources/menu/Bouton_Jouer.png" id="18_p5la7"]
 [ext_resource type="Texture2D" uid="uid://b420ohbhkh4sr" path="res://Ressources/menu/CraneSelection.png" id="19_o4bvp"]
 [ext_resource type="Texture2D" uid="uid://mq1xddmfvmwa" path="res://Ressources/menu/Bouton_Quit.png" id="19_s3glt"]
+[ext_resource type="Texture2D" uid="uid://c72lx6ksgc4yw" path="res://Ressources/menu/Penta.png" id="19_ubt2v"]
 
 [sub_resource type="Gradient" id="Gradient_3njgm"]
 colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0.266667)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_covwf"]
 gradient = SubResource("Gradient_3njgm")
+
+[sub_resource type="Gradient" id="Gradient_wbw0i"]
+offsets = PackedFloat32Array(0, 0.477941, 0.830882, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bi1rj"]
+gradient = SubResource("Gradient_wbw0i")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_767ye"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(707, 1, 1)
+angle_min = 8.0
+angle_max = 12.0
+direction = Vector3(0.32, 1, 0)
+spread = 5.0
+initial_velocity_min = 475.0
+initial_velocity_max = 1000.0
+gravity = Vector3(0, 98, 0)
+scale_min = 24.0
+scale_max = 32.0
+color = Color(1, 1, 1, 0.0784314)
+color_ramp = SubResource("GradientTexture1D_bi1rj")
+color_initial_ramp = SubResource("GradientTexture1D_covwf")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_eveei"]
 particle_flag_disable_z = true
@@ -154,6 +180,41 @@ initial_velocity_max = 1000.0
 gravity = Vector3(0, 98, 0)
 color_initial_ramp = SubResource("GradientTexture1D_covwf")
 
+[sub_resource type="Animation" id="Animation_rh2uf"]
+resource_name = "idle"
+length = 120.0
+loop_mode = 1
+step = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("perso/penta:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 120),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("perso/penta/penta2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 120),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e7plg"]
+_data = {
+"idle": SubResource("Animation_rh2uf")
+}
+
 [sub_resource type="Animation" id="Animation_b4w7k"]
 resource_name = "select_play"
 length = 0.15
@@ -266,24 +327,9 @@ _data = {
 "select_quit": SubResource("Animation_6ffu2")
 }
 
-[sub_resource type="Animation" id="Animation_sn62a"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Ambience/lapin:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_qhwo0"]
 resource_name = "intro"
-length = 100.0
+length = 38.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -447,7 +493,7 @@ tracks/13/path = NodePath("Ambience/perso:modulate")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"times": PackedFloat32Array(5.9, 8.4, 16.1),
+"times": PackedFloat32Array(5.9, 8.4, 14.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
@@ -541,10 +587,10 @@ tracks/20/path = NodePath("Ambience/perso:rotation")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
-"times": PackedFloat32Array(15.69, 19.7, 23.9, 30.2, 41, 54.7, 71.3),
-"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2),
+"times": PackedFloat32Array(15.69, 19.7, 23.9, 30.2, 38),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2),
 "update": 0,
-"values": [0.0, -0.0174533, 0.0, -0.0174533, 0.0, -0.0174533, 0.0]
+"values": [0.0, -0.0174533, 0.0, -0.0174533, 0.0]
 }
 tracks/21/type = "value"
 tracks/21/imported = false
@@ -664,10 +710,57 @@ tracks/29/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/30/type = "value"
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/path = NodePath("Ambience/GPUParticles2D4:emitting")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/keys = {
+"times": PackedFloat32Array(0, 7.39098),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/31/type = "value"
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/path = NodePath("Ambience/GPUParticles2D4:modulate")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/keys = {
+"times": PackedFloat32Array(6.6, 11.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/32/type = "value"
+tracks/32/imported = false
+tracks/32/enabled = true
+tracks/32/path = NodePath("Ambience/title:modulate")
+tracks/32/interp = 1
+tracks/32/loop_wrap = true
+tracks/32/keys = {
+"times": PackedFloat32Array(7.3, 8.9, 17.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/33/type = "value"
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/path = NodePath("Ambience/perso/penta:modulate")
+tracks/33/interp = 1
+tracks/33/loop_wrap = true
+tracks/33/keys = {
+"times": PackedFloat32Array(7.9, 14),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.588235, 0.588235, 0.588235, 0), Color(0.588235, 0.588235, 0.588235, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iwb5s"]
 _data = {
-"RESET": SubResource("Animation_sn62a"),
 "intro": SubResource("Animation_qhwo0")
 }
 
@@ -693,13 +786,21 @@ width = 1024.0
 
 [node name="Ambience" type="Node2D" parent="."]
 
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="Ambience"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(515, 0)
+emitting = false
+amount = 512
+process_material = SubResource("ParticleProcessMaterial_767ye")
+texture = ExtResource("2_ua2pe")
+fixed_fps = 0
+
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="Ambience"]
-position = Vector2(579, 0)
+position = Vector2(515, 0)
 emitting = false
 amount = 1024
 process_material = SubResource("ParticleProcessMaterial_eveei")
 texture = ExtResource("2_ua2pe")
-lifetime = 2.0
 fixed_fps = 0
 
 [node name="thunder" type="AnimatedSprite2D" parent="Ambience"]
@@ -747,6 +848,7 @@ texture = ExtResource("2_8k8hk")
 centered = false
 
 [node name="lapin" type="Sprite2D" parent="Ambience"]
+modulate = Color(0, 0, 0, 0)
 scale = Vector2(0.62, 0.62)
 texture = ExtResource("5_rw4cc")
 centered = false
@@ -779,6 +881,7 @@ frame = 7
 frame_progress = 1.0
 
 [node name="GPUParticles2D3" type="GPUParticles2D" parent="Ambience"]
+modulate = Color(1, 1, 1, 0.392157)
 position = Vector2(579, 96)
 emitting = false
 amount = 128
@@ -789,9 +892,16 @@ speed_scale = 0.75
 fixed_fps = 0
 
 [node name="plantes" type="Sprite2D" parent="Ambience"]
+visible = false
 scale = Vector2(0.62, 0.62)
 texture = ExtResource("3_ur7j4")
 centered = false
+
+[node name="title" type="Sprite2D" parent="Ambience"]
+modulate = Color(0, 0, 0, 0)
+position = Vector2(530, 103)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("18_0qv0n")
 
 [node name="perso" type="Sprite2D" parent="Ambience"]
 modulate = Color(0, 0, 0, 0)
@@ -799,19 +909,37 @@ scale = Vector2(0.62, 0.62)
 texture = ExtResource("4_lsid2")
 centered = false
 
+[node name="penta" type="Sprite2D" parent="Ambience/perso"]
+modulate = Color(0.588235, 0.588235, 0.588235, 0)
+show_behind_parent = true
+position = Vector2(1472, 388)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("19_ubt2v")
+
+[node name="penta2" type="Sprite2D" parent="Ambience/perso/penta"]
+modulate = Color(1, 1, 1, 0.0980392)
+show_behind_parent = true
+texture = ExtResource("19_ubt2v")
+
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Ambience"]
-position = Vector2(579, 0)
+position = Vector2(515, 0)
 emitting = false
 amount = 1024
 process_material = SubResource("ParticleProcessMaterial_bjdci")
 texture = ExtResource("2_ua2pe")
-lifetime = 2.0
+lifetime = 1.25
 fixed_fps = 0
 
 [node name="Line2D" type="Line2D" parent="Ambience"]
 points = PackedVector2Array(819, 616, 1047, 609)
 width = 64.0
 default_color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Ambience"]
+libraries = {
+"": SubResource("AnimationLibrary_e7plg")
+}
+autoplay = "idle"
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -836,7 +964,6 @@ texture_disabled = ExtResource("18_p5la7")
 texture_focused = ExtResource("18_p5la7")
 
 [node name="Sprite2D" type="Sprite2D" parent="UI/Play"]
-visible = false
 position = Vector2(512, 64)
 texture = ExtResource("19_o4bvp")
 
@@ -857,6 +984,7 @@ texture_disabled = ExtResource("19_s3glt")
 texture_focused = ExtResource("19_s3glt")
 
 [node name="Sprite2D" type="Sprite2D" parent="UI/Quit"]
+visible = false
 position = Vector2(480, 56)
 texture = ExtResource("19_o4bvp")
 
@@ -871,24 +999,22 @@ libraries = {
 }
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("2_qnmsm")
 centered = false
 
 [node name="Line2D" type="Line2D" parent="Sprite2D"]
-visible = false
 points = PackedVector2Array(538.889, 354.444, 942.222, 350)
 width = 128.0
 default_color = Color(0, 0, 0, 1)
 
 [node name="Line2D2" type="Line2D" parent="Sprite2D"]
-visible = false
 points = PackedVector2Array(475.556, 484.444, 825.556, 458.889)
 width = 128.0
 default_color = Color(0, 0, 0, 1)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+visible = false
 custom_minimum_size = Vector2(1152, 648)
 offset_right = 1152.0
 offset_bottom = 648.0
@@ -899,24 +1025,28 @@ layout_mode = 2
 alignment = 1
 
 [node name="Magnat" type="Label" parent="HBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Magnat"
 label_settings = SubResource("LabelSettings_6lu0w")
 horizontal_alignment = 1
 
 [node name="Buloz" type="Label" parent="HBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Buloz"
 label_settings = SubResource("LabelSettings_ime43")
 horizontal_alignment = 1
 
 [node name="Kryspou" type="Label" parent="HBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Kryspou"
 label_settings = SubResource("LabelSettings_x4v3a")
 horizontal_alignment = 1
 
 [node name="ObaniGarage" type="Label" parent="HBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "ObaniGarage"
 label_settings = SubResource("LabelSettings_gt8d4")

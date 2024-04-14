@@ -25,7 +25,6 @@ func _ready():
 
 
 func _physics_process(_delta):
-	
 	if Engine.get_physics_frames() % 3 != 0:
 		return
 	
@@ -35,7 +34,6 @@ func _physics_process(_delta):
 	var shortestDistance = 100000000000
 	
 	if $Area2D.has_overlapping_areas():
-		
 		var targetBody
 		for body in $Area2D.get_overlapping_areas():
 			var dist : float = get_parent().global_position.distance_to(body.global_position)
@@ -48,10 +46,8 @@ func _physics_process(_delta):
 		get_parent().hasTarget = true
 	
 	if not playerTeam:
-		
 		var playerDist: float = get_parent().position.distance_to(get_node("/root/Global").playerPosition)
 		
 		if playerDist < shortestDistance:
-			
 			get_parent().hasTarget = true
 			get_parent().targetPosition = get_node("/root/Global").playerPosition

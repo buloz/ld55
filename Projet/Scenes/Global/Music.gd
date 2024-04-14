@@ -23,4 +23,6 @@ func play(n : String):
 		tween.set_ease(Tween.EASE_IN_OUT)
 		tween.set_trans(Tween.TRANS_SINE)
 		
-		tween.tween_property(former_music, "volume_db", MIN_DB, TRANS).chain().tween_property(current_music, "volume_db", MAX_DB, TRANS).tween_callback(former_music.stop)
+		tween.tween_property(former_music, "volume_db", MIN_DB, TRANS)
+		tween.chain().tween_property(current_music, "volume_db", MAX_DB, TRANS)
+		tween.tween_callback(former_music.stop)

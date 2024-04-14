@@ -61,16 +61,6 @@ offset_right = 496.0
 offset_bottom = -8.0
 grow_vertical = 0
 alignment = 2
-
-[node name="Virtual Joystick" parent="UI" instance=ExtResource("8_1q62j")]
-visible = false
-pressed_color = Color(0.745098, 0.745098, 0.745098, 0.286275)
-joystick_mode = 2
-action_left = "move_left"
-action_right = "move_right"
-action_up = "move_up"
-action_down = "move_down"
-
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scale = Vector2(0.15, 0.15)
 transform = Transform2D(0.15, 0, 0, 0.15, 0, 0)
