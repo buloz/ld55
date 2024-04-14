@@ -1,15 +1,53 @@
-[gd_scene load_steps=7 format=3 uid="uid://cb8lmdavcema"]
+[gd_scene load_steps=20 format=3 uid="uid://cb8lmdavcema"]
 
 [ext_resource type="Script" path="res://Scenes/Entity/Mob/Mob.gd" id="1_3u8mo"]
 [ext_resource type="PackedScene" uid="uid://qks2cmf75chg" path="res://Scenes/Component/NearestEnemyFinder.tscn" id="2_easnx"]
 [ext_resource type="PackedScene" uid="uid://dm7wjxq1yhhha" path="res://Scenes/Component/healthComponent.tscn" id="3_50md8"]
 [ext_resource type="PackedScene" uid="uid://deuhf0wkjf2jw" path="res://Scenes/Component/hitboxComponent.tscn" id="4_il1u3"]
+[ext_resource type="Shader" path="res://Scenes/Entity/Mob/Mob.gdshader" id="5_eym8e"]
 [ext_resource type="PackedScene" uid="uid://blc1sjka6ahc6" path="res://Scenes/Component/attackComponent.tscn" id="5_o00wj"]
+[ext_resource type="Texture2D" uid="uid://bcdtqudttuei0" path="res://Ressources/sprites/Mobs/Chat.png" id="6_wu2xb"]
+[ext_resource type="PackedScene" uid="uid://b3w25xcfvrnug" path="res://Scenes/Animation/ShaderAnimation.tscn" id="7_oi6k7"]
+[ext_resource type="Texture2D" uid="uid://b2qy48p7n0uvq" path="res://Ressources/sprites/Mobs/Biche.png" id="9_sspgo"]
+[ext_resource type="Texture2D" uid="uid://oplf7u8wkpol" path="res://Ressources/sprites/Mobs/Grenouille.png" id="9_x02w5"]
+[ext_resource type="Texture2D" uid="uid://baxsxn10y7i81" path="res://Ressources/sprites/Mobs/Lapin.png" id="11_dschm"]
+[ext_resource type="Texture2D" uid="uid://es3hfe74elaq" path="res://Ressources/sprites/Mobs/Vach.png" id="12_qvxba"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_itvn1"]
-radius = 23.0868
+radius = 48.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5kvnw"]
+shader = ExtResource("5_eym8e")
+shader_parameter/walkingAlpha = null
+shader_parameter/xOrientation = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mdcyp"]
+shader = ExtResource("5_eym8e")
+shader_parameter/walkingAlpha = 4.75e-08
+shader_parameter/xOrientation = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8jc03"]
+shader = ExtResource("5_eym8e")
+shader_parameter/walkingAlpha = null
+shader_parameter/xOrientation = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_758ic"]
+shader = ExtResource("5_eym8e")
+shader_parameter/walkingAlpha = -0.59
+shader_parameter/xOrientation = 4.75e-08
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_riuuj"]
+shader = ExtResource("5_eym8e")
+shader_parameter/walkingAlpha = null
+shader_parameter/xOrientation = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wxl82"]
+shader = ExtResource("5_eym8e")
+shader_parameter/walkingAlpha = null
+shader_parameter/xOrientation = null
 
 [node name="Mob" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_3u8mo")
 
 [node name="NearestEnnemyFinder" parent="." instance=ExtResource("2_easnx")]
@@ -17,16 +55,59 @@ script = ExtResource("1_3u8mo")
 [node name="HealthComponent" parent="." instance=ExtResource("3_50md8")]
 MaxHealth = 20.0
 
+[node name="AttackComponent" parent="." instance=ExtResource("5_o00wj")]
+attack_damage = 10.0
+attack_cooldown = 0.5
+
 [node name="HitBoxComponent" parent="." node_paths=PackedStringArray("healthComponent") instance=ExtResource("4_il1u3")]
 collision_layer = 2
 healthComponent = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="HitBoxComponent"]
+position = Vector2(-2, 7)
 shape = SubResource("CircleShape2D_itvn1")
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(0, -23, 6, -22, 12, -19, 19, -12, 22, 0, 19, 11, 10, 19, 0, 20, -10, 18, -15, 13, -19, 6, -20, -4, -16, -13, -9, -20, 0, -23, 0, -23)
+[node name="ShaderAnimation" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("7_oi6k7")]
+randomStartOffset = true
+sprite = NodePath("../Sprite2D")
 
-[node name="AttackComponent" parent="." instance=ExtResource("5_o00wj")]
-attack_damage = 10.0
-attack_cooldown = 0.5
+[node name="VACHE" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_5kvnw")
+position = Vector2(-24, -120)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("12_qvxba")
+
+[node name="Biche" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_mdcyp")
+position = Vector2(-2, -99)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_sspgo")
+
+[node name="Grenouille" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_8jc03")
+position = Vector2(-2, -3)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("9_x02w5")
+
+[node name="Chat" type="Sprite2D" parent="."]
+visible = false
+texture_repeat = 1
+material = SubResource("ShaderMaterial_758ic")
+position = Vector2(0.999992, -21)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("6_wu2xb")
+region_rect = Rect2(-33.3369, -20.6223, 764.26, 853.578)
+
+[node name="Lapin" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_riuuj")
+position = Vector2(-3, -17)
+scale = Vector2(0.28, 0.28)
+texture = ExtResource("11_dschm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_as_relative = false
+material = SubResource("ShaderMaterial_wxl82")

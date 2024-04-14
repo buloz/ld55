@@ -42,7 +42,7 @@ func _physics_process(delta):
 		velocity = velocity.limit_length(maxSpeed)
 		
 		animationState.walking = true
-		animationState.orientation = sign(direction.x)
+		animationState.orientation = velocity.normalized().x
 
 
 		#
@@ -55,13 +55,13 @@ func _physics_process(delta):
 	get_node("/root/Global").playerPosition = position
 	
 func _process(_delta):
-	if Input.is_action_just_pressed("primary_action"):
+	if Input.is_action_pressed("primary_action"):
 		#var projectile : Projectile = projectileScene.instantiate()
 		#
 		#projectile.initialize(position, get_global_mouse_position(), true)
 #
 		#add_child(projectile)
-		var multiprojectile : MultiProjectile = projectileScene.instantiate()
+		var multiprojectile : Projectile = projectileScene.instantiate()
 		
 		multiprojectile.initialize(position, get_global_mouse_position(), true)
 #

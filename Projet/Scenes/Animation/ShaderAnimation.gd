@@ -1,5 +1,6 @@
 extends Node
 
+@export var randomStartOffset: bool = false
 
 @export var walkingSpeed: float = 5.0
 var walkingFactor: float = 0.0
@@ -9,16 +10,18 @@ var walkingSign: float = 1.0
 @export var orientationSpeed: float = 5.0
 var xOrientationFactor: float = 0.0
 
-
-
-
 @export var sprite: Sprite2D
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
-	pass # Replace with function body.
+	if randomStartOffset:
+		walkingFactor = randf_range(-1.0, 1.0)
+		walkingSign = -1 if randi() % 2 else 1
 
-
+#To make shader ressource unique
+func setUnique():
+	sprite.material.resource_local_to_scene = true
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
@@ -38,15 +41,15 @@ func _process(delta):
 			walkingFactor = 0.0
 	
 	
-	if $AnimationState.orientation == 1:
+	if $AnimationState.orientation > 0:
 		xOrientationFactor += orientationSpeed * delta
-		if xOrientationFactor >= 1.0:
-			xOrientationFactor = 1.0
+		if xOrientationFactor >= $AnimationState.orientation:
+			xOrientationFactor = $AnimationState.orientation
 			
-	elif $AnimationState.orientation == -1:
+	elif $AnimationState.orientation < 0:
 		xOrientationFactor -= orientationSpeed * delta
-		if xOrientationFactor <= -1.0:
-			xOrientationFactor = -1.0
+		if xOrientationFactor <= $AnimationState.orientation:
+			xOrientationFactor = $AnimationState.orientation
 	else:
 		xOrientationFactor -= orientationSpeed * delta * sign(xOrientationFactor)
 		if is_equal_approx(xOrientationFactor, 0.0):
