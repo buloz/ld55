@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b033m2yvbp56m"]
+
+[ext_resource type="Script" path="res://Scenes/Global/Music.gd" id="1_i4q0p"]
+[ext_resource type="AudioStream" uid="uid://dqocf0nwf2bhx" path="res://Ressources/music/ludumdaremenu.ogg" id="2_up8cr"]
+
+[node name="Music" type="Node"]
+script = ExtResource("1_i4q0p")
+
+[node name="Intro" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_up8cr")
+volume_db = -5.0

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Projet"
-run/main_scene="res://Scenes/Debug/DebugScene.tscn"
+run/main_scene="res://Scenes/Menu/Menu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,15 @@ config/icon="res://icon.svg"
 
 Global="*res://Scenes/Global/Global.gd"
 DebugPanel="*res://Scenes/Debug/DebugPanel.tscn"
+Music="*res://Scenes/Global/Music.tscn"
+
+[display]
+
+window/stretch/mode="canvas_items"
+
+[gui]
+
+theme/custom_font="res://Ressources/fonts/Billy_2.0.otf"
 
 [input]
 
