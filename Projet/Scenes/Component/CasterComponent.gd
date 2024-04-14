@@ -17,7 +17,7 @@ func activate(b : bool):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if get_parent().hasTarget and get_parent().distanceToTarget < distanceToCast:
-		print("Distance to target: ", get_parent().distanceToTarget)
+		#print("Distance to target: ", get_parent().distanceToTarget)
 		
 		#Create and add new spell instance
 		var newSpell = spellScene.instantiate()

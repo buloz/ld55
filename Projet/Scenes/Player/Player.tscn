@@ -1,43 +1,49 @@
-[gd_scene load_steps=13 format=3 uid="uid://b433p5ck6nm4g"]
+[gd_scene load_steps=14 format=3 uid="uid://b433p5ck6nm4g"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_sxh4x"]
 [ext_resource type="PackedScene" uid="uid://cev6kffqmrxuq" path="res://Scenes/Attacks/Projectile/projectile.tscn" id="2_348b1"]
 [ext_resource type="PackedScene" uid="uid://d3giiljxtfpns" path="res://Scenes/Player/Inventory.tscn" id="2_lnnje"]
 [ext_resource type="PackedScene" uid="uid://3y8njbt42ijg" path="res://Scenes/Attacks/Blast/Blast.tscn" id="3_guh1v"]
+[ext_resource type="PackedScene" uid="uid://bj1ctidibit2r" path="res://Scenes/Attacks/Projectile/multiprojectile.tscn" id="3_tyl87"]
 [ext_resource type="Shape2D" uid="uid://byjssba2o48vl" path="res://Scenes/Attacks/Projectile/Arrow.tres" id="3_xtamv"]
-[ext_resource type="PackedScene" uid="uid://8ica7wi24n4k" path="res://Scenes/Attacks/Projectile/multiball.tscn" id="3_xyuyv"]
+[ext_resource type="PackedScene" uid="uid://m41t5ox7dpkj" path="res://Scenes/Attacks/Strike/Strike.tscn" id="5_mc306"]
 [ext_resource type="PackedScene" uid="uid://c26ht80nke8hf" path="res://Scenes/Spawner/SummonSpawner/SummonSpawner.tscn" id="6_ua7c7"]
 [ext_resource type="Texture2D" uid="uid://ct74omi3gprcy" path="res://Ressources/sprites/Perso_Principal.png" id="7_foaxm"]
 [ext_resource type="Shader" path="res://Scenes/Player/Player.gdshader" id="7_h3iq2"]
 [ext_resource type="PackedScene" uid="uid://b3w25xcfvrnug" path="res://Scenes/Animation/ShaderAnimation.tscn" id="9_hk5ia"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epjvm"]
-size = Vector2(73, 86)
+size = Vector2(73, 109)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ifevx"]
 shader = ExtResource("7_h3iq2")
+shader_parameter/randomFloat = null
 shader_parameter/walkingAlpha = 4.75e-08
 shader_parameter/xOrientation = 4.75e-08
 
 [node name="Player" type="CharacterBody2D"]
+y_sort_enabled = true
 collision_layer = 9
 collision_mask = 7
 script = ExtResource("1_sxh4x")
-projectileScene = ExtResource("2_e0u2x")
-ballScene = ExtResource("3_xyuyv")
+projectileScene = ExtResource("2_348b1")
+ballScene = ExtResource("3_tyl87")
 blastScene = ExtResource("3_guh1v")
+strikeScene = ExtResource("5_mc306")
 projectileShapeResource = ExtResource("3_xtamv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -7)
+position = Vector2(-0.5, -13.5)
 shape = SubResource("RectangleShape2D_epjvm")
 
 [node name="Inventory" parent="." instance=ExtResource("2_lnnje")]
 
 [node name="SummonSpawner" parent="." instance=ExtResource("6_ua7c7")]
+z_index = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_ifevx")
+position = Vector2(0, -50)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("7_foaxm")
 

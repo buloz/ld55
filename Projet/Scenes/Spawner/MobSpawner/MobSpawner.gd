@@ -1,8 +1,9 @@
-class_name MobSpawner extends Node
+class_name MobSpawner extends Node2D
 
 
 @export var mobScene: PackedScene
 
+@export var spawnTargetNode: Node2D
 
 
 var spawnBoundary: Vector2 = Vector2(1200, 2000)
@@ -21,10 +22,4 @@ func spawnMob(count: int):
 		
 		newMob.position = spawnPosition
 		
-		add_child(newMob)
-	
-	
-	#TODO: Tirer des valeurs entre distance mini de spawn du joueur et distance max du spawn du joueur
-	#mettre un chrono entre chaque spawn de mob ? jsp
-	
-	pass
+		spawnTargetNode.add_child(newMob)

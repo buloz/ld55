@@ -2,14 +2,14 @@ class_name HealthComponent extends Node
 
 @export var MaxHealth:float
 
-var currentHealth
+var currentHealth: float
 
 func _ready():
 	currentHealth = MaxHealth
 
 func damage(attack: AttackComponent):
 	currentHealth -= attack.attack_damage
-	print("took ", attack.attack_damage, " damage")
+	#print("took ", attack.attack_damage, " damage")
 	
 	attack.setOnCooldown()
 	

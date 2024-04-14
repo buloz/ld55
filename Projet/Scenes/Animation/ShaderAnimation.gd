@@ -14,6 +14,9 @@ var xOrientationFactor: float = 0.0
 
 
 func _ready():
+	
+	sprite.material.set_shader_parameter("randomFloat", randf())
+	
 	if randomStartOffset:
 		walkingFactor = randf_range(-1.0, 1.0)
 		walkingSign = -1 if randi() % 2 else 1

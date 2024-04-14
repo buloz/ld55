@@ -21,6 +21,8 @@ func gatherMaterial(materialType: int, quantity: int):
 	$Inventory.addMaterial(materialType, quantity)
 
 func _ready():
+	$SummonSpawner.spawnTargetNode = get_parent()
+	
 	get_node("/root/Global").Player = self
 
 #TODO: faire un déplacement plus smooooooooth

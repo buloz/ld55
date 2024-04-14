@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bk872iy3q6pbl"]
+[gd_scene load_steps=4 format=3 uid="uid://bj1ctidibit2r"]
 
 [ext_resource type="Script" path="res://Scenes/Attacks/Projectile/multiprojectile.gd" id="1_8qxgu"]
 [ext_resource type="PackedScene" uid="uid://blc1sjka6ahc6" path="res://Scenes/Component/attackComponent.tscn" id="2_lh170"]

@@ -3,6 +3,8 @@
 [ext_resource type="Script" path="res://Scenes/Spawner/SummonSpawner/SummonSpawner.gd" id="1_mvtx0"]
 [ext_resource type="PackedScene" uid="uid://c2mtxhyk88bpb" path="res://Scenes/Entity/Summon/Summon.tscn" id="2_cdceo"]
 
-[node name="SummonSpawner" type="Node"]
+[node name="SummonSpawner" type="Node2D"]
+z_index = 1
+y_sort_enabled = true
 script = ExtResource("1_mvtx0")
 summonScene = ExtResource("2_cdceo")

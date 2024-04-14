@@ -5,12 +5,42 @@ var storedMaterials: PackedInt32Array
 
 var floatingMaterials: Array[int]
 
-@onready var hotbar:Hotbar = get_node("../../UI/Hotbar")
+@onready var hotbar:Hotbar = get_node("/root/DebugScene/UI/Hotbar")
+
+
+var possibleCrafts: PossibleCrafts = preload("res://Scenes/Player/PossibleCrafts.gd").new()
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	storedMaterials.resize(get_node("/root/Global").nbMaterials)
 	hotbar.slotbar.connect(_slotbar_pressed)
+	
+	var isPossible = possibleCrafts.getCraftResult([5, 2, 3])
+	print(isPossible)
+	
+	isPossible = possibleCrafts.getCraftResult([1, 0])
+	print(isPossible)
+	
+	isPossible = possibleCrafts.getCraftResult([3, 4])
+	print(isPossible)
+	
+	isPossible = possibleCrafts.getCraftResult([4, 3])
+	print(isPossible)
+	
+	isPossible = possibleCrafts.getCraftResult([4, 3])
+	print(isPossible)
+	
+	isPossible = possibleCrafts.getCraftResult([1, 0, 2])
+	print(isPossible)
+	
+	isPossible = possibleCrafts.getCraftResult([2, 0, 1])
+	print(isPossible)
+	
+	isPossible = possibleCrafts.getCraftResult([5, 2, 0, 1, 2])
+	print(isPossible)
+	
+	pass
 
 func addMaterial(materialType: int, quantity: int):
 	if materialType >= storedMaterials.size():

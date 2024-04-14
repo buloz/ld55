@@ -25,7 +25,7 @@ func _ready():
 
 
 func _physics_process(_delta):
-	if Engine.get_physics_frames() % 3 != 0:
+	if Engine.get_physics_frames() % 6 != 0:
 		return
 	
 	get_parent().hasTarget = false

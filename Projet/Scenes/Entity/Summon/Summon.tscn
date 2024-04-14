@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c2mtxhyk88bpb"]
+[gd_scene load_steps=13 format=3 uid="uid://c2mtxhyk88bpb"]
 
 [ext_resource type="Script" path="res://Scenes/Entity/Summon/Summon.gd" id="1_8wfjq"]
 [ext_resource type="PackedScene" uid="uid://dm7wjxq1yhhha" path="res://Scenes/Component/healthComponent.tscn" id="2_n0cvy"]
@@ -8,24 +8,26 @@
 [ext_resource type="PackedScene" uid="uid://blc1sjka6ahc6" path="res://Scenes/Component/attackComponent.tscn" id="6_y6iwy"]
 [ext_resource type="PackedScene" uid="uid://dbsrn80uwk8oo" path="res://Scenes/Component/CasterComponent.tscn" id="7_54uiq"]
 [ext_resource type="PackedScene" uid="uid://cev6kffqmrxuq" path="res://Scenes/Attacks/Projectile/projectile.tscn" id="8_tl8yr"]
+[ext_resource type="PackedScene" uid="uid://b3w25xcfvrnug" path="res://Scenes/Animation/ShaderAnimation.tscn" id="9_bnuen"]
+[ext_resource type="Shader" path="res://Scenes/Entity/Mob/Mob.gdshader" id="9_f7ot6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ikrt"]
 size = Vector2(40, 40)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0k8qm"]
+shader = ExtResource("9_f7ot6")
+shader_parameter/walkingAlpha = null
+shader_parameter/xOrientation = null
+
 [node name="Summon" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_8wfjq")
-foeDistance = 500.0
+confortDistance = 500.0
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_n0cvy")]
 MaxHealth = 20.0
 
 [node name="NearestEnnemyFinder" parent="." instance=ExtResource("2_sqcwc")]
-
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
 
 [node name="DamageReceiver" parent="." node_paths=PackedStringArray("hitBoxComponent") instance=ExtResource("3_klaw6")]
 hitBoxComponent = NodePath("../HitBoxComponent")
@@ -44,3 +46,10 @@ attack_cooldown = 0.1
 [node name="CasterComponent" parent="." node_paths=PackedStringArray("attackComponent") instance=ExtResource("7_54uiq")]
 spellScene = ExtResource("8_tl8yr")
 attackComponent = NodePath("../AttackComponent")
+
+[node name="ShaderAnimation" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("9_bnuen")]
+randomStartOffset = true
+sprite = NodePath("../Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_0k8qm")

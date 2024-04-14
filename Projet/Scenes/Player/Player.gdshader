@@ -1,5 +1,8 @@
 shader_type canvas_item;
 
+//To create offset or give unique property between same shader
+uniform float randomFloat : hint_range(0.0, 1.0);
+
 uniform float walkingAlpha : hint_range(-1.0, 1.0);
 uniform float xOrientation : hint_range(-1.0, 1.0);
 
@@ -43,8 +46,8 @@ void computeXOrientationUV(inout vec2 uv) {
 }
 
 void timeIdle(inout vec2 uv) {
-	float timeCosine = cos(TIME * 2.0) * 0.5 + 0.5;
-	float timeSinine = sin(TIME * 2.0) * 0.5 + 0.5;
+	float timeCosine = cos(TIME * 2.0 + randomFloat * -14558.0) * 0.5 + 0.5;
+	float timeSinine = sin(TIME * 2.0 + randomFloat * -78454.0) * 0.5 + 0.5;
 	uv.x = getStretchX(uv.x, 0.4 + timeCosine * 0.6);
 	uv.y = getStretchY((uv.y), timeSinine * 1.0);
 }

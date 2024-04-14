@@ -42,7 +42,7 @@ func _physics_process(delta):
 	
 	if hasTarget and chaseTarget:
 		distanceToTarget = position.distance_to(targetPosition)
-		if distanceToTarget > foeDistance:
+		if distanceToTarget > confortDistance:
 			var direction: Vector2 = position.direction_to(targetPosition)
 			
 			animationState.orientation = direction.normalized().x
