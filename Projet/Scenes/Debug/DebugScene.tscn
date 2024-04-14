@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://l2wvjjpnjul4"]
+[gd_scene load_steps=9 format=3 uid="uid://l2wvjjpnjul4"]
 
 [ext_resource type="Script" path="res://Scenes/Debug/DebugScene.gd" id="1_2lmlw"]
 [ext_resource type="PackedScene" uid="uid://y542tm5v30rt" path="res://Scenes/Map/Map.tscn" id="1_lfq0a"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c07qpjoa0naiq" path="res://Scenes/Material/Material.tscn" id="4_j1540"]
 [ext_resource type="PackedScene" uid="uid://c4xat6u8vnn5l" path="res://Scenes/Spawner/MobSpawner/MobSpawner.tscn" id="4_r331g"]
 [ext_resource type="PackedScene" uid="uid://bwc4ic0f204gq" path="res://Scenes/UserInterface/hotbar.tscn" id="5_u160v"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="8_1q62j"]
 
 [node name="DebugScene" type="Node"]
 script = ExtResource("1_2lmlw")
@@ -29,7 +30,7 @@ type = 1
 
 [node name="Material_1(2)" parent="." instance=ExtResource("4_j1540")]
 position = Vector2(645, 268)
-type = 8
+type = 5
 
 [node name="Material_2" parent="." instance=ExtResource("4_j1540")]
 position = Vector2(544, 223)
@@ -41,7 +42,7 @@ type = 3
 
 [node name="Material_8?" parent="." instance=ExtResource("4_j1540")]
 position = Vector2(487, 257)
-type = 8
+type = 5
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -57,3 +58,11 @@ offset_right = 496.0
 offset_bottom = -8.0
 grow_vertical = 0
 alignment = 2
+
+[node name="Virtual Joystick" parent="UI" instance=ExtResource("8_1q62j")]
+pressed_color = Color(0.745098, 0.745098, 0.745098, 0.286275)
+joystick_mode = 2
+action_left = "move_left"
+action_right = "move_right"
+action_up = "move_up"
+action_down = "move_down"

@@ -15,7 +15,7 @@ func _ready():
 func addMaterial(materialType: int, quantity: int):
 	
 	if materialType >= storedMaterials.size():
-		print("Bug, unknown material type")
+		print("Unknown material type")
 		return
 	
 	storedMaterials[materialType] += quantity
