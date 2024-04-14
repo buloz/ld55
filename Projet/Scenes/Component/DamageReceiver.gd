@@ -10,4 +10,4 @@ func _process(_delta):
 				var attackComponent: AttackComponent = body.get_parent().get_node("AttackComponent")
 				if not attackComponent.on_cooldown:
 					hitBoxComponent.damage(attackComponent)
-	
+					attackComponent.setOnCooldown()
