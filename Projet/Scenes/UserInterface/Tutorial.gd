@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+signal exit_tutorial
+
 @onready var tabs = [$one, $two]
 var current = 0
 
@@ -14,6 +16,7 @@ func _set_tutorial(b : bool):
 
 func hide_tutorial():
 	_set_tutorial(false)
+	exit_tutorial.emit()
 
 func show_tutorial():
 	_set_tutorial(true)

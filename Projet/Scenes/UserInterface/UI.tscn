@@ -1,0 +1,87 @@
+[gd_scene load_steps=11 format=3 uid="uid://mqs0maudngeh"]
+
+[ext_resource type="Script" path="res://Scenes/UserInterface/UI.gd" id="1_4p5ls"]
+[ext_resource type="Script" path="res://Scenes/UserInterface/hotbar.gd" id="2_704ia"]
+[ext_resource type="PackedScene" uid="uid://bo0ukg5akkk7i" path="res://Scenes/UserInterface/slot.tscn" id="3_c5nv1"]
+[ext_resource type="Texture2D" uid="uid://dr3e1lgdl12yv" path="res://Ressources/menu/interro.png" id="4_wug80"]
+[ext_resource type="PackedScene" uid="uid://cod1nguf5sfab" path="res://Scenes/UserInterface/Tutorial.tscn" id="5_kivo1"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_eae5c"]
+device = -1
+keycode = 49
+unicode = 49
+
+[sub_resource type="InputEventKey" id="InputEventKey_iisfl"]
+device = -1
+keycode = 50
+unicode = 50
+
+[sub_resource type="InputEventKey" id="InputEventKey_6ut7r"]
+device = -1
+keycode = 51
+unicode = 51
+
+[sub_resource type="InputEventKey" id="InputEventKey_aknxl"]
+device = -1
+keycode = 52
+unicode = 52
+
+[sub_resource type="InputEventKey" id="InputEventKey_1ttkj"]
+device = -1
+keycode = 53
+unicode = 53
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_4p5ls")
+
+[node name="Hotbar" type="HBoxContainer" parent="."]
+offset_top = 530.0
+offset_right = 1158.0
+offset_bottom = 626.0
+alignment = 1
+script = ExtResource("2_704ia")
+
+[node name="Slot5" parent="Hotbar" instance=ExtResource("3_c5nv1")]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+key = SubResource("InputEventKey_eae5c")
+
+[node name="Slot6" parent="Hotbar" instance=ExtResource("3_c5nv1")]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+key = SubResource("InputEventKey_iisfl")
+
+[node name="Slot7" parent="Hotbar" instance=ExtResource("3_c5nv1")]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+key = SubResource("InputEventKey_6ut7r")
+
+[node name="Slot8" parent="Hotbar" instance=ExtResource("3_c5nv1")]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+key = SubResource("InputEventKey_aknxl")
+
+[node name="Slot9" parent="Hotbar" instance=ExtResource("3_c5nv1")]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+key = SubResource("InputEventKey_1ttkj")
+
+[node name="TutorialButton" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(244, 0)
+offset_left = 1026.0
+offset_top = 16.0
+offset_right = 1270.0
+offset_bottom = 260.0
+scale = Vector2(0.5, 0.5)
+action_mode = 0
+texture_normal = ExtResource("4_wug80")
+texture_pressed = ExtResource("4_wug80")
+texture_hover = ExtResource("4_wug80")
+texture_disabled = ExtResource("4_wug80")
+texture_focused = ExtResource("4_wug80")
+stretch_mode = 3
+
+[node name="Tutorial" parent="." instance=ExtResource("5_kivo1")]
+visible = false
+
+[connection signal="pressed" from="TutorialButton" to="." method="_on_texture_button_pressed"]

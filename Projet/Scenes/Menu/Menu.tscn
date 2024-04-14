@@ -19,11 +19,11 @@
 [ext_resource type="Texture2D" uid="uid://nyu6h3u6cax8" path="res://Ressources/menu/thunder8.png" id="10_ldu07"]
 [ext_resource type="Texture2D" uid="uid://xie88bmls10y" path="res://Ressources/menu/sphere1024.png" id="14_a6n4p"]
 [ext_resource type="Texture2D" uid="uid://cd3cqscecawe1" path="res://Ressources/menu/sphere_120.png" id="15_qbu6j"]
-[ext_resource type="Texture2D" uid="uid://by3j7hart0a5x" path="res://Ressources/menu/Title.png" id="18_0qv0n"]
+[ext_resource type="Texture2D" uid="uid://bi488sn0b8am4" path="res://Ressources/menu/Title.png" id="18_0qv0n"]
 [ext_resource type="Texture2D" uid="uid://dgld6ggq1dr5d" path="res://Ressources/menu/Bouton_Jouer.png" id="18_p5la7"]
 [ext_resource type="Texture2D" uid="uid://b420ohbhkh4sr" path="res://Ressources/menu/CraneSelection.png" id="19_o4bvp"]
 [ext_resource type="Texture2D" uid="uid://mq1xddmfvmwa" path="res://Ressources/menu/Bouton_Quit.png" id="19_s3glt"]
-[ext_resource type="Texture2D" uid="uid://c72lx6ksgc4yw" path="res://Ressources/menu/Penta.png" id="19_ubt2v"]
+[ext_resource type="Texture2D" uid="uid://8ojedbhvipmb" path="res://Ressources/menu/Penta.png" id="19_ubt2v"]
 
 [sub_resource type="Gradient" id="Gradient_3njgm"]
 colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0.266667)

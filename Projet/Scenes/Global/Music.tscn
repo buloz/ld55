@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/Global/Music.gd" id="1_i4q0p"]
 [ext_resource type="AudioStream" uid="uid://dqocf0nwf2bhx" path="res://Ressources/music/ludumdaremenu.ogg" id="2_up8cr"]
-[ext_resource type="AudioStream" uid="uid://bsu7b2bi5su0m" path="res://Ressources/music/rain.ogg" id="3_d5q6u"]
+[ext_resource type="AudioStream" uid="uid://dfulph3g5446m" path="res://Ressources/music/rain.ogg" id="3_d5q6u"]
 
 [node name="Music" type="Node"]
 script = ExtResource("1_i4q0p")
