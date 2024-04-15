@@ -22,7 +22,7 @@ func setMaxHealth(max:float):
 
 func updateHealthPoint(currentHealthPoint:float):
 	var chunks = round(currentHealthPoint/maxHp * 10)
-	var state = snapped(currentHealthPoint/maxHp * 3, 1)
+	var state = snapped(currentHealthPoint/maxHp * 2, 1)
 	var children = get_children()
 	for i in chunks:
 		children[i].update(state)
