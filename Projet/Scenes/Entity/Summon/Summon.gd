@@ -22,17 +22,19 @@ func _init():
 	playerTeam = true
 	chaseTarget = true
 
-const SPRITE_PROPERTIES := [
-	[Vector2(0.75, 0.75), Vector2(0, -290)], #golem
-	[Vector2(0.5, 0.5), Vector2(0, -307)], #goule
-	[Vector2(0.4, 0.4), Vector2(0, -312)], #squelette
-	[Vector2(0.5, 0.5), Vector2(0, -369)], #spectre
+@onready var SUMMON_PROPERTIES := [
+	[Vector2(0.75, 0.75), Vector2(0, -290), $golem], #golem
+	[Vector2(0.5, 0.5), Vector2(0, -307), $goule], #goule
+	[Vector2(0.4, 0.4), Vector2(0, -312), $spectre], #squelette
+	[Vector2(0.5, 0.5), Vector2(0, -369), $squelette], #spectre
 ]
 
-func loadSummonSprite(summonType: int, summonSubtype: int):
+var soundFX : AudioStreamPlayer2D
+func loadSummonData(summonType: int, summonSubtype: int):
 	sprite.frame = summonType * 3 + summonSubtype
-	sprite.scale = SPRITE_PROPERTIES[summonType][0]
-	sprite.offset = SPRITE_PROPERTIES[summonType][1]
+	sprite.scale = SUMMON_PROPERTIES[summonType][0]
+	sprite.offset = SUMMON_PROPERTIES[summonType][1]
+	soundFX = SUMMON_PROPERTIES[summonType][2]
 
 
 const SPELLS := [
@@ -66,7 +68,7 @@ func initializeFromInfo(_summonInfo: SummonInfo):
 	self.confortDistance = confortDistance
 	
 func _ready():
-	loadSummonSprite(summonInfo.type, summonInfo.subtype)
+	loadSummonData(summonInfo.type, summonInfo.subtype)
 	$ShaderAnimation.setUnique()
 
 func die():
@@ -77,6 +79,8 @@ func die():
 	$AttackComponent.queue_free()
 	$CasterComponent.queue_free()
 	set_physics_process(false)
+	
+	soundFX.play()
 	
 	var t := create_tween()
 	t.set_trans(Tween.TRANS_BOUNCE)
