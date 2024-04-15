@@ -10,9 +10,11 @@ class_name Blast extends Area2D
 
 func initialize(_senderPosition: Vector2, _targetPosition: Vector2, playerTeam: bool):
 	collision_mask = 0b10 if playerTeam else 0b01
-	offsetRadius = 100.0
 
 func _ready():
+	
+	$AnimationPlayer.play("shockWave")
+	
 	if blastShape is CircleShape2D:
 		blastShape.radius = offsetRadius
 

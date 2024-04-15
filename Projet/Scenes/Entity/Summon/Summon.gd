@@ -112,10 +112,11 @@ func initializeFromInfo(summonInfo: SummonInfo):
 	
 	$CasterComponent.distanceToCast = summonInfo.attackRange
 	
-	self.confortDistance = confortDistance
+	self.confortDistance = summonInfo.confortDistance
 	
 func _ready():
 	$ShaderAnimation.setUnique()
+	$NearestEnnemyFinder.setRadius(1200)
 
 func updateMovement(direction, updateSpeed, delta):
 	
@@ -130,11 +131,11 @@ func updateMovement(direction, updateSpeed, delta):
 
 func _physics_process(delta):
 	
+	if Engine.get_physics_frames() % 2 != 0:
+		return
+	
 	var isChasing: bool = false
-	
 	if hasTarget:
-		distanceToTarget = position.distance_to(targetPosition)
-	
 		if chaseTarget and hasTarget:
 			if distanceToTarget > confortDistance:
 				isChasing = true

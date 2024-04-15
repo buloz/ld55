@@ -1,11 +1,88 @@
-[gd_scene load_steps=5 format=3 uid="uid://bbsjt88j76x2b"]
+[gd_scene load_steps=17 format=3 uid="uid://bbsjt88j76x2b"]
 
 [ext_resource type="Script" path="res://Scenes/Attacks/Strike/Strike.gd" id="1_gr5cx"]
 [ext_resource type="PackedScene" uid="uid://qks2cmf75chg" path="res://Scenes/Component/NearestEnemyFinder.tscn" id="2_71uxc"]
 [ext_resource type="PackedScene" uid="uid://blc1sjka6ahc6" path="res://Scenes/Component/attackComponent.tscn" id="3_nsw5f"]
+[ext_resource type="Texture2D" uid="uid://ckslmh3jabogk" path="res://Ressources/menu/thunder1.png" id="4_qsvsl"]
+[ext_resource type="Texture2D" uid="uid://bd7hw8bloabbb" path="res://Ressources/menu/thunder2.png" id="5_gf6ph"]
+[ext_resource type="Texture2D" uid="uid://pbjvuqb5pj2y" path="res://Ressources/menu/thunder3.png" id="6_cqkxi"]
+[ext_resource type="Texture2D" uid="uid://hgedkqvvwj4r" path="res://Ressources/menu/thunder4.png" id="7_ghbl1"]
+[ext_resource type="Texture2D" uid="uid://b65nnxr8aq4c1" path="res://Ressources/menu/thunder5.png" id="8_a40vm"]
+[ext_resource type="Texture2D" uid="uid://dl81jspd28j05" path="res://Ressources/menu/thunder6.png" id="9_yup8e"]
+[ext_resource type="Texture2D" uid="uid://6ps5p0fn0jk7" path="res://Ressources/menu/thunder7.png" id="10_h6fyc"]
+[ext_resource type="Texture2D" uid="uid://nyu6h3u6cax8" path="res://Ressources/menu/thunder8.png" id="11_6cack"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h1ffr"]
-radius = 67.42
+radius = 111.0
+
+[sub_resource type="Animation" id="Animation_l411i"]
+resource_name = "thunder"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_0d50a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0hwau"]
+_data = {
+"RESET": SubResource("Animation_0d50a"),
+"thunder": SubResource("Animation_l411i")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8rb8h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_qsvsl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gf6ph")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_cqkxi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ghbl1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_a40vm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_yup8e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_h6fyc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_6cack")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="HauntedThunder" type="Area2D" node_paths=PackedStringArray("attack")]
 collision_layer = 0
@@ -19,13 +96,18 @@ shape = SubResource("CircleShape2D_h1ffr")
 
 [node name="NearestEnemyFinder" parent="." instance=ExtResource("2_71uxc")]
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -20.0
-offset_top = -21.0
-offset_right = 20.0
-offset_bottom = 19.0
-color = Color(0, 0.486275, 1, 1)
-
 [node name="AttackComponent" parent="." instance=ExtResource("3_nsw5f")]
 attack_damage = 30.0
 attack_cooldown = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0hwau")
+}
+speed_scale = 1.5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(2, -247)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_8rb8h")

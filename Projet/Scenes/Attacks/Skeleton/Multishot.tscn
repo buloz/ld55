@@ -9,6 +9,9 @@ script = ExtResource("1_v4xfq")
 count = 10
 spreadAngle = 6.283
 projectileScene = ExtResource("2_kyr2e")
+animationIndex = 4
+animationScale = Vector2(4, 4)
+topLevel = true
 
 [node name="AttackComponent" parent="." instance=ExtResource("3_bqe32")]
 attack_damage = 2.0

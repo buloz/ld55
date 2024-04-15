@@ -1,5 +1,8 @@
 class_name PlayerClass extends CharacterBody2D
 
+
+@export var testAttackScene: PackedScene
+
 @export var projectileScene: PackedScene
 @export var multiProjectileScene: PackedScene
 @export var ballScene: PackedScene
@@ -22,11 +25,11 @@ func gatherMaterial(materialType: int, quantity: int):
 
 func _ready():
 	$SummonSpawner.spawnTargetNode = get_parent()
-	#$Inventory.storedMaterials[0] = 999
-	#$Inventory.storedMaterials[1] = 999
-	#$Inventory.storedMaterials[2] = 999
-	#$Inventory.storedMaterials[3] = 999
-	#$Inventory.storedMaterials[4] = 999
+	$Inventory.storedMaterials[0] = 999
+	$Inventory.storedMaterials[1] = 999
+	$Inventory.storedMaterials[2] = 999
+	$Inventory.storedMaterials[3] = 999
+	$Inventory.storedMaterials[4] = 999
 	get_node("/root/Global").Player = self
 
 #TODO: faire un déplacement plus smooooooooth
@@ -50,7 +53,11 @@ func _physics_process(delta):
 		
 		animationState.walking = true
 		animationState.orientation = velocity.normalized().x
-
+	
+	if Input.is_action_just_pressed("test"):
+		var newInstance = testAttackScene.instantiate()
+		newInstance.initialize(position, get_global_mouse_position(), true)
+		add_child(newInstance)
 
 		#
 	#velocity.x = direction.x * speed if direction.x else move_toward(velocity.x, 0, speed)
@@ -62,7 +69,8 @@ func _physics_process(delta):
 	get_node("/root/Global").playerPosition = position
 
 func _unhandled_input(event):
-	if event.is_action_pressed("primary_action"):
-		var summon = $Inventory.try_craft()
-		if summon:
-			$SummonSpawner.spawnSummon(get_global_mouse_position(), summon)
+	if event is InputEventMouseButton:	
+		if event.is_action_pressed("primary_action"):
+			var summon = $Inventory.try_craft()
+			if summon:
+				$SummonSpawner.spawnSummon(get_global_mouse_position(), summon)

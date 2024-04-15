@@ -6,6 +6,7 @@ class_name Strike extends Area2D
 @onready var finder:Node2D = get_node("NearestEnemyFinder")
 
 var hasTarget:bool = false
+var distanceToTarget: float
 
 var targetPosition
 var playerTeam
@@ -22,13 +23,20 @@ func initialize(senderPosition: Vector2, _targetPosition: Vector2, _playerTeam: 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	$NearestEnemyFinder.setRadius(1200)
+	
+	$AnimatedSprite2D.frame = 7
 
 	await get_tree().create_timer(delay).timeout
+	
+	$AnimationPlayer.play("thunder")
 	
 	for area in get_overlapping_areas():
 		if area is HitboxComponent and area.healthComponent and hasTarget:
 			area.damage(attack)
-	queue_free()
+			
+	get_tree().create_timer(1.0).timeout.connect(queue_free)
 
 func _physics_process(_delta):
 	if hasTarget and !strike:

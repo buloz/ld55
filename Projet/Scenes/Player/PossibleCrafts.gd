@@ -3,19 +3,22 @@ class_name PossibleCrafts extends Node
 var possibleCrafts: Array = [
 	#Materials -> 0: rock, 1: bone, 2: herb, 3: wood, 4: shroom
 	#Summon types -> 0golem, 1ghoul, 2skelleton, 3haunt
-	#SummonInfoClass -> type: int, spellType:int, health: float, damage: float, cooldown: float, range: float, confortDistance: float
-	[[0, 2], SummonInfo.new(0, 0, 0, 100, 10, 6, 800, 20)],
-	[[0, 2, 3], SummonInfo.new(0, 1, 1, 150, 15, 8, 250, 80)],
-	[[0, 2, 4], SummonInfo.new(0, 2, 2, 80, 5, 3, 800, 300)],
-	[[2, 4], SummonInfo.new(1, 0, 3, 40, 1, 5, 800, 600)],
-	[[2, 4, 1], SummonInfo.new(1, 1, 4, 100, 10, 8, 800, 20)],
-	[[2, 4, 3], SummonInfo.new(1, 2, 5, 80, 35, 2, 20, 20)],
-	[[1, 2], SummonInfo.new(2, 0, 6, 40, 25, 5, 800, 600)],
-	[[1, 2, 3], SummonInfo.new(2, 1, 7, 40, 2, 2.5, 500, 300)],
-	[[1, 2, 0], SummonInfo.new(2, 2, 8, 80, 20, 1, 20, 20)],
-	[[4, 1], SummonInfo.new(3, 0, 9, 60, 20, 15, 200, 200)],
-	[[4, 1, 3], SummonInfo.new(3, 1, 10, 30, 30, 1, 1000, 600)],
-	[[4, 1, 0], SummonInfo.new(3, 2, 11, 60, 15, 2.5, 200, 100)]
+	#SummonInfoClass -> type, subtype, spellType, health, damage, cooldown, range, confortDistance
+	[[0, 2], SummonInfo.new(0, 0, 0, 200, 50, 3, 800, 400)], #Golem Thumble
+	[[0, 2, 3], SummonInfo.new(0, 1, 1, 150, 40, 1.5, 300, 250)], #Golem shockwave
+	[[0, 2, 4], SummonInfo.new(0, 2, 2, 80, 20, 1, 800, 500)], #GolemCrumbs
+	
+	[[2, 4], SummonInfo.new(1, 0, 3, 50, 25, 1.5, 800, 600)], #GhoulSpit
+	[[2, 4, 1], SummonInfo.new(1, 1, 4, 150, 40, 1.5, 800, 400)], #GhoulLeap
+	[[2, 4, 3], SummonInfo.new(1, 2, 5, 170, 35, 0.75, 300, 250)], #GhouleMelee
+	
+	[[1, 2], SummonInfo.new(2, 0, 7, 80, 20, 1, 700, 400)], #SkeletonMultishot
+	[[1, 2, 3], SummonInfo.new(2, 1, 6, 40, 10, 0.15, 1000, 900)], #SkeletonBomb
+	[[1, 2, 0], SummonInfo.new(2, 2, 8, 100, 25, 0.25, 300, 250)], #SkeletonMelee
+	
+	[[4, 1], SummonInfo.new(3, 0, 9, 120, 10, 5, 800, 300)], #HauntedConjure
+	[[4, 1, 3], SummonInfo.new(3, 1, 10, 20, 40, 1.0, 1200, 1150)], #HauntedThunder
+	[[4, 1, 0], SummonInfo.new(3, 2, 11, 80, 75, 2.0, 400, 380)] #HauntedHowl
 ]
 
 

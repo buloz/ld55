@@ -1,4 +1,4 @@
-class_name Ball extends Area2D
+class_name ConjureBall extends Area2D
 
 @export var attack: AttackComponent
 @export var speed: float
@@ -51,3 +51,5 @@ func _physics_process(delta):
 func _on_area_entered(area):
 	if area is HitboxComponent and area.healthComponent:
 		area.damage(attack)
+		
+		queue_free()

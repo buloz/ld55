@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bkocmgid3rwm0"]
+[gd_scene load_steps=4 format=3 uid="uid://bkocmgid3rwm0"]
 
 [ext_resource type="Script" path="res://Scenes/Attacks/Melee/Melee.gd" id="1_d3afw"]
 [ext_resource type="Script" path="res://Scenes/Component/attackComponent.gd" id="2_rrigh"]
+[ext_resource type="PackedScene" uid="uid://bboirua8lcxis" path="res://Scenes/Attacks/AttackAnimation.tscn" id="3_4m8qv"]
 
 [node name="GhoulMelee" type="Node2D" node_paths=PackedStringArray("attack")]
 script = ExtResource("1_d3afw")
@@ -10,3 +11,8 @@ attack = NodePath("AttackComponent")
 
 [node name="AttackComponent" type="Node" parent="."]
 script = ExtResource("2_rrigh")
+attack_damage = 10.0
+
+[node name="AttackAnimation" parent="." instance=ExtResource("3_4m8qv")]
+frame = 29
+animationIndex = 3

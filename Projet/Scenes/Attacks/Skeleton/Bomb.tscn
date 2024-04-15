@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://r6jx8ibqickc"]
+[gd_scene load_steps=5 format=3 uid="uid://r6jx8ibqickc"]
 
 [ext_resource type="Script" path="res://Scenes/Attacks/Projectile/projectile.gd" id="1_ootg3"]
 [ext_resource type="PackedScene" uid="uid://blc1sjka6ahc6" path="res://Scenes/Component/attackComponent.tscn" id="2_bhvmv"]
+[ext_resource type="PackedScene" uid="uid://bboirua8lcxis" path="res://Scenes/Attacks/AttackAnimation.tscn" id="3_uhljn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p7j8d"]
+radius = 74.027
 
 [node name="SkeletonBomb" type="Area2D" node_paths=PackedStringArray("attack")]
 collision_layer = 0
@@ -9,8 +13,16 @@ collision_mask = 0
 script = ExtResource("1_ootg3")
 attack = NodePath("AttackComponent")
 speed = 1000.0
+is_top_level = true
+
+[node name="AttackAnimation" parent="." instance=ExtResource("3_uhljn")]
+position = Vector2(-2, 5)
+scale = Vector2(0.75, 0.75)
+frame = 29
+animationIndex = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_p7j8d")
 
 [node name="AttackComponent" parent="." instance=ExtResource("2_bhvmv")]
 attack_damage = 2.0

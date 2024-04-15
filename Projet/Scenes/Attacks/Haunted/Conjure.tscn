@@ -1,16 +1,19 @@
 [gd_scene load_steps=5 format=3 uid="uid://8xerjrymahow"]
 
 [ext_resource type="Script" path="res://Scenes/Attacks/Projectile/multiball.gd" id="1_130sv"]
-[ext_resource type="PackedScene" uid="uid://dfckik3n3ft43" path="res://Scenes/Attacks/Projectile/ball.tscn" id="2_mf35k"]
+[ext_resource type="PackedScene" uid="uid://cmb8wpt64u20a" path="res://Scenes/Attacks/Projectile/ConjureBall.tscn" id="2_8art8"]
 [ext_resource type="PackedScene" uid="uid://blc1sjka6ahc6" path="res://Scenes/Component/attackComponent.tscn" id="3_34b6c"]
 [ext_resource type="Script" path="res://Scenes/Attacks/Projectile/RotationComponent.gd" id="4_h3i0o"]
 
 [node name="HauntedConjure" type="Node2D"]
 script = ExtResource("1_130sv")
-count = 5
+count = 14
+collisionRadius = 60.0
 spreadAngle = 6.283
-projectileScene = ExtResource("2_mf35k")
-time_between_projectile = 0.15
+projectileScene = ExtResource("2_8art8")
+time_between_projectile = 0.05
+animationIndex = 5
+animationScale = Vector2(0.9, 0.9)
 
 [node name="AttackComponent" parent="." instance=ExtResource("3_34b6c")]
 attack_damage = 8.0

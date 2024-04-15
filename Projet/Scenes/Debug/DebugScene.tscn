@@ -26,8 +26,6 @@ zoom = Vector2(0.4, 0.4)
 [node name="MobSpawner" parent="MainScene" node_paths=PackedStringArray("spawnTargetNode") instance=ExtResource("4_r331g")]
 spawnTargetNode = NodePath("..")
 
-[node name="UI" parent="." instance=ExtResource("6_yl73a")]
-
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scale = Vector2(0.15, 0.15)
 transform = Transform2D(0.15, 0, 0, 0.15, 0, 0)
@@ -41,4 +39,6 @@ texture_repeat = 2
 scale = Vector2(3, 3)
 texture = ExtResource("10_ttqea")
 region_enabled = true
-region_rect = Rect2(0, 0, 12960, 12960)
+region_rect = Rect2(0, 0, 14000, 14000)
+
+[node name="UI" parent="." instance=ExtResource("6_yl73a")]

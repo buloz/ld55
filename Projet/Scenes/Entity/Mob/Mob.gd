@@ -3,11 +3,9 @@ class_name Mob extends "res://Scenes/Entity/Entity.gd"
 @onready var animationState: AnimationState = $ShaderAnimation.get_node("AnimationState")
 
 
-
 func _init():
 	playerTeam = false
 	chaseTarget = true
-	
 	
 func loadRandomMob():
 	var choosenSpriteIndex: int = randi_range(0, 4)

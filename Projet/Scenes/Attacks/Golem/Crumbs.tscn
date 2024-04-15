@@ -10,7 +10,9 @@ count = 6
 spreadAngle = 1.047
 projectileScene = ExtResource("2_ghd1w")
 time_between_projectile = 0.3
+animationIndex = 1
+animationScale = Vector2(4, 4)
+topLevel = true
 
 [node name="AttackComponent" parent="." instance=ExtResource("3_txhms")]
-attack_damage = 2.0
 attack_cooldown = 20.0

@@ -3,16 +3,18 @@
 [ext_resource type="Script" path="res://Scenes/Attacks/Projectile/ball.gd" id="1_rx0lw"]
 [ext_resource type="Shape2D" uid="uid://co8ah52svqai0" path="res://Scenes/Attacks/Projectile/Circle.tres" id="2_4hblg"]
 [ext_resource type="PackedScene" uid="uid://blc1sjka6ahc6" path="res://Scenes/Component/attackComponent.tscn" id="3_cad5w"]
-[ext_resource type="Texture2D" uid="uid://dmpvb2jeaiokg" path="res://Ressources/sprites/projectile.png" id="4_bvpl7"]
+[ext_resource type="PackedScene" uid="uid://bboirua8lcxis" path="res://Scenes/Attacks/AttackAnimation.tscn" id="4_onr15"]
 
 [node name="GhoulSpit" type="Area2D" node_paths=PackedStringArray("attack")]
+z_index = -1
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_rx0lw")
 attack = NodePath("AttackComponent")
-speed = 100.0
+speed = 500.0
 lifeSpan = 4.0
-max_distance = 180.0
+max_distance = 600.0
+is_top_level = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = ExtResource("2_4hblg")
@@ -20,9 +22,7 @@ shape = ExtResource("2_4hblg")
 [node name="AttackComponent" parent="." instance=ExtResource("3_cad5w")]
 attack_damage = 8.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("4_bvpl7")
-region_enabled = true
-region_rect = Rect2(0, 0, 256, 256)
+[node name="AttackAnimation" parent="." instance=ExtResource("4_onr15")]
+frame = 29
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

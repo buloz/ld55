@@ -10,6 +10,8 @@ func _ready():
 func damage(attack: AttackComponent):
 	currentHealth -= attack.attack_damage
 	
+	print("took %f damages" % attack.attack_damage)
+	
 	if currentHealth <= 0:
 		get_parent().queue_free()
 

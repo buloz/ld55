@@ -61,7 +61,7 @@ func explore():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Engine.get_process_frames () % 6 != 0:
+	if Engine.get_process_frames () % 12 != 0:
 		return
 	
 	explore()

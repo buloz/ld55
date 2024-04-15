@@ -19,13 +19,16 @@ var playerTeam: bool
 func _ready():
 	playerTeam = get_parent().playerTeam
 	$Area2D.collision_mask = 0b01
+
 	
 	if playerTeam:
 		$Area2D.collision_mask <<= 1
 
+func setRadius(value: float):
+	$Area2D/CollisionShape2D.shape.radius = value
 
 func _physics_process(_delta):
-	if Engine.get_physics_frames() % 6 != 0:
+	if Engine.get_physics_frames() % 2 != 0:
 		return
 	
 	get_parent().hasTarget = false
@@ -44,6 +47,7 @@ func _physics_process(_delta):
 		#print("Target position: ", targetBody.global_position, ", ", targetBody.get_parent().name)
 		get_parent().targetPosition = targetBody.global_position
 		get_parent().hasTarget = true
+		get_parent().distanceToTarget = shortestDistance
 	
 	if not playerTeam:
 		var playerDist: float = get_parent().position.distance_to(get_node("/root/Global").playerPosition)
@@ -51,3 +55,4 @@ func _physics_process(_delta):
 		if playerDist < shortestDistance:
 			get_parent().hasTarget = true
 			get_parent().targetPosition = get_node("/root/Global").playerPosition
+			get_parent().distanceToTarget = playerDist

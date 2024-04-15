@@ -19,15 +19,16 @@ shader_parameter/xOrientation = null
 [node name="Mob" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_3u8mo")
+confortDistance = 10.0
 
 [node name="NearestEnnemyFinder" parent="." instance=ExtResource("2_easnx")]
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_50md8")]
-MaxHealth = 20.0
+MaxHealth = 100.0
 
 [node name="AttackComponent" parent="." instance=ExtResource("5_o00wj")]
 attack_damage = 10.0
-attack_cooldown = 0.5
+attack_cooldown = 1.0
 
 [node name="HitBoxComponent" parent="." node_paths=PackedStringArray("healthComponent") instance=ExtResource("4_il1u3")]
 collision_layer = 2

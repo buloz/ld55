@@ -12,5 +12,6 @@ func reactivate_button():
 	$TutorialButton.disabled = false
 
 func _input(event):
+	
 	if event.is_action_pressed("ui_cancel"):
 		$Tutorial.hide_tutorial()
