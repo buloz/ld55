@@ -3,7 +3,6 @@ class_name Mob extends "res://Scenes/Entity/Entity.gd"
 @onready var animationState: AnimationState = $ShaderAnimation.get_node("AnimationState")
 @onready var sprite := $ShaderAnimation/Sprite2D
 
-
 func _init():
 	playerTeam = false
 	chaseTarget = true
@@ -36,6 +35,8 @@ func die():
 	$HitBoxComponent.queue_free()
 	set_physics_process(false)
 	soundFX.play()
+	var player = get_tree().get_first_node_in_group("player")
+	player.scored.emit(1) 
 	
 	var t := create_tween()
 	t.set_trans(Tween.TRANS_QUAD)

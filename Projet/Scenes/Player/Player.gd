@@ -13,6 +13,10 @@ signal tutoStep(text:String)
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+#Score
+var score : int
+signal scored(points : int)
+
 func gatherMaterial(materialType: int, quantity: int):
 	if actualTutoStep <= 1:
 		nextTutoStep()
@@ -27,6 +31,11 @@ func _ready():
 	#$Inventory.storedMaterials[3] = 999
 	#$Inventory.storedMaterials[4] = 999
 	get_node("/root/Global").Player = self
+	scored.connect(implementScore)
+	
+func implementScore(value : int):
+	score += value
+	
 
 func die():
 	print("PLAYER DEAD")
