@@ -9,7 +9,7 @@ var possibleCrafts: Array = [
 	[[0, 2, 4], SummonInfo.new(0, 2, 80, 5, 3, 800, 300)],
 	[[2, 4], SummonInfo.new(1, 3, 40, 1, 5, 800, 600)],
 	[[2, 4, 1], SummonInfo.new(1, 4, 100, 10, 8, 800, 20)],
-	[[2, 4, 4], SummonInfo.new(1, 5, 80, 35, 2, 20, 20)],
+	[[2, 4, 3], SummonInfo.new(1, 5, 80, 35, 2, 20, 20)],
 	[[1, 2], SummonInfo.new(2, 6, 40, 25, 5, 800, 600)],
 	[[1, 2, 3], SummonInfo.new(2, 7, 40, 2, 2.5, 500, 300)],
 	[[1, 2, 0], SummonInfo.new(2, 8, 80, 20, 1, 20, 20)],

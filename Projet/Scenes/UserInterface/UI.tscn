@@ -1,10 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://mqs0maudngeh"]
+[gd_scene load_steps=11 format=3 uid="uid://nxr7b0d625fr"]
 
 [ext_resource type="Script" path="res://Scenes/UserInterface/UI.gd" id="1_4p5ls"]
 [ext_resource type="Script" path="res://Scenes/UserInterface/hotbar.gd" id="2_704ia"]
 [ext_resource type="PackedScene" uid="uid://bo0ukg5akkk7i" path="res://Scenes/UserInterface/slot.tscn" id="3_c5nv1"]
-[ext_resource type="Texture2D" uid="uid://dr3e1lgdl12yv" path="res://Ressources/menu/interro.png" id="4_wug80"]
-[ext_resource type="PackedScene" uid="uid://cod1nguf5sfab" path="res://Scenes/UserInterface/Tutorial.tscn" id="5_kivo1"]
+[ext_resource type="Texture2D" uid="uid://b0342lb04owk5" path="res://Ressources/menu/interro.png" id="4_wug80"]
+[ext_resource type="PackedScene" path="res://Scenes/UserInterface/Tutorial.tscn" id="5_kivo1"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_eae5c"]
 device = -1
@@ -84,4 +84,9 @@ stretch_mode = 3
 [node name="Tutorial" parent="." instance=ExtResource("5_kivo1")]
 visible = false
 
+[connection signal="toggled" from="Hotbar/Slot5" to="Hotbar" method="_on_slot_5_toggled"]
+[connection signal="toggled" from="Hotbar/Slot6" to="Hotbar" method="_on_slot_6_toggled"]
+[connection signal="toggled" from="Hotbar/Slot7" to="Hotbar" method="_on_slot_7_toggled"]
+[connection signal="toggled" from="Hotbar/Slot8" to="Hotbar" method="_on_slot_8_toggled"]
+[connection signal="toggled" from="Hotbar/Slot9" to="Hotbar" method="_on_slot_9_toggled"]
 [connection signal="pressed" from="TutorialButton" to="." method="_on_texture_button_pressed"]
