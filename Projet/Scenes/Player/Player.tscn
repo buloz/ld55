@@ -1,11 +1,14 @@
-[gd_scene load_steps=35 format=3 uid="uid://b433p5ck6nm4g"]
+[gd_scene load_steps=42 format=3 uid="uid://b433p5ck6nm4g"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_sxh4x"]
 [ext_resource type="PackedScene" uid="uid://d3giiljxtfpns" path="res://Scenes/Player/Inventory.tscn" id="2_lnnje"]
 [ext_resource type="PackedScene" uid="uid://c26ht80nke8hf" path="res://Scenes/Spawner/SummonSpawner/SummonSpawner.tscn" id="6_ua7c7"]
 [ext_resource type="Texture2D" uid="uid://ct74omi3gprcy" path="res://Ressources/sprites/Perso_Principal.png" id="7_foaxm"]
 [ext_resource type="Shader" path="res://Scenes/Player/Player.gdshader" id="7_h3iq2"]
+[ext_resource type="Texture2D" uid="uid://c8e0a04ew4k8b" path="res://Ressources/sprites/Perso_Principal02.png" id="7_jan6f"]
+[ext_resource type="Texture2D" uid="uid://duk8b2k2ims8n" path="res://Ressources/sprites/Perso_Principal03.png" id="8_5lp4e"]
 [ext_resource type="PackedScene" uid="uid://b3w25xcfvrnug" path="res://Scenes/Animation/ShaderAnimation.tscn" id="9_hk5ia"]
+[ext_resource type="Texture2D" uid="uid://btix7henog2dj" path="res://Ressources/sprites/Perso_Principal04.png" id="9_icsqj"]
 [ext_resource type="PackedScene" uid="uid://dm7wjxq1yhhha" path="res://Scenes/Component/healthComponent.tscn" id="11_1nqvj"]
 [ext_resource type="AudioStream" uid="uid://cn6dduhhes175" path="res://Ressources/sounds/player/playerdmg1.wav" id="11_n5rrm"]
 [ext_resource type="PackedScene" uid="uid://deuhf0wkjf2jw" path="res://Scenes/Component/hitboxComponent.tscn" id="12_1u2hb"]
@@ -36,6 +39,62 @@ shader_parameter/randomFloat = null
 shader_parameter/walkingAlpha = 4.75e-08
 shader_parameter/xOrientation = 4.75e-08
 shader_parameter/damageState = null
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fto0r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_foaxm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_jan6f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_5lp4e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_icsqj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_pk5c6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_jbkcn"]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h10l0"]
+_data = {
+"RESET": SubResource("Animation_pk5c6"),
+"death": SubResource("Animation_jbkcn")
+}
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tu73w"]
 random_pitch = 1.5
@@ -106,11 +165,16 @@ z_index = 0
 
 [node name="ShaderAnimation" parent="." instance=ExtResource("9_hk5ia")]
 
-[node name="Sprite2D" type="Sprite2D" parent="ShaderAnimation"]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="ShaderAnimation"]
 material = SubResource("ShaderMaterial_ifevx")
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("7_foaxm")
+sprite_frames = SubResource("SpriteFrames_fto0r")
 offset = Vector2(0, -466)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShaderAnimation"]
+libraries = {
+"": SubResource("AnimationLibrary_h10l0")
+}
 
 [node name="gather" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_tu73w")
