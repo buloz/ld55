@@ -29,7 +29,13 @@ func _ready():
 	get_node("/root/Global").Player = self
 
 func die():
-	print("PLAYER DEAD")
+	$SummonSpawner.queue_free()
+	$HealthComponent.queue_free()
+	$HitBoxComponent.queue_free()
+	$CollisionShape2D2.queue_free()
+	$DamageReceiver.queue_free()
+	Music.play("Death")
+	get_parent().get_parent().get_node("MainScene").lose.emit(0)
 
 #TODO: faire un déplacement plus smooooooooth
 func _physics_process(delta):

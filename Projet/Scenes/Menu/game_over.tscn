@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://ce3ujkiyqvpfu"]
+
+[ext_resource type="Script" path="res://Scenes/Menu/GameOver.gd" id="1_06vtk"]
+[ext_resource type="Texture2D" uid="uid://xx5j4qr47w7d" path="res://Ressources/menu/GameOver.png" id="2_5j0eo"]
+[ext_resource type="Texture2D" uid="uid://dsve1oclcr13f" path="res://Ressources/menu/Retry.png" id="2_6tvb7"]
+[ext_resource type="Texture2D" uid="uid://mq1xddmfvmwa" path="res://Ressources/menu/Bouton_Quit.png" id="3_1caxs"]
+
+[node name="GameOver" type="CanvasLayer"]
+
+[node name="UI" type="Control" parent="." node_paths=PackedStringArray("quitButton", "retryButton")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_06vtk")
+quitButton = NodePath("QuitButton")
+retryButton = NodePath("RetryButton")
+
+[node name="QuitButton" type="TextureButton" parent="UI"]
+layout_mode = 0
+offset_left = 743.0
+offset_top = 431.0
+offset_right = 1372.0
+offset_bottom = 703.0
+scale = Vector2(0.357, 0.357)
+texture_normal = ExtResource("3_1caxs")
+texture_pressed = ExtResource("3_1caxs")
+
+[node name="RetryButton" type="TextureButton" parent="UI"]
+layout_mode = 0
+offset_left = 203.0
+offset_top = 431.0
+offset_right = 832.0
+offset_bottom = 705.0
+scale = Vector2(0.357, 0.357)
+texture_normal = ExtResource("2_6tvb7")
+texture_pressed = ExtResource("2_6tvb7")
+
+[node name="GameOver" type="Sprite2D" parent="."]
+position = Vector2(580, 130)
+scale = Vector2(0.356851, 0.356851)
+texture = ExtResource("2_5j0eo")
+
+[connection signal="pressed" from="UI/QuitButton" to="UI" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="UI/RetryButton" to="UI" method="_on_retry_button_pressed"]

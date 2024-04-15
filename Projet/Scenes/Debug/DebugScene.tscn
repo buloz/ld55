@@ -1,29 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://l2wvjjpnjul4"]
+[gd_scene load_steps=5 format=3 uid="uid://l2wvjjpnjul4"]
 
 [ext_resource type="Script" path="res://Scenes/Debug/DebugScene.gd" id="1_2lmlw"]
-[ext_resource type="PackedScene" uid="uid://y542tm5v30rt" path="res://Scenes/Map/Map.tscn" id="1_lfq0a"]
-[ext_resource type="PackedScene" uid="uid://b433p5ck6nm4g" path="res://Scenes/Player/Player.tscn" id="2_vo8i1"]
-[ext_resource type="PackedScene" uid="uid://c4xat6u8vnn5l" path="res://Scenes/Spawner/MobSpawner/MobSpawner.tscn" id="4_r331g"]
+[ext_resource type="PackedScene" uid="uid://cvx560718qex6" path="res://Scenes/Menu/main_scene.tscn" id="2_lp5v5"]
 [ext_resource type="PackedScene" uid="uid://nxr7b0d625fr" path="res://Scenes/UserInterface/UI.tscn" id="6_yl73a"]
 [ext_resource type="Texture2D" uid="uid://dkn7p0w1mugk" path="res://Ressources/background/Tiling.png" id="10_ttqea"]
 
 [node name="DebugScene" type="Node"]
 script = ExtResource("1_2lmlw")
 
-[node name="MainScene" type="Node2D" parent="."]
-y_sort_enabled = true
-
-[node name="Map" parent="MainScene" node_paths=PackedStringArray("targetNode") instance=ExtResource("1_lfq0a")]
-targetNode = NodePath("../Player")
-
-[node name="Player" parent="MainScene" groups=["player"] instance=ExtResource("2_vo8i1")]
-position = Vector2(586, 373)
-collision_mask = 9
-
-[node name="Camera2D" type="Camera2D" parent="MainScene/Player" groups=["player"]]
-zoom = Vector2(0.4, 0.4)
-
-[node name="MobSpawner" parent="MainScene" instance=ExtResource("4_r331g")]
+[node name="MainScene" parent="." instance=ExtResource("2_lp5v5")]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scale = Vector2(0.15, 0.15)

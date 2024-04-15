@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b433p5ck6nm4g"]
+[gd_scene load_steps=17 format=3 uid="uid://b433p5ck6nm4g"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_sxh4x"]
 [ext_resource type="PackedScene" uid="uid://d3giiljxtfpns" path="res://Scenes/Player/Inventory.tscn" id="2_lnnje"]
@@ -6,13 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://ct74omi3gprcy" path="res://Ressources/sprites/Perso_Principal.png" id="7_foaxm"]
 [ext_resource type="Shader" path="res://Scenes/Player/Player.gdshader" id="7_h3iq2"]
 [ext_resource type="PackedScene" uid="uid://b3w25xcfvrnug" path="res://Scenes/Animation/ShaderAnimation.tscn" id="9_hk5ia"]
+[ext_resource type="PackedScene" uid="uid://dm7wjxq1yhhha" path="res://Scenes/Component/healthComponent.tscn" id="11_1nqvj"]
+[ext_resource type="PackedScene" uid="uid://deuhf0wkjf2jw" path="res://Scenes/Component/hitboxComponent.tscn" id="12_1u2hb"]
 [ext_resource type="AudioStream" uid="uid://cv4nje4uiq6kc" path="res://Ressources/sounds/player/pick1.wav" id="13_mt0ic"]
+[ext_resource type="PackedScene" uid="uid://bgteusoge6g2t" path="res://Scenes/Component/DamageReceiver.tscn" id="13_uyl74"]
 [ext_resource type="AudioStream" uid="uid://ti1n2ujoj2rk" path="res://Ressources/sounds/player/pick2.wav" id="14_xf0u7"]
 [ext_resource type="AudioStream" uid="uid://1fejarx7oi0k" path="res://Ressources/sounds/player/pick3.wav" id="15_0gw1i"]
 [ext_resource type="AudioStream" uid="uid://dclr31eav3l5r" path="res://Ressources/sounds/player/pick4.wav" id="16_ir863"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_epjvm"]
-size = Vector2(73, 109)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ifevx"]
 shader = ExtResource("7_h3iq2")
@@ -32,15 +32,15 @@ stream_2/weight = 1.0
 stream_3/stream = ExtResource("16_ir863")
 stream_3/weight = 1.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t5ogo"]
+radius = 41.0
+height = 189.5
+
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 9
 collision_mask = 7
 script = ExtResource("1_sxh4x")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -13.5)
-shape = SubResource("RectangleShape2D_epjvm")
 
 [node name="Inventory" parent="." instance=ExtResource("2_lnnje")]
 
@@ -59,3 +59,21 @@ offset = Vector2(0, -466)
 stream = SubResource("AudioStreamRandomizer_tu73w")
 volume_db = -13.0
 max_polyphony = 5
+
+[node name="HealthComponent" parent="." instance=ExtResource("11_1nqvj")]
+MaxHealth = 20.0
+
+[node name="HitBoxComponent" parent="." node_paths=PackedStringArray("healthComponent") instance=ExtResource("12_1u2hb")]
+collision_mask = 2
+healthComponent = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+position = Vector2(0, -95)
+shape = SubResource("CapsuleShape2D_t5ogo")
+
+[node name="DamageReceiver" parent="." node_paths=PackedStringArray("hitBoxComponent") instance=ExtResource("13_uyl74")]
+hitBoxComponent = NodePath("../HitBoxComponent")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -95)
+shape = SubResource("CapsuleShape2D_t5ogo")
