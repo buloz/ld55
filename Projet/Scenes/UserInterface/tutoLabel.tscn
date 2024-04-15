@@ -1,19 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://wdc3ni6egi2a"]
+[gd_scene load_steps=3 format=3 uid="uid://wdc3ni6egi2a"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_4u3wx"]
-font_size = 20
+[ext_resource type="Texture2D" uid="uid://cf0xw3w17v4nn" path="res://Ressources/menu/end_alpha.png" id="1_vpj1k"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_b2kuk"]
+font_size = 64
 font_color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label"]
+[node name="Panel" type="Sprite2D"]
+position = Vector2(218.691, 76.9125)
+scale = Vector2(0.324619, 0.350758)
+texture = ExtResource("1_vpj1k")
+
+[node name="Label" type="Label" parent="."]
 custom_minimum_size = Vector2(422, 0)
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 40.0
-offset_top = -148.5
-offset_right = 440.0
-offset_bottom = 148.5
+offset_left = -643.0
+offset_top = -216.2
+offset_right = 682.0
+offset_bottom = -68.2
 grow_vertical = 2
-label_settings = SubResource("LabelSettings_4u3wx")
-vertical_alignment = 1
+label_settings = SubResource("LabelSettings_b2kuk")
 autowrap_mode = 2

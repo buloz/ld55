@@ -3,9 +3,13 @@ extends CanvasLayer
 @export var quitButton:BaseButton
 @export var retryButton:BaseButton
 
+var score:Array
+
 func _ready():
 	$UI/QuitButton.pressed.connect(quit)
 	$UI/RetryButton.pressed.connect(retry)
+	$ScoreHolder/Score.text = "Ennemies:\n" + str(score[1])
+	$ScoreHolder/Time.text = "Time undead:\n" + str(round(score[0])) + " s"
 	
 	Music.play("Death")
 

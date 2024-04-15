@@ -10,7 +10,7 @@ func _ready():
 	player.tutoStep.connect(updateText)
 	
 	player.get_node("Inventory").inventoryUpdate.connect(updateSlotTooltip)
-	$Label.text = "Gather materials by walking over it."
+	$TutoPanel/Label.text = "Gather materials by walking over it."
 	
 	$HealthBar.setMaxHealth(player.get_node("HealthComponent").MaxHealth)
 	player.get_node("DamageReceiver").healthUpdated.connect($HealthBar.updateHealthPoint)
@@ -44,8 +44,8 @@ func _input(event):
 
 func updateText(value:String):
 	if value.is_empty():
-		$Label.queue_free()
-	$Label.text = value
+		$TutoPanel.queue_free()
+	$TutoPanel/Label.text = value
 
 func updateSlotTooltip(material:int, quantity:int):
 	match material:

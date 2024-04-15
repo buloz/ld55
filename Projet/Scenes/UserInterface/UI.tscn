@@ -98,7 +98,9 @@ texture_disabled = ExtResource("4_wug80")
 texture_focused = ExtResource("4_wug80")
 stretch_mode = 3
 
-[node name="Label" parent="." instance=ExtResource("10_xfhny")]
+[node name="TutoPanel" parent="." instance=ExtResource("10_xfhny")]
+position = Vector2(230, 286.956)
+scale = Vector2(0.293186, 0.316793)
 
 [node name="Tutorial" parent="." instance=ExtResource("5_kivo1")]
 visible = false
