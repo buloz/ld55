@@ -52,8 +52,6 @@ func loadSpellType(spellType:int):
 			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Haunted/Howl.tscn")
 
 func loadSummonType(summonType: int, summonSubtype: int):
-	
-	
 	match summonType:
 		0:
 			if summonSubtype == 1:
@@ -101,7 +99,6 @@ func loadSummonType(summonType: int, summonSubtype: int):
 
 
 func initializeFromInfo(summonInfo: SummonInfo):
-	
 	loadSummonType(summonInfo.type, summonInfo.subtype)
 	loadSpellType(summonInfo.spellType)
 	
@@ -116,6 +113,30 @@ func initializeFromInfo(summonInfo: SummonInfo):
 	
 func _ready():
 	$ShaderAnimation.setUnique()
+
+func die():
+	$HealthComponent.queue_free()
+	$NearestEnnemyFinder.queue_free()
+	$DamageReceiver.queue_free()
+	$HitBoxComponent.queue_free()
+	$AttackComponent.queue_free()
+	$CasterComponent.queue_free()
+	set_physics_process(false)
+	
+	var t := create_tween()
+	t.set_trans(Tween.TRANS_BOUNCE)
+	t.tween_property($Sprite2D, "position:x", -30, 0.05)
+	t.tween_property($Sprite2D, "position:x", 25, 0.075)
+	t.tween_property($Sprite2D, "position:x", -20, 0.075)
+	t.tween_property($Sprite2D, "position:x", 15, 0.075)
+	t.tween_property($Sprite2D, "position:x", 0, 0.15)
+	
+	var t2 := create_tween()
+	t2.set_trans(Tween.TRANS_CUBIC)
+	t2.set_ease(Tween.EASE_OUT)
+	t2.tween_property($Sprite2D, "scale:x", 0.0, 1.5)
+	t2.parallel().tween_property($Sprite2D, "scale:y", 0.0, 0.7)
+	t2.tween_callback(queue_free)
 
 func updateMovement(direction, updateSpeed, delta):
 	

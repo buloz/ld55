@@ -50,18 +50,10 @@ void timeIdle(inout vec2 uv) {
 }
 
 void fragment() {
-
 	vec2 uv = UV;
 	timeIdle(uv);
 	computeWalkingUV(uv);
 	computeXOrientationUV(uv);
-
 	
 	COLOR = texture(TEXTURE, uv);
-	
 }
-
-//void light() {
-	// Called for every pixel for every light affecting the CanvasItem.
-	// Uncomment to replace the default light processing function with this one.
-//}

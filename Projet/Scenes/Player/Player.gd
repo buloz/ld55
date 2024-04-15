@@ -29,6 +29,9 @@ func _ready():
 	#$Inventory.storedMaterials[4] = 999
 	get_node("/root/Global").Player = self
 
+func die():
+	print("PLAYER DEAD")
+
 #TODO: faire un déplacement plus smooooooooth
 func _physics_process(delta):
 	

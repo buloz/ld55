@@ -7,8 +7,7 @@ class_name Mob extends "res://Scenes/Entity/Entity.gd"
 func _init():
 	playerTeam = false
 	chaseTarget = true
-	
-	
+
 func loadRandomMob():
 	var choosenSpriteIndex: int = randi_range(0, 4)
 	match choosenSpriteIndex:
@@ -33,14 +32,26 @@ func loadRandomMob():
 			$Sprite2D.scale = Vector2(0.5, 0.5)
 			$Sprite2D.offset.y = -362
 			$Sprite2D.offset.x = -60
-	
+
 func _ready():
 	loadRandomMob()
 	$ShaderAnimation.setUnique()
 	animationState.walking = true
 
-func _physics_process(delta):
+func die():
+	$AttackComponent.queue_free()
+	$HealthComponent.queue_free()
+	$NearestEnnemyFinder.queue_free()
+	$HitBoxComponent.queue_free()
+	set_physics_process(false)
 	
+	var t := create_tween()
+	t.set_trans(Tween.TRANS_CUBIC)
+	t.set_ease(Tween.EASE_OUT)
+	t.tween_property($Sprite2D, "scale:y", 0.0, 0.5)
+	t.tween_callback(queue_free)
+
+func _physics_process(delta):
 	if hasTarget and chaseTarget:
 		distanceToTarget = position.distance_to(targetPosition)
 		if distanceToTarget > confortDistance:

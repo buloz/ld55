@@ -17,8 +17,8 @@ size = Vector2(40, 40)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0k8qm"]
 shader = ExtResource("9_f7ot6")
-shader_parameter/walkingAlpha = null
-shader_parameter/xOrientation = null
+shader_parameter/walkingAlpha = 4.75e-08
+shader_parameter/xOrientation = 4.75e-08
 
 [node name="Summon" type="Node2D"]
 y_sort_enabled = true
