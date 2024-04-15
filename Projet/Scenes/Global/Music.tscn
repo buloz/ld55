@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b033m2yvbp56m"]
+[gd_scene load_steps=5 format=3 uid="uid://b033m2yvbp56m"]
 
 [ext_resource type="Script" path="res://Scenes/Global/Music.gd" id="1_i4q0p"]
 [ext_resource type="AudioStream" uid="uid://dqocf0nwf2bhx" path="res://Ressources/music/ludumdaremenu.ogg" id="2_up8cr"]
 [ext_resource type="AudioStream" uid="uid://dfulph3g5446m" path="res://Ressources/music/rain.ogg" id="3_d5q6u"]
+[ext_resource type="AudioStream" uid="uid://3pq7ail347ng" path="res://Ressources/music/jingledeath.ogg" id="4_p6vwi"]
 
 [node name="Music" type="Node"]
 script = ExtResource("1_i4q0p")
@@ -13,4 +14,8 @@ volume_db = -5.0
 
 [node name="Rain" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_d5q6u")
+volume_db = -10.0
+
+[node name="Death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_p6vwi")
 volume_db = -10.0
