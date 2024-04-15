@@ -25,8 +25,8 @@ func _init():
 @onready var SUMMON_PROPERTIES := [
 	[Vector2(0.75, 0.75), Vector2(0, -290), $golem], #golem
 	[Vector2(0.5, 0.5), Vector2(0, -307), $goule], #goule
-	[Vector2(0.4, 0.4), Vector2(0, -312), $spectre], #squelette
-	[Vector2(0.5, 0.5), Vector2(0, -369), $squelette], #spectre
+	[Vector2(0.4, 0.4), Vector2(0, -312), $squelette], #squelette
+	[Vector2(0.5, 0.5), Vector2(0, -369), $spectre], #spectre
 ]
 
 var soundFX : AudioStreamPlayer2D

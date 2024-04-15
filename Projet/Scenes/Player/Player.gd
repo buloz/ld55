@@ -54,9 +54,10 @@ func _physics_process(delta):
 		animationState.orientation = velocity.normalized().x
 	
 	if Input.is_action_just_pressed("test"):
-		var newInstance = testAttackScene.instantiate()
-		newInstance.initialize(position, get_global_mouse_position(), true)
-		add_child(newInstance)
+		#var newInstance = testAttackScene.instantiate()
+		#newInstance.initialize(position, get_global_mouse_position(), true)
+		#add_child(newInstance)
+		pass
 
 		#
 	#velocity.x = direction.x * speed if direction.x else move_toward(velocity.x, 0, speed)
