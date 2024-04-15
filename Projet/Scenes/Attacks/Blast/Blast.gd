@@ -12,15 +12,18 @@ func initialize(_senderPosition: Vector2, _targetPosition: Vector2, playerTeam: 
 	collision_mask = 0b10 if playerTeam else 0b01
 
 func _ready():
-	
 	$AnimationPlayer.play("shockWave")
+	$AudioStreamPlayer2D.play()
 	
 	if blastShape is CircleShape2D:
 		blastShape.radius = offsetRadius
 
 	await get_tree().create_timer(travelTime).timeout
-	queue_free()
+	set_physics_process(false)
+	collision_mask = 0
 	
+	get_tree().create_timer(3.0).timeout.connect(queue_free)
+
 func _physics_process(delta):
 	if blastShape is CircleShape2D:
 		blastShape.set_radius(blastShape.radius + delta/travelTime * (targetRadius - offsetRadius))

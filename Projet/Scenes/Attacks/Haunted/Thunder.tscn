@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bbsjt88j76x2b"]
+[gd_scene load_steps=22 format=3 uid="uid://bbsjt88j76x2b"]
 
 [ext_resource type="Script" path="res://Scenes/Attacks/Strike/Strike.gd" id="1_gr5cx"]
 [ext_resource type="PackedScene" uid="uid://qks2cmf75chg" path="res://Scenes/Component/NearestEnemyFinder.tscn" id="2_71uxc"]
@@ -11,6 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://dl81jspd28j05" path="res://Ressources/menu/thunder6.png" id="9_yup8e"]
 [ext_resource type="Texture2D" uid="uid://6ps5p0fn0jk7" path="res://Ressources/menu/thunder7.png" id="10_h6fyc"]
 [ext_resource type="Texture2D" uid="uid://nyu6h3u6cax8" path="res://Ressources/menu/thunder8.png" id="11_6cack"]
+[ext_resource type="AudioStream" uid="uid://brj4cymmobjd5" path="res://Ressources/sounds/attack/thunder1.wav" id="12_gw7ct"]
+[ext_resource type="AudioStream" uid="uid://ey2qnabqgakv" path="res://Ressources/sounds/attack/thunder2.wav" id="13_kr57a"]
+[ext_resource type="AudioStream" uid="uid://b64q76vab61tn" path="res://Ressources/sounds/attack/thunder3.wav" id="14_6qyvu"]
+[ext_resource type="AudioStream" uid="uid://dbgmxhowm4xpq" path="res://Ressources/sounds/attack/thunder4.wav" id="15_3hra3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h1ffr"]
 radius = 111.0
@@ -84,6 +88,18 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6rvvx"]
+random_pitch = 1.25
+streams_count = 4
+stream_0/stream = ExtResource("12_gw7ct")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("13_kr57a")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("14_6qyvu")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("15_3hra3")
+stream_3/weight = 1.0
+
 [node name="HauntedThunder" type="Area2D" node_paths=PackedStringArray("attack")]
 collision_layer = 0
 collision_mask = 0
@@ -111,3 +127,7 @@ z_index = 1
 position = Vector2(2, -247)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_8rb8h")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_6rvvx")
+volume_db = -6.0

@@ -1,8 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://dcjb3a10tkvaa"]
+[gd_scene load_steps=14 format=3 uid="uid://dcjb3a10tkvaa"]
 
 [ext_resource type="Script" path="res://Scenes/Attacks/Blast/Blast.gd" id="1_xtryg"]
 [ext_resource type="PackedScene" uid="uid://blc1sjka6ahc6" path="res://Scenes/Component/attackComponent.tscn" id="2_pkk7a"]
 [ext_resource type="Texture2D" uid="uid://dg5rv7lveaf4n" path="res://Ressources/attacks/phone.png" id="3_qarye"]
+[ext_resource type="AudioStream" uid="uid://cqxs5wb8c8p8k" path="res://Ressources/sounds/attack/wolf1.wav" id="4_0xdv6"]
+[ext_resource type="AudioStream" uid="uid://kc0v0hdl7c26" path="res://Ressources/sounds/attack/wolf2.wav" id="5_6yp3o"]
+[ext_resource type="AudioStream" uid="uid://cnxo6t4srip0y" path="res://Ressources/sounds/attack/wolf3.wav" id="6_gecr2"]
+[ext_resource type="AudioStream" uid="uid://mo882vocl8j6" path="res://Ressources/sounds/attack/wolf4.wav" id="7_p73xw"]
+[ext_resource type="AudioStream" uid="uid://b4g2mvxlwlcjq" path="res://Ressources/sounds/attack/wolf5.wav" id="8_iufgq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5147m"]
 
@@ -36,6 +41,7 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_0lsak"]
 resource_name = "shockWave"
 length = 0.7
+step = 0.07
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -43,7 +49,7 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"times": PackedFloat32Array(0, 0.07, 0.14, 0.21, 0.28, 0.35, 0.56),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6]
@@ -60,12 +66,38 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0.1, 0.1), Vector2(3.935, 3.935)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.28, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yuafl"]
 _data = {
 "RESET": SubResource("Animation_sxgke"),
 "shockWave": SubResource("Animation_0lsak")
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_e511i"]
+random_pitch = 1.25
+streams_count = 5
+stream_0/stream = ExtResource("4_0xdv6")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("5_6yp3o")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("6_gecr2")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("7_p73xw")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("8_iufgq")
+stream_4/weight = 1.0
 
 [node name="HauntedHowl" type="Area2D" node_paths=PackedStringArray("attack")]
 collision_mask = 2
@@ -84,6 +116,7 @@ wait_time = 0.2
 attack_damage = 15.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
 position = Vector2(0, 1)
 scale = Vector2(1.3, 1.3)
 texture = ExtResource("3_qarye")
@@ -93,5 +126,11 @@ hframes = 7
 libraries = {
 "": SubResource("AnimationLibrary_yuafl")
 }
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_e511i")
+volume_db = -45.0
+pitch_scale = 2.0
+bus = &"Howl"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
