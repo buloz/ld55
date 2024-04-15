@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://dfvthvqlq0huh"
-path="res://.godot/imported/melee2.wav-0a04bf405cf2bcf9dd5ac1357ff00f2c.sample"
+uid="uid://q3vbx32wf3gc"
+path="res://.godot/imported/dong.wav-aec1a3bee77613dad253fc4488464d65.sample"
 
 [deps]
 
-source_file="res://Ressources/sounds/attack/melee2.wav"
-dest_files=["res://.godot/imported/melee2.wav-0a04bf405cf2bcf9dd5ac1357ff00f2c.sample"]
+source_file="res://Ressources/sounds/events/dong.wav"
+dest_files=["res://.godot/imported/dong.wav-aec1a3bee77613dad253fc4488464d65.sample"]
 
 [params]
 

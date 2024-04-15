@@ -12,6 +12,7 @@ var weight:float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$AudioStreamPlayer2D.play()
 	if get_parent() is CasterComponent:
 		isCharging = true;
 
