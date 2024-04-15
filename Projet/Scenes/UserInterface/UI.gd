@@ -7,7 +7,15 @@ func _ready():
 	player.tutoStep.connect(updateText)
 	player.get_node("Inventory").inventoryUpdate.connect(updateSlotTooltip)
 	$Label.text = "Gather materials by walking over it."
-	
+
+func setNewScene(scene:Node2D):
+	var player = scene.get_node("Player")
+	player.tutoStep.connect(updateText)
+	var inventory = player.get_node("Inventory")
+	inventory.inventoryUpdate.connect(updateSlotTooltip)
+	for index in inventory.storedMaterials.size():
+		updateSlotTooltip(index, inventory.storedMaterials[index])
+	$Label.text = "Gather materials by walking over it."
 
 func _on_texture_button_pressed():
 	$TutorialButton.disabled = true
