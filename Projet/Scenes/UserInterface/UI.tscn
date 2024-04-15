@@ -1,10 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://nxr7b0d625fr"]
+[gd_scene load_steps=16 format=3 uid="uid://nxr7b0d625fr"]
 
 [ext_resource type="Script" path="res://Scenes/UserInterface/UI.gd" id="1_4p5ls"]
 [ext_resource type="Script" path="res://Scenes/UserInterface/hotbar.gd" id="2_704ia"]
 [ext_resource type="PackedScene" uid="uid://bo0ukg5akkk7i" path="res://Scenes/UserInterface/slot.tscn" id="3_c5nv1"]
+[ext_resource type="Texture2D" uid="uid://b4hxu7dg1ke48" path="res://Ressources/UI/rock.png" id="4_sylqw"]
 [ext_resource type="Texture2D" uid="uid://b0342lb04owk5" path="res://Ressources/menu/interro.png" id="4_wug80"]
 [ext_resource type="PackedScene" path="res://Scenes/UserInterface/Tutorial.tscn" id="5_kivo1"]
+[ext_resource type="Texture2D" uid="uid://dmukwabrjtio6" path="res://Ressources/UI/bone.png" id="5_vw8t3"]
+[ext_resource type="Texture2D" uid="uid://dyv2qd1plp4kr" path="res://Ressources/UI/herb.png" id="6_axdck"]
+[ext_resource type="Texture2D" uid="uid://cbcqkvdfwsrue" path="res://Ressources/UI/wood.png" id="7_p8u5l"]
+[ext_resource type="Texture2D" uid="uid://do3klvmd524bo" path="res://Ressources/UI/shroom.png" id="8_d2cv1"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_eae5c"]
 device = -1
@@ -45,26 +50,31 @@ script = ExtResource("2_704ia")
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 key = SubResource("InputEventKey_eae5c")
+additionalTexture = ExtResource("4_sylqw")
 
 [node name="Slot6" parent="Hotbar" instance=ExtResource("3_c5nv1")]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 key = SubResource("InputEventKey_iisfl")
+additionalTexture = ExtResource("5_vw8t3")
 
 [node name="Slot7" parent="Hotbar" instance=ExtResource("3_c5nv1")]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 key = SubResource("InputEventKey_6ut7r")
+additionalTexture = ExtResource("6_axdck")
 
 [node name="Slot8" parent="Hotbar" instance=ExtResource("3_c5nv1")]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 key = SubResource("InputEventKey_aknxl")
+additionalTexture = ExtResource("7_p8u5l")
 
 [node name="Slot9" parent="Hotbar" instance=ExtResource("3_c5nv1")]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 key = SubResource("InputEventKey_1ttkj")
+additionalTexture = ExtResource("8_d2cv1")
 
 [node name="TutorialButton" type="TextureButton" parent="."]
 custom_minimum_size = Vector2(244, 0)
