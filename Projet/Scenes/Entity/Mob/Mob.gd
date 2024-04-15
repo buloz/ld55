@@ -46,6 +46,8 @@ func die():
 	$HitBoxComponent.queue_free()
 	set_physics_process(false)
 	soundFX.play()
+	var player = get_tree().get_first_node_in_group("player")
+	player.scored.emit(1)
 	
 	var t := create_tween()
 	t.set_trans(Tween.TRANS_QUAD)

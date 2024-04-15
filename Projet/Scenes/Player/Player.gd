@@ -7,12 +7,16 @@ class_name PlayerClass extends CharacterBody2D
 @onready var animationState: AnimationState = $ShaderAnimation.get_node("AnimationState")
 
 var actualTutoStep:int = 0
-var score := 0
+#[timeAlive, entity killed]
+var score:Array = [0.0,0]
 
 signal tutoStep(text:String)
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+#Score
+signal scored(points : int)
 
 func gatherMaterial(materialType: int, quantity: int):
 	if actualTutoStep <= 1:
@@ -29,6 +33,11 @@ func _ready():
 	$Inventory.storedMaterials[3] = 999
 	$Inventory.storedMaterials[4] = 999
 	get_node("/root/Global").Player = self
+	scored.connect(incrementScore)
+	
+func incrementScore(value : int):
+	score[1] += value
+	
 
 func damage(v: int):
 	if v == 0:
@@ -51,7 +60,7 @@ func die():
 
 	$die.play()
 	$ShaderAnimation.get_node("AnimationPlayer").play("death")
-	get_node("../../MainScene").lose.emit(0)
+	get_node("../../MainScene").lose.emit(score)
 
 #TODO: faire un déplacement plus smooooooooth
 func _physics_process(delta):
@@ -89,6 +98,9 @@ func _physics_process(delta):
 	#Update global
 	get_node("/root/Global").playerPosition = position
 
+func _process(delta):
+	score[0] += delta
+
 func _unhandled_input(event):
 	if event.is_action_pressed("primary_action") and not get_node("/root/Global").playerDead:
 		var summon = $Inventory.try_craft()
@@ -111,6 +123,6 @@ func nextTutoStep():
 		2:
 			tutoStep.emit("Summon your first creature by combining materials. (hint : golems loves rocks and herbs)")
 		3:
-			tutoStep.emit("There are plenty of tasty recipes in nature. Try yours !")
+			tutoStep.emit("There are plenty of tasty recipes in nature.\nTry yours !")
 		4: 
 			tutoStep.emit("")
