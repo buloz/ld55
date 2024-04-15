@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c2mtxhyk88bpb"]
+[gd_scene load_steps=26 format=3 uid="uid://c2mtxhyk88bpb"]
 
 [ext_resource type="Script" path="res://Scenes/Entity/Summon/Summon.gd" id="1_8wfjq"]
 [ext_resource type="PackedScene" uid="uid://dm7wjxq1yhhha" path="res://Scenes/Component/healthComponent.tscn" id="2_n0cvy"]
@@ -11,14 +11,69 @@
 [ext_resource type="PackedScene" uid="uid://b3w25xcfvrnug" path="res://Scenes/Animation/ShaderAnimation.tscn" id="9_bnuen"]
 [ext_resource type="Shader" path="res://Scenes/Entity/Mob/Mob.gdshader" id="9_f7ot6"]
 [ext_resource type="Texture2D" uid="uid://vpg0dd0gaa8u" path="res://Ressources/sprites/Summon/Squelette.png" id="11_5nndw"]
+[ext_resource type="Texture2D" uid="uid://cy3ja2fegtw8w" path="res://Ressources/sprites/Summon/Golem.png" id="12_beohr"]
+[ext_resource type="Texture2D" uid="uid://cd1enir0ku508" path="res://Ressources/sprites/Summon/Golem_1.png" id="13_13fpq"]
+[ext_resource type="Texture2D" uid="uid://bvoykmw225j7o" path="res://Ressources/sprites/Summon/Golem_2.png" id="14_hdq4d"]
+[ext_resource type="Texture2D" uid="uid://ccib1cndafsac" path="res://Ressources/sprites/Summon/Goule.png" id="15_loysy"]
+[ext_resource type="Texture2D" uid="uid://1c75hjb5re" path="res://Ressources/sprites/Summon/Goule_1.png" id="16_ht473"]
+[ext_resource type="Texture2D" uid="uid://ctursgl1ktxfb" path="res://Ressources/sprites/Summon/Goule_2.png" id="17_nv84h"]
+[ext_resource type="Texture2D" uid="uid://51a2o2e77qqp" path="res://Ressources/sprites/Summon/Spectre.png" id="18_r0ca4"]
+[ext_resource type="Texture2D" uid="uid://bqmlvrb26buej" path="res://Ressources/sprites/Summon/Spectre_1.png" id="19_gmxm4"]
+[ext_resource type="Texture2D" uid="uid://bir4xqds6hik8" path="res://Ressources/sprites/Summon/Spectre_2.png" id="20_rcmad"]
+[ext_resource type="Texture2D" uid="uid://cp8b5bpn7gvsc" path="res://Ressources/sprites/Summon/Squelette_1.png" id="21_gdwub"]
+[ext_resource type="Texture2D" uid="uid://dbijqdprpw31a" path="res://Ressources/sprites/Summon/Squelette_2.png" id="22_130dl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ikrt"]
 size = Vector2(40, 40)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0k8qm"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qj3d4"]
 shader = ExtResource("9_f7ot6")
-shader_parameter/walkingAlpha = 4.75e-08
-shader_parameter/xOrientation = 4.75e-08
+shader_parameter/walkingAlpha = null
+shader_parameter/xOrientation = null
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7tkqq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_beohr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_13fpq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_hdq4d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_loysy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_ht473")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_nv84h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_r0ca4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_gmxm4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_rcmad")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_5nndw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_gdwub")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_130dl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Summon" type="Node2D"]
 y_sort_enabled = true
@@ -48,10 +103,9 @@ attack_cooldown = 0.1
 spellScene = ExtResource("8_tl8yr")
 attackComponent = NodePath("../AttackComponent")
 
-[node name="ShaderAnimation" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("9_bnuen")]
+[node name="ShaderAnimation" parent="." instance=ExtResource("9_bnuen")]
 randomStartOffset = true
-sprite = NodePath("../Sprite2D")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_0k8qm")
-texture = ExtResource("11_5nndw")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="ShaderAnimation"]
+material = SubResource("ShaderMaterial_qj3d4")
+sprite_frames = SubResource("SpriteFrames_7tkqq")

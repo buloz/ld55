@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 @export var randomStartOffset: bool = false
 
@@ -10,11 +10,9 @@ var walkingSign: float = 1.0
 @export var orientationSpeed: float = 5.0
 var xOrientationFactor: float = 0.0
 
-@export var sprite: Sprite2D
-
+@onready var sprite = $Sprite2D
 
 func _ready():
-	
 	sprite.material.set_shader_parameter("randomFloat", randf())
 	
 	if randomStartOffset:

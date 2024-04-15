@@ -1,37 +1,26 @@
 class_name Mob extends "res://Scenes/Entity/Entity.gd"
 
 @onready var animationState: AnimationState = $ShaderAnimation.get_node("AnimationState")
-
+@onready var sprite := $ShaderAnimation/Sprite2D
 
 
 func _init():
 	playerTeam = false
 	chaseTarget = true
 
+const SPRITE_PROPERTIES := [
+	[Vector2(0.5, 0.5), Vector2(0, -325)], #biche
+	[Vector2(0.15, 0.15), Vector2(0, -348)], #tortue
+	[Vector2(0.2, 0.2), Vector2(0, -380)], #chat
+	[Vector2(0.28, 0.28), Vector2(0, -276)], #lapin
+	[Vector2(0.5, 0.5), Vector2(-60, -362)], #vach
+]
+
 func loadRandomMob():
-	var choosenSpriteIndex: int = randi_range(0, 4)
-	match choosenSpriteIndex:
-		0:
-			$Sprite2D.texture = preload("res://Ressources/sprites/Mobs/Biche.png")
-			$Sprite2D.scale = Vector2(0.5, 0.5)
-			$Sprite2D.offset.y = -325
-		1:
-			$Sprite2D.texture = preload("res://Ressources/sprites/Mobs/Grenouille.png")
-			$Sprite2D.scale = Vector2(0.15, 0.15)
-			$Sprite2D.offset.y = -348
-		2:
-			$Sprite2D.texture = preload("res://Ressources/sprites/Mobs/Chat.png")
-			$Sprite2D.scale = Vector2(0.2, 0.2)
-			$Sprite2D.offset.y = -380
-		3:
-			$Sprite2D.texture = preload("res://Ressources/sprites/Mobs/Lapin.png")
-			$Sprite2D.scale = Vector2(0.28, 0.28)
-			$Sprite2D.offset.y = -276
-		4:
-			$Sprite2D.texture = preload("res://Ressources/sprites/Mobs/Vach.png")
-			$Sprite2D.scale = Vector2(0.5, 0.5)
-			$Sprite2D.offset.y = -362
-			$Sprite2D.offset.x = -60
+	var index : int = randi() % sprite.sprite_frames.get_frame_count("default")
+	sprite.frame = index
+	sprite.scale = SPRITE_PROPERTIES[index][0]
+	sprite.offset = SPRITE_PROPERTIES[index][1]
 
 func _ready():
 	loadRandomMob()
@@ -48,7 +37,7 @@ func die():
 	var t := create_tween()
 	t.set_trans(Tween.TRANS_CUBIC)
 	t.set_ease(Tween.EASE_OUT)
-	t.tween_property($Sprite2D, "scale:y", 0.0, 0.5)
+	t.tween_property(sprite, "scale:y", 0.0, 0.5)
 	t.tween_callback(queue_free)
 
 func _physics_process(delta):

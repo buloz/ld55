@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cb8lmdavcema"]
+[gd_scene load_steps=16 format=3 uid="uid://cb8lmdavcema"]
 
 [ext_resource type="Script" path="res://Scenes/Entity/Mob/Mob.gd" id="1_3u8mo"]
 [ext_resource type="PackedScene" uid="uid://qks2cmf75chg" path="res://Scenes/Component/NearestEnemyFinder.tscn" id="2_easnx"]
@@ -7,14 +7,42 @@
 [ext_resource type="Shader" path="res://Scenes/Entity/Mob/Mob.gdshader" id="5_eym8e"]
 [ext_resource type="PackedScene" uid="uid://blc1sjka6ahc6" path="res://Scenes/Component/attackComponent.tscn" id="5_o00wj"]
 [ext_resource type="PackedScene" uid="uid://b3w25xcfvrnug" path="res://Scenes/Animation/ShaderAnimation.tscn" id="7_oi6k7"]
+[ext_resource type="Texture2D" uid="uid://b2qy48p7n0uvq" path="res://Ressources/sprites/Mobs/Biche.png" id="8_dux1l"]
+[ext_resource type="Texture2D" uid="uid://oplf7u8wkpol" path="res://Ressources/sprites/Mobs/Grenouille.png" id="9_0skbu"]
+[ext_resource type="Texture2D" uid="uid://bcdtqudttuei0" path="res://Ressources/sprites/Mobs/Chat.png" id="10_b5ho4"]
+[ext_resource type="Texture2D" uid="uid://baxsxn10y7i81" path="res://Ressources/sprites/Mobs/Lapin.png" id="11_gtaff"]
+[ext_resource type="Texture2D" uid="uid://es3hfe74elaq" path="res://Ressources/sprites/Mobs/Vach.png" id="12_tqotu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_itvn1"]
 radius = 48.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wxl82"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qjnns"]
 shader = ExtResource("5_eym8e")
 shader_parameter/walkingAlpha = null
 shader_parameter/xOrientation = null
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k5p6w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_dux1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_0skbu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_b5ho4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_gtaff")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_tqotu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Mob" type="Node2D"]
 y_sort_enabled = true
@@ -37,10 +65,9 @@ healthComponent = NodePath("../HealthComponent")
 position = Vector2(-2, 7)
 shape = SubResource("CircleShape2D_itvn1")
 
-[node name="ShaderAnimation" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("7_oi6k7")]
+[node name="ShaderAnimation" parent="." instance=ExtResource("7_oi6k7")]
 randomStartOffset = true
-sprite = NodePath("../Sprite2D")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-z_as_relative = false
-material = SubResource("ShaderMaterial_wxl82")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="ShaderAnimation"]
+material = SubResource("ShaderMaterial_qjnns")
+sprite_frames = SubResource("SpriteFrames_k5p6w")

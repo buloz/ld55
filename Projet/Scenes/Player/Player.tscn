@@ -43,11 +43,10 @@ shape = SubResource("RectangleShape2D_epjvm")
 [node name="SummonSpawner" parent="." instance=ExtResource("6_ua7c7")]
 z_index = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="ShaderAnimation" parent="." instance=ExtResource("9_hk5ia")]
+
+[node name="Sprite2D" type="Sprite2D" parent="ShaderAnimation"]
 material = SubResource("ShaderMaterial_ifevx")
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("7_foaxm")
 offset = Vector2(0, -466)
-
-[node name="ShaderAnimation" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("9_hk5ia")]
-sprite = NodePath("../Sprite2D")
