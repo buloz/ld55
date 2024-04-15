@@ -20,6 +20,7 @@ func gatherMaterial(materialType: int, quantity: int):
 	$gather.play()
 
 func _ready():
+	$DamageReceiver.healthUpdated.connect($damage.play)
 	$SummonSpawner.spawnTargetNode = get_parent()
 	$Inventory.storedMaterials[0] = 999
 	$Inventory.storedMaterials[1] = 999
@@ -34,12 +35,13 @@ func die():
 	$HitBoxComponent.queue_free()
 	$CollisionShape2D2.queue_free()
 	$DamageReceiver.queue_free()
-	Music.play("Death")
-	get_parent().get_parent().get_node("MainScene").lose.emit(0)
+	
+	$die.play()
+	
+	get_node("../../MainScene").lose.emit(0)
 
 #TODO: faire un déplacement plus smooooooooth
 func _physics_process(delta):
-	
 	var direction = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down")).normalized()
 	
 	if direction == Vector2.ZERO:
