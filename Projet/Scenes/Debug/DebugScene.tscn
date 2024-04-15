@@ -16,15 +16,14 @@ y_sort_enabled = true
 [node name="Map" parent="MainScene" node_paths=PackedStringArray("targetNode") instance=ExtResource("1_lfq0a")]
 targetNode = NodePath("../Player")
 
-[node name="Player" parent="MainScene" instance=ExtResource("2_vo8i1")]
+[node name="Player" parent="MainScene" groups=["player"] instance=ExtResource("2_vo8i1")]
 position = Vector2(586, 373)
 collision_mask = 9
 
-[node name="Camera2D" type="Camera2D" parent="MainScene/Player"]
+[node name="Camera2D" type="Camera2D" parent="MainScene/Player" groups=["player"]]
 zoom = Vector2(0.4, 0.4)
 
-[node name="MobSpawner" parent="MainScene" node_paths=PackedStringArray("spawnTargetNode") instance=ExtResource("4_r331g")]
-spawnTargetNode = NodePath("..")
+[node name="MobSpawner" parent="MainScene" instance=ExtResource("4_r331g")]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scale = Vector2(0.15, 0.15)

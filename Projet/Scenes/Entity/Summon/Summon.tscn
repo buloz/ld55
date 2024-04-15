@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c2mtxhyk88bpb"]
+[gd_scene load_steps=50 format=3 uid="uid://c2mtxhyk88bpb"]
 
 [ext_resource type="Script" path="res://Scenes/Entity/Summon/Summon.gd" id="1_8wfjq"]
 [ext_resource type="PackedScene" uid="uid://dm7wjxq1yhhha" path="res://Scenes/Component/healthComponent.tscn" id="2_n0cvy"]
@@ -11,14 +11,145 @@
 [ext_resource type="PackedScene" uid="uid://b3w25xcfvrnug" path="res://Scenes/Animation/ShaderAnimation.tscn" id="9_bnuen"]
 [ext_resource type="Shader" path="res://Scenes/Entity/Mob/Mob.gdshader" id="9_f7ot6"]
 [ext_resource type="Texture2D" uid="uid://vpg0dd0gaa8u" path="res://Ressources/sprites/Summon/Squelette.png" id="11_5nndw"]
+[ext_resource type="Texture2D" uid="uid://cy3ja2fegtw8w" path="res://Ressources/sprites/Summon/Golem.png" id="12_beohr"]
+[ext_resource type="Texture2D" uid="uid://cd1enir0ku508" path="res://Ressources/sprites/Summon/Golem_1.png" id="13_13fpq"]
+[ext_resource type="Texture2D" uid="uid://bvoykmw225j7o" path="res://Ressources/sprites/Summon/Golem_2.png" id="14_hdq4d"]
+[ext_resource type="Texture2D" uid="uid://ccib1cndafsac" path="res://Ressources/sprites/Summon/Goule.png" id="15_loysy"]
+[ext_resource type="Texture2D" uid="uid://1c75hjb5re" path="res://Ressources/sprites/Summon/Goule_1.png" id="16_ht473"]
+[ext_resource type="Texture2D" uid="uid://ctursgl1ktxfb" path="res://Ressources/sprites/Summon/Goule_2.png" id="17_nv84h"]
+[ext_resource type="Texture2D" uid="uid://51a2o2e77qqp" path="res://Ressources/sprites/Summon/Spectre.png" id="18_r0ca4"]
+[ext_resource type="Texture2D" uid="uid://bqmlvrb26buej" path="res://Ressources/sprites/Summon/Spectre_1.png" id="19_gmxm4"]
+[ext_resource type="Texture2D" uid="uid://bir4xqds6hik8" path="res://Ressources/sprites/Summon/Spectre_2.png" id="20_rcmad"]
+[ext_resource type="Texture2D" uid="uid://cp8b5bpn7gvsc" path="res://Ressources/sprites/Summon/Squelette_1.png" id="21_gdwub"]
+[ext_resource type="Texture2D" uid="uid://dbijqdprpw31a" path="res://Ressources/sprites/Summon/Squelette_2.png" id="22_130dl"]
+[ext_resource type="AudioStream" uid="uid://crfgg2v271k6u" path="res://Ressources/sounds/summons/golemdeath1.wav" id="23_tawco"]
+[ext_resource type="AudioStream" uid="uid://chql8056nfetv" path="res://Ressources/sounds/summons/golemdeath2.wav" id="24_kpfox"]
+[ext_resource type="AudioStream" uid="uid://cftbk37tdqcvt" path="res://Ressources/sounds/summons/golemdeath3.wav" id="25_uy0ko"]
+[ext_resource type="AudioStream" uid="uid://m88nuw30gq3v" path="res://Ressources/sounds/summons/golemdeath4.wav" id="26_dkhr5"]
+[ext_resource type="AudioStream" uid="uid://dr0orqg0g31qu" path="res://Ressources/sounds/summons/golemdeath5.wav" id="27_4au53"]
+[ext_resource type="AudioStream" uid="uid://dplxa0dbi20ic" path="res://Ressources/sounds/summons/gouledeath1.wav" id="28_p6ye8"]
+[ext_resource type="AudioStream" uid="uid://clvblw7o8nfka" path="res://Ressources/sounds/summons/gouledeath2.wav" id="29_3m77s"]
+[ext_resource type="AudioStream" uid="uid://b6qiieifnrr58" path="res://Ressources/sounds/summons/gouledeath3.wav" id="30_ro2iq"]
+[ext_resource type="AudioStream" uid="uid://22cc4j1ygm1q" path="res://Ressources/sounds/summons/gouledeath4.wav" id="31_o5fej"]
+[ext_resource type="AudioStream" uid="uid://dnydeptsbgvjy" path="res://Ressources/sounds/summons/gouledeath5.wav" id="32_e8p7c"]
+[ext_resource type="AudioStream" uid="uid://bitqqnw1jik0f" path="res://Ressources/sounds/summons/squelettedeath1.wav" id="33_6oqxy"]
+[ext_resource type="AudioStream" uid="uid://1j2qqsi35nbt" path="res://Ressources/sounds/summons/squelettedeath2.wav" id="34_8ubm1"]
+[ext_resource type="AudioStream" uid="uid://bam2n4f3ojmnp" path="res://Ressources/sounds/summons/squelettedeath3.wav" id="35_db5k6"]
+[ext_resource type="AudioStream" uid="uid://blurrtby2j6hu" path="res://Ressources/sounds/summons/squelettedeath4.wav" id="36_hl7by"]
+[ext_resource type="AudioStream" uid="uid://dbip5r0k8dpeg" path="res://Ressources/sounds/summons/squelettedeath5.wav" id="37_eb5a3"]
+[ext_resource type="AudioStream" uid="uid://dk5tk2h0hssb1" path="res://Ressources/sounds/summons/spectredeath1.wav" id="38_meyov"]
+[ext_resource type="AudioStream" uid="uid://cuxr4yyr5n002" path="res://Ressources/sounds/summons/spectredeath2.wav" id="39_mqm3v"]
+[ext_resource type="AudioStream" uid="uid://dmemq0furundd" path="res://Ressources/sounds/summons/spectredeath3.wav" id="40_6mc4o"]
+[ext_resource type="AudioStream" uid="uid://b0skhrdghudth" path="res://Ressources/sounds/summons/spectredeath4.wav" id="41_prsqb"]
+[ext_resource type="AudioStream" uid="uid://cqpfg0egpbd48" path="res://Ressources/sounds/summons/spectredeath5.wav" id="42_wq03n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ikrt"]
 size = Vector2(40, 40)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0k8qm"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qj3d4"]
 shader = ExtResource("9_f7ot6")
 shader_parameter/walkingAlpha = null
 shader_parameter/xOrientation = null
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7tkqq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_beohr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_13fpq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_hdq4d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_loysy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_ht473")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_nv84h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_r0ca4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_gmxm4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_rcmad")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_5nndw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_gdwub")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_130dl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6mdua"]
+random_pitch = 1.25
+streams_count = 5
+stream_0/stream = ExtResource("23_tawco")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("24_kpfox")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("25_uy0ko")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("26_dkhr5")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("27_4au53")
+stream_4/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rj2io"]
+random_pitch = 1.25
+streams_count = 5
+stream_0/stream = ExtResource("28_p6ye8")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("29_3m77s")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("30_ro2iq")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("31_o5fej")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("32_e8p7c")
+stream_4/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4d07e"]
+random_pitch = 1.25
+streams_count = 5
+stream_0/stream = ExtResource("38_meyov")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("39_mqm3v")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("40_6mc4o")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("41_prsqb")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("42_wq03n")
+stream_4/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qka3f"]
+random_pitch = 1.25
+streams_count = 5
+stream_0/stream = ExtResource("33_6oqxy")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("34_8ubm1")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("35_db5k6")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("36_hl7by")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("37_eb5a3")
+stream_4/weight = 1.0
 
 [node name="Summon" type="Node2D"]
 y_sort_enabled = true
@@ -48,10 +179,27 @@ attack_cooldown = 0.1
 spellScene = ExtResource("8_tl8yr")
 attackComponent = NodePath("../AttackComponent")
 
-[node name="ShaderAnimation" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("9_bnuen")]
+[node name="ShaderAnimation" parent="." instance=ExtResource("9_bnuen")]
 randomStartOffset = true
-sprite = NodePath("../Sprite2D")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_0k8qm")
-texture = ExtResource("11_5nndw")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="ShaderAnimation"]
+material = SubResource("ShaderMaterial_qj3d4")
+sprite_frames = SubResource("SpriteFrames_7tkqq")
+
+[node name="golem" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_6mdua")
+volume_db = -10.0
+
+[node name="goule" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_rj2io")
+volume_db = -10.0
+
+[node name="spectre" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_4d07e")
+volume_db = -9.0
+pitch_scale = 1.15
+
+[node name="squelette" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_qka3f")
+volume_db = -10.0
+pitch_scale = 0.8

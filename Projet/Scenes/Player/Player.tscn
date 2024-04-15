@@ -1,18 +1,15 @@
-[gd_scene load_steps=16 format=3 uid="uid://b433p5ck6nm4g"]
+[gd_scene load_steps=9 format=3 uid="uid://b433p5ck6nm4g"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_sxh4x"]
-[ext_resource type="PackedScene" uid="uid://cev6kffqmrxuq" path="res://Scenes/Attacks/Projectile/projectile.tscn" id="2_348b1"]
 [ext_resource type="PackedScene" uid="uid://d3giiljxtfpns" path="res://Scenes/Player/Inventory.tscn" id="2_lnnje"]
-[ext_resource type="PackedScene" uid="uid://dcjb3a10tkvaa" path="res://Scenes/Attacks/Haunted/Howl.tscn" id="2_nqvet"]
-[ext_resource type="PackedScene" uid="uid://3y8njbt42ijg" path="res://Scenes/Attacks/Blast/Blast.tscn" id="3_guh1v"]
-[ext_resource type="PackedScene" uid="uid://bj1ctidibit2r" path="res://Scenes/Attacks/Projectile/multiprojectile.tscn" id="3_tyl87"]
-[ext_resource type="Shape2D" uid="uid://byjssba2o48vl" path="res://Scenes/Attacks/Projectile/Arrow.tres" id="3_xtamv"]
-[ext_resource type="PackedScene" uid="uid://dfckik3n3ft43" path="res://Scenes/Attacks/Projectile/ball.tscn" id="4_udxop"]
-[ext_resource type="PackedScene" uid="uid://m41t5ox7dpkj" path="res://Scenes/Attacks/Strike/Strike.tscn" id="5_mc306"]
 [ext_resource type="PackedScene" uid="uid://c26ht80nke8hf" path="res://Scenes/Spawner/SummonSpawner/SummonSpawner.tscn" id="6_ua7c7"]
 [ext_resource type="Texture2D" uid="uid://ct74omi3gprcy" path="res://Ressources/sprites/Perso_Principal.png" id="7_foaxm"]
 [ext_resource type="Shader" path="res://Scenes/Player/Player.gdshader" id="7_h3iq2"]
 [ext_resource type="PackedScene" uid="uid://b3w25xcfvrnug" path="res://Scenes/Animation/ShaderAnimation.tscn" id="9_hk5ia"]
+[ext_resource type="AudioStream" uid="uid://cv4nje4uiq6kc" path="res://Ressources/sounds/player/pick1.wav" id="13_mt0ic"]
+[ext_resource type="AudioStream" uid="uid://ti1n2ujoj2rk" path="res://Ressources/sounds/player/pick2.wav" id="14_xf0u7"]
+[ext_resource type="AudioStream" uid="uid://1fejarx7oi0k" path="res://Ressources/sounds/player/pick3.wav" id="15_0gw1i"]
+[ext_resource type="AudioStream" uid="uid://dclr31eav3l5r" path="res://Ressources/sounds/player/pick4.wav" id="16_ir863"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epjvm"]
 size = Vector2(73, 109)
@@ -23,18 +20,23 @@ shader_parameter/randomFloat = null
 shader_parameter/walkingAlpha = 4.75e-08
 shader_parameter/xOrientation = 4.75e-08
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tu73w"]
+random_pitch = 1.5
+streams_count = 4
+stream_0/stream = ExtResource("13_mt0ic")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("14_xf0u7")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("15_0gw1i")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("16_ir863")
+stream_3/weight = 1.0
+
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 9
 collision_mask = 7
 script = ExtResource("1_sxh4x")
-testAttackScene = ExtResource("2_nqvet")
-projectileScene = ExtResource("2_348b1")
-multiProjectileScene = ExtResource("3_tyl87")
-ballScene = ExtResource("4_udxop")
-blastScene = ExtResource("3_guh1v")
-strikeScene = ExtResource("5_mc306")
-projectileShapeResource = ExtResource("3_xtamv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -13.5)
@@ -45,11 +47,15 @@ shape = SubResource("RectangleShape2D_epjvm")
 [node name="SummonSpawner" parent="." instance=ExtResource("6_ua7c7")]
 z_index = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="ShaderAnimation" parent="." instance=ExtResource("9_hk5ia")]
+
+[node name="Sprite2D" type="Sprite2D" parent="ShaderAnimation"]
 material = SubResource("ShaderMaterial_ifevx")
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("7_foaxm")
 offset = Vector2(0, -466)
 
-[node name="ShaderAnimation" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("9_hk5ia")]
-sprite = NodePath("../Sprite2D")
+[node name="gather" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_tu73w")
+volume_db = -13.0
+max_polyphony = 5

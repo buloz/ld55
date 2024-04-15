@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cb8lmdavcema"]
+[gd_scene load_steps=46 format=3 uid="uid://cb8lmdavcema"]
 
 [ext_resource type="Script" path="res://Scenes/Entity/Mob/Mob.gd" id="1_3u8mo"]
 [ext_resource type="PackedScene" uid="uid://qks2cmf75chg" path="res://Scenes/Component/NearestEnemyFinder.tscn" id="2_easnx"]
@@ -7,14 +7,137 @@
 [ext_resource type="Shader" path="res://Scenes/Entity/Mob/Mob.gdshader" id="5_eym8e"]
 [ext_resource type="PackedScene" uid="uid://blc1sjka6ahc6" path="res://Scenes/Component/attackComponent.tscn" id="5_o00wj"]
 [ext_resource type="PackedScene" uid="uid://b3w25xcfvrnug" path="res://Scenes/Animation/ShaderAnimation.tscn" id="7_oi6k7"]
+[ext_resource type="Texture2D" uid="uid://b2qy48p7n0uvq" path="res://Ressources/sprites/Mobs/Biche.png" id="8_dux1l"]
+[ext_resource type="Texture2D" uid="uid://oplf7u8wkpol" path="res://Ressources/sprites/Mobs/Grenouille.png" id="9_0skbu"]
+[ext_resource type="Texture2D" uid="uid://bcdtqudttuei0" path="res://Ressources/sprites/Mobs/Chat.png" id="10_b5ho4"]
+[ext_resource type="Texture2D" uid="uid://baxsxn10y7i81" path="res://Ressources/sprites/Mobs/Lapin.png" id="11_gtaff"]
+[ext_resource type="Texture2D" uid="uid://es3hfe74elaq" path="res://Ressources/sprites/Mobs/Vach.png" id="12_tqotu"]
+[ext_resource type="AudioStream" uid="uid://1r08kogncoot" path="res://Ressources/sounds/animals/deer1.wav" id="13_0w30g"]
+[ext_resource type="AudioStream" uid="uid://b1ebscx0ixsai" path="res://Ressources/sounds/animals/deer2.wav" id="14_7bhfw"]
+[ext_resource type="AudioStream" uid="uid://bt0stxhf0jrfu" path="res://Ressources/sounds/animals/deer3.wav" id="15_fixr3"]
+[ext_resource type="AudioStream" uid="uid://conpnyxikr7nh" path="res://Ressources/sounds/animals/deer4.wav" id="16_3ekp0"]
+[ext_resource type="AudioStream" uid="uid://nvy508v6cu1f" path="res://Ressources/sounds/animals/deer5.wav" id="17_4mub8"]
+[ext_resource type="AudioStream" uid="uid://bvfrvgvk5easd" path="res://Ressources/sounds/animals/deer6.wav" id="18_l1msc"]
+[ext_resource type="AudioStream" uid="uid://b3wx83valbsvo" path="res://Ressources/sounds/animals/deer7.wav" id="19_0j0av"]
+[ext_resource type="AudioStream" uid="uid://dcomitxvi1ovd" path="res://Ressources/sounds/animals/frog1.wav" id="20_4x2ge"]
+[ext_resource type="AudioStream" uid="uid://d4gnttytcihib" path="res://Ressources/sounds/animals/frog2.wav" id="21_myd7u"]
+[ext_resource type="AudioStream" uid="uid://du1dicr1ly2qa" path="res://Ressources/sounds/animals/frog3.wav" id="22_ww1jt"]
+[ext_resource type="AudioStream" uid="uid://dkqjvg7qkvekt" path="res://Ressources/sounds/animals/frog4.wav" id="23_5c6a1"]
+[ext_resource type="AudioStream" uid="uid://dwvwofwas7jms" path="res://Ressources/sounds/animals/cat1.wav" id="24_dad4k"]
+[ext_resource type="AudioStream" uid="uid://boqeth2t3isva" path="res://Ressources/sounds/animals/cat2.wav" id="25_d5cv8"]
+[ext_resource type="AudioStream" uid="uid://be0y6hdrqbxtt" path="res://Ressources/sounds/animals/cat3.wav" id="26_gg83u"]
+[ext_resource type="AudioStream" uid="uid://dsu8jrcbupw3g" path="res://Ressources/sounds/animals/cat4.wav" id="27_lr7bc"]
+[ext_resource type="AudioStream" uid="uid://yj12xtj4hpni" path="res://Ressources/sounds/animals/cat5.wav" id="28_3yufr"]
+[ext_resource type="AudioStream" uid="uid://c7q7e0ilipiuh" path="res://Ressources/sounds/animals/cat6.wav" id="29_c657t"]
+[ext_resource type="AudioStream" uid="uid://cx0xjvc2p4kx4" path="res://Ressources/sounds/animals/rabbit1.wav" id="30_nxg6g"]
+[ext_resource type="AudioStream" uid="uid://cs8s3fpq5mg7y" path="res://Ressources/sounds/animals/rabbit2.wav" id="31_r0yum"]
+[ext_resource type="AudioStream" uid="uid://boh6jxyg7dryi" path="res://Ressources/sounds/animals/rabbit3.wav" id="32_fw6vd"]
+[ext_resource type="AudioStream" uid="uid://dlky18okh8jvx" path="res://Ressources/sounds/animals/rabbit4.wav" id="33_sxbnq"]
+[ext_resource type="AudioStream" uid="uid://dkj2osip06mgq" path="res://Ressources/sounds/animals/rabbit5.wav" id="34_okkl4"]
+[ext_resource type="AudioStream" uid="uid://nk2hp7p6pisl" path="res://Ressources/sounds/animals/rabbit6.wav" id="35_1rb2i"]
+[ext_resource type="AudioStream" uid="uid://bvqa2qgb2fj53" path="res://Ressources/sounds/animals/cow1.wav" id="36_o7wse"]
+[ext_resource type="AudioStream" uid="uid://xl5gduub620m" path="res://Ressources/sounds/animals/cow2.wav" id="37_eeqba"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_itvn1"]
 radius = 48.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wxl82"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qjnns"]
 shader = ExtResource("5_eym8e")
 shader_parameter/walkingAlpha = null
 shader_parameter/xOrientation = null
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k5p6w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_dux1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_0skbu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_b5ho4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_gtaff")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_tqotu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ksqs8"]
+random_pitch = 1.25
+streams_count = 7
+stream_0/stream = ExtResource("13_0w30g")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("14_7bhfw")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("15_fixr3")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("16_3ekp0")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("17_4mub8")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("18_l1msc")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("19_0j0av")
+stream_6/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6g643"]
+random_pitch = 1.25
+streams_count = 4
+stream_0/stream = ExtResource("20_4x2ge")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("21_myd7u")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("22_ww1jt")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("23_5c6a1")
+stream_3/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ykg2c"]
+random_pitch = 1.25
+streams_count = 6
+stream_0/stream = ExtResource("24_dad4k")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("25_d5cv8")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("26_gg83u")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("27_lr7bc")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("28_3yufr")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("29_c657t")
+stream_5/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fld68"]
+random_pitch = 1.25
+streams_count = 6
+stream_0/stream = ExtResource("30_nxg6g")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("31_r0yum")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("32_fw6vd")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("33_sxbnq")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("34_okkl4")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("35_1rb2i")
+stream_5/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_11skm"]
+random_pitch = 1.25
+streams_count = 2
+stream_0/stream = ExtResource("36_o7wse")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("37_eeqba")
+stream_1/weight = 1.0
 
 [node name="Mob" type="Node2D"]
 y_sort_enabled = true
@@ -38,10 +161,30 @@ healthComponent = NodePath("../HealthComponent")
 position = Vector2(-2, 7)
 shape = SubResource("CircleShape2D_itvn1")
 
-[node name="ShaderAnimation" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("7_oi6k7")]
+[node name="ShaderAnimation" parent="." instance=ExtResource("7_oi6k7")]
 randomStartOffset = true
-sprite = NodePath("../Sprite2D")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-z_as_relative = false
-material = SubResource("ShaderMaterial_wxl82")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="ShaderAnimation"]
+material = SubResource("ShaderMaterial_qjnns")
+sprite_frames = SubResource("SpriteFrames_k5p6w")
+
+[node name="biche" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_ksqs8")
+
+[node name="grenouille" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_6g643")
+volume_db = -6.0
+pitch_scale = 1.5
+
+[node name="chat" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_ykg2c")
+volume_db = -6.0
+
+[node name="lapin" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_fld68")
+volume_db = -11.0
+
+[node name="vach" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_11skm")
+volume_db = -8.0
+pitch_scale = 1.25

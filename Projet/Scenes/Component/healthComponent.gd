@@ -13,7 +13,7 @@ func damage(attack: AttackComponent):
 	print("took %f damages" % attack.attack_damage)
 	
 	if currentHealth <= 0:
-		get_parent().queue_free()
+		get_parent().die()
 
 func canAcceptCollision():
 	return currentHealth > 0

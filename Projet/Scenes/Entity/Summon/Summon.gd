@@ -10,6 +10,7 @@ var idleNoise: FastNoiseLite = FastNoiseLite.new()
 var currentDirection: Vector2 = Vector2.ZERO
 
 @onready var animationState: AnimationState = $ShaderAnimation.get_node("AnimationState")
+@onready var sprite := $ShaderAnimation/Sprite2D
 
 func _init():
 	idleNoise.seed = randi()
@@ -21,89 +22,41 @@ func _init():
 	playerTeam = true
 	chaseTarget = true
 
-func loadRandomSummon():
-	loadSummonType(randi_range(0, 3), randi_range(0, 2))
+@onready var SUMMON_PROPERTIES := [
+	[Vector2(0.75, 0.75), Vector2(0, -290), $golem], #golem
+	[Vector2(0.5, 0.5), Vector2(0, -307), $goule], #goule
+	[Vector2(0.4, 0.4), Vector2(0, -312), $spectre], #squelette
+	[Vector2(0.5, 0.5), Vector2(0, -369), $squelette], #spectre
+]
+
+var soundFX : AudioStreamPlayer2D
+func loadSummonData(summonType: int, summonSubtype: int):
+	sprite.frame = summonType * 3 + summonSubtype
+	sprite.scale = SUMMON_PROPERTIES[summonType][0]
+	sprite.offset = SUMMON_PROPERTIES[summonType][1]
+	soundFX = SUMMON_PROPERTIES[summonType][2]
+
+
+const SPELLS := [
+	preload("res://Scenes/Attacks/Golem/Tumble.tscn"),
+	preload("res://Scenes/Attacks/Golem/Shockwave.tscn"),
+	preload("res://Scenes/Attacks/Golem/Crumbs.tscn"),
+	preload("res://Scenes/Attacks/Ghoul/Spit.tscn"),
+	preload("res://Scenes/Attacks/Ghoul/Leap.tscn"),
+	preload("res://Scenes/Attacks/Ghoul/GhoulMelee.tscn"),
+	preload("res://Scenes/Attacks/Skeleton/Bomb.tscn"),
+	preload("res://Scenes/Attacks/Skeleton/Multishot.tscn"),
+	preload("res://Scenes/Attacks/Skeleton/SkeletonMelee.tscn"),
+	preload("res://Scenes/Attacks/Haunted/Conjure.tscn"),
+	preload("res://Scenes/Attacks/Haunted/Thunder.tscn"),
+	preload("res://Scenes/Attacks/Haunted/Howl.tscn"),
+]
+
+var summonInfo : SummonInfo
+func initializeFromInfo(_summonInfo: SummonInfo):
+	summonInfo = _summonInfo
 	
-func loadSpellType(spellType:int):
-	match spellType:
-		0:
-			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Golem/Tumble.tscn")
-		1:
-			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Golem/Shockwave.tscn")
-		2:
-			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Golem/Crumbs.tscn")
-		3:
-			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Ghoul/Spit.tscn")
-		4:
-			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Ghoul/Leap.tscn")
-		5:
-			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Ghoul/GhoulMelee.tscn")
-		6:
-			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Skeleton/Bomb.tscn")
-		7:
-			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Skeleton/Multishot.tscn")
-		8:
-			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Skeleton/SkeletonMelee.tscn")
-		9:
-			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Haunted/Conjure.tscn")
-		10:
-			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Haunted/Thunder.tscn")
-		11:
-			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Haunted/Howl.tscn")
-
-func loadSummonType(summonType: int, summonSubtype: int):
-	
-	
-	match summonType:
-		0:
-			if summonSubtype == 1:
-				$Sprite2D.texture = preload("res://Ressources/sprites/Summon/Golem_1.png")
-			elif summonSubtype == 2:
-				$Sprite2D.texture = preload("res://Ressources/sprites/Summon/Golem_2.png")
-			else:
-				$Sprite2D.texture = preload("res://Ressources/sprites/Summon/Golem.png")
-				
-			$Sprite2D.scale = Vector2(0.75, 0.75)
-			$Sprite2D.offset.y = -290
-
-		1:
-			if summonSubtype == 1:
-				$Sprite2D.texture = preload("res://Ressources/sprites/Summon/Goule_1.png")
-			elif summonSubtype == 2:
-				$Sprite2D.texture = preload("res://Ressources/sprites/Summon/Goule_2.png")
-			else:
-				$Sprite2D.texture = preload("res://Ressources/sprites/Summon/Goule.png")
-				
-			$Sprite2D.scale = Vector2(0.5, 0.5)
-			$Sprite2D.offset.y = -307
-
-		2:
-			if summonSubtype == 1:
-				$Sprite2D.texture = preload("res://Ressources/sprites/Summon/Squelette_1.png")
-			elif summonSubtype == 2:
-				$Sprite2D.texture = preload("res://Ressources/sprites/Summon/Squelette_2.png")
-			else:
-				$Sprite2D.texture = preload("res://Ressources/sprites/Summon/Squelette.png")
-			
-			$Sprite2D.scale = Vector2(0.4, 0.4)
-			$Sprite2D.offset.y = -312
-
-		3:
-			if summonSubtype == 1:
-				$Sprite2D.texture = preload("res://Ressources/sprites/Summon/Spectre_1.png")
-			elif summonSubtype == 2:
-				$Sprite2D.texture = preload("res://Ressources/sprites/Summon/Spectre_2.png")
-			else:
-				$Sprite2D.texture = preload("res://Ressources/sprites/Summon/Spectre.png")
-				
-			$Sprite2D.scale = Vector2(0.5, 0.5)
-			$Sprite2D.offset.y = -369
-
-
-func initializeFromInfo(summonInfo: SummonInfo):
-	
-	loadSummonType(summonInfo.type, summonInfo.subtype)
-	loadSpellType(summonInfo.spellType)
+	$CasterComponent.spellScene = SPELLS[summonInfo.spellType]
 	
 	$HealthComponent.MaxHealth = summonInfo.health
 	
@@ -115,8 +68,35 @@ func initializeFromInfo(summonInfo: SummonInfo):
 	self.confortDistance = summonInfo.confortDistance
 	
 func _ready():
+	loadSummonData(summonInfo.type, summonInfo.subtype)
 	$ShaderAnimation.setUnique()
 	$NearestEnnemyFinder.setRadius(1200)
+
+func die():
+	$HealthComponent.queue_free()
+	$NearestEnnemyFinder.queue_free()
+	$DamageReceiver.queue_free()
+	$HitBoxComponent.queue_free()
+	$AttackComponent.queue_free()
+	$CasterComponent.queue_free()
+	set_physics_process(false)
+	
+	soundFX.play()
+	
+	var t := create_tween()
+	t.set_trans(Tween.TRANS_BOUNCE)
+	t.tween_property(sprite, "position:x", -30, 0.05)
+	t.tween_property(sprite, "position:x", 25, 0.075)
+	t.tween_property(sprite, "position:x", -20, 0.075)
+	t.tween_property(sprite, "position:x", 15, 0.075)
+	t.tween_property(sprite, "position:x", 0, 0.15)
+	
+	var t2 := create_tween()
+	t2.set_trans(Tween.TRANS_CUBIC)
+	t2.set_ease(Tween.EASE_OUT)
+	t2.tween_property(sprite, "scale:x", 0.0, 1.5)
+	t2.parallel().tween_property(sprite, "scale:y", 0.0, 0.7)
+	t2.tween_callback(queue_free)
 
 func updateMovement(direction, updateSpeed, delta):
 	
