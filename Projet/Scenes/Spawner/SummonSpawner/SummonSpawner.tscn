@@ -1,10 +1,46 @@
-[gd_scene load_steps=3 format=3 uid="uid://c26ht80nke8hf"]
+[gd_scene load_steps=13 format=3 uid="uid://c26ht80nke8hf"]
 
 [ext_resource type="Script" path="res://Scenes/Spawner/SummonSpawner/SummonSpawner.gd" id="1_mvtx0"]
 [ext_resource type="PackedScene" uid="uid://c2mtxhyk88bpb" path="res://Scenes/Entity/Summon/Summon.tscn" id="2_cdceo"]
+[ext_resource type="AudioStream" uid="uid://b6ncpep31ry3t" path="res://Ressources/sounds/player/summon1.wav" id="3_b6vsv"]
+[ext_resource type="AudioStream" uid="uid://ba5trna15nfix" path="res://Ressources/sounds/player/summon2.wav" id="4_0x16s"]
+[ext_resource type="AudioStream" uid="uid://6uluw8o5ty18" path="res://Ressources/sounds/player/summon3.wav" id="5_u3ura"]
+[ext_resource type="AudioStream" uid="uid://c7prqcgd2fs2b" path="res://Ressources/sounds/player/summon4.wav" id="6_xohfa"]
+[ext_resource type="AudioStream" uid="uid://bescl0kxf0wa2" path="res://Ressources/sounds/player/summon5.wav" id="7_hb476"]
+[ext_resource type="AudioStream" uid="uid://b02lhi3sc0pxn" path="res://Ressources/sounds/player/summon6.wav" id="8_cuyte"]
+[ext_resource type="AudioStream" uid="uid://b3x7moffkec3y" path="res://Ressources/sounds/player/summon7.wav" id="9_ap30h"]
+[ext_resource type="AudioStream" uid="uid://bvnwsljhaqaoj" path="res://Ressources/sounds/player/summon8.wav" id="10_7rm1n"]
+[ext_resource type="AudioStream" uid="uid://dys0x4hnwhrtd" path="res://Ressources/sounds/player/summon9.wav" id="11_pe50d"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ol4iq"]
+random_pitch = 1.25
+streams_count = 9
+stream_0/stream = ExtResource("3_b6vsv")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("4_0x16s")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("5_u3ura")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("6_xohfa")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("7_hb476")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("8_cuyte")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("9_ap30h")
+stream_6/weight = 1.0
+stream_7/stream = ExtResource("10_7rm1n")
+stream_7/weight = 1.0
+stream_8/stream = ExtResource("11_pe50d")
+stream_8/weight = 1.0
 
 [node name="SummonSpawner" type="Node2D"]
 z_index = 1
 y_sort_enabled = true
 script = ExtResource("1_mvtx0")
 summonScene = ExtResource("2_cdceo")
+
+[node name="SummonSound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_ol4iq")
+volume_db = -1.0
+pitch_scale = 0.9

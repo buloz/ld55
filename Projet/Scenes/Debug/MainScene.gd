@@ -5,6 +5,7 @@ signal lose(score:Array)
 func _ready():
 	Music.play("Theme")
 	$wind.play()
+	$dong.play()
 	
 	get_node("/root/Global").playerDead = false
 	lose.connect(game_over)
