@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b433p5ck6nm4g"]
+[gd_scene load_steps=35 format=3 uid="uid://b433p5ck6nm4g"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_sxh4x"]
 [ext_resource type="PackedScene" uid="uid://d3giiljxtfpns" path="res://Scenes/Player/Inventory.tscn" id="2_lnnje"]
@@ -7,12 +7,28 @@
 [ext_resource type="Shader" path="res://Scenes/Player/Player.gdshader" id="7_h3iq2"]
 [ext_resource type="PackedScene" uid="uid://b3w25xcfvrnug" path="res://Scenes/Animation/ShaderAnimation.tscn" id="9_hk5ia"]
 [ext_resource type="PackedScene" uid="uid://dm7wjxq1yhhha" path="res://Scenes/Component/healthComponent.tscn" id="11_1nqvj"]
+[ext_resource type="AudioStream" uid="uid://cn6dduhhes175" path="res://Ressources/sounds/player/playerdmg1.wav" id="11_n5rrm"]
 [ext_resource type="PackedScene" uid="uid://deuhf0wkjf2jw" path="res://Scenes/Component/hitboxComponent.tscn" id="12_1u2hb"]
 [ext_resource type="PackedScene" uid="uid://c7dio73m64jpd" path="res://Scenes/Component/PlayerDamageReceiver.tscn" id="13_8cqv2"]
+[ext_resource type="AudioStream" uid="uid://nyudtx2im8ns" path="res://Ressources/sounds/player/playerdmg2.wav" id="12_mt2fq"]
+[ext_resource type="AudioStream" uid="uid://7uxu5m44yqji" path="res://Ressources/sounds/player/playerdmg3.wav" id="13_532by"]
 [ext_resource type="AudioStream" uid="uid://cv4nje4uiq6kc" path="res://Ressources/sounds/player/pick1.wav" id="13_mt0ic"]
+[ext_resource type="AudioStream" uid="uid://bf1wsxvm4dvpb" path="res://Ressources/sounds/player/playerdmg4.wav" id="14_03t5g"]
 [ext_resource type="AudioStream" uid="uid://ti1n2ujoj2rk" path="res://Ressources/sounds/player/pick2.wav" id="14_xf0u7"]
 [ext_resource type="AudioStream" uid="uid://1fejarx7oi0k" path="res://Ressources/sounds/player/pick3.wav" id="15_0gw1i"]
+[ext_resource type="AudioStream" uid="uid://b7lxppq5pptdf" path="res://Ressources/sounds/player/playerdmg5.wav" id="15_1ecar"]
+[ext_resource type="AudioStream" uid="uid://2t6vepw8csm0" path="res://Ressources/sounds/player/playerdmg6.wav" id="16_b0k32"]
 [ext_resource type="AudioStream" uid="uid://dclr31eav3l5r" path="res://Ressources/sounds/player/pick4.wav" id="16_ir863"]
+[ext_resource type="AudioStream" uid="uid://b1wjsm68fveo2" path="res://Ressources/sounds/player/playerdmg7.wav" id="17_f0qk6"]
+[ext_resource type="AudioStream" uid="uid://c7pdmgmpet763" path="res://Ressources/sounds/player/playerdmg8.wav" id="18_y0uey"]
+[ext_resource type="AudioStream" uid="uid://b5g2c1mm0hrpr" path="res://Ressources/sounds/player/playerdmg9.wav" id="19_klufb"]
+[ext_resource type="AudioStream" uid="uid://cex1bkpfb52jc" path="res://Ressources/sounds/player/playerdmg10.wav" id="20_4m6mk"]
+[ext_resource type="AudioStream" uid="uid://dhe82p2xxn24" path="res://Ressources/sounds/player/playerdeath1.wav" id="21_rbftq"]
+[ext_resource type="AudioStream" uid="uid://yxo2hek6sihi" path="res://Ressources/sounds/player/playerdeath2.wav" id="22_li8rl"]
+[ext_resource type="AudioStream" uid="uid://d1w3smp45u3uq" path="res://Ressources/sounds/player/playerdeath3.wav" id="23_b2ww0"]
+[ext_resource type="AudioStream" uid="uid://b0gfgij504dns" path="res://Ressources/sounds/player/playerdeath4.wav" id="24_fc31p"]
+[ext_resource type="AudioStream" uid="uid://b0sgl0850vai7" path="res://Ressources/sounds/player/playerdeath5.wav" id="25_33hv5"]
+[ext_resource type="AudioStream" uid="uid://b050m3ye4suv7" path="res://Ressources/sounds/player/playerdeath6.wav" id="26_a03g2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ifevx"]
 shader = ExtResource("7_h3iq2")
@@ -32,6 +48,46 @@ stream_2/stream = ExtResource("15_0gw1i")
 stream_2/weight = 1.0
 stream_3/stream = ExtResource("16_ir863")
 stream_3/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ss0ri"]
+random_pitch = 1.25
+streams_count = 10
+stream_0/stream = ExtResource("11_n5rrm")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("12_mt2fq")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("13_532by")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("14_03t5g")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("15_1ecar")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("16_b0k32")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("17_f0qk6")
+stream_6/weight = 1.0
+stream_7/stream = ExtResource("18_y0uey")
+stream_7/weight = 1.0
+stream_8/stream = ExtResource("19_klufb")
+stream_8/weight = 1.0
+stream_9/stream = ExtResource("20_4m6mk")
+stream_9/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_audh0"]
+random_pitch = 1.25
+streams_count = 6
+stream_0/stream = ExtResource("21_rbftq")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("22_li8rl")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("23_b2ww0")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("24_fc31p")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("25_33hv5")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("26_a03g2")
+stream_5/weight = 1.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t5ogo"]
 radius = 41.0
@@ -60,6 +116,14 @@ offset = Vector2(0, -466)
 stream = SubResource("AudioStreamRandomizer_tu73w")
 volume_db = -13.0
 max_polyphony = 5
+
+[node name="damage" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_ss0ri")
+volume_db = -12.0
+
+[node name="die" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_audh0")
+volume_db = -9.0
 
 [node name="HealthComponent" parent="." instance=ExtResource("11_1nqvj")]
 MaxHealth = 100.0

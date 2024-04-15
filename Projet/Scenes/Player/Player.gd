@@ -7,6 +7,7 @@ class_name PlayerClass extends CharacterBody2D
 @onready var animationState: AnimationState = $ShaderAnimation.get_node("AnimationState")
 
 var actualTutoStep:int = 0
+var score := 0
 
 signal tutoStep(text:String)
 
@@ -20,6 +21,7 @@ func gatherMaterial(materialType: int, quantity: int):
 	$gather.play()
 
 func _ready():
+	$DamageReceiver.healthUpdated.connect(damage)
 	$SummonSpawner.spawnTargetNode = get_parent()
 	$Inventory.storedMaterials[0] = 999
 	$Inventory.storedMaterials[1] = 999
@@ -28,18 +30,26 @@ func _ready():
 	$Inventory.storedMaterials[4] = 999
 	get_node("/root/Global").Player = self
 
+func damage(v: int):
+	if v == 0:
+		$die.play()
+	else:
+		$damage.play()
+
 func die():
 	$SummonSpawner.queue_free()
 	$HealthComponent.queue_free()
 	$HitBoxComponent.queue_free()
 	$CollisionShape2D2.queue_free()
 	$DamageReceiver.queue_free()
-	Music.play("Death")
-	get_parent().get_parent().get_node("MainScene").lose.emit(0)
+	
+	set_physics_process(false)
+	set_process_input(false)
+	
+	get_node("../../MainScene").lose.emit(score)
 
 #TODO: faire un déplacement plus smooooooooth
 func _physics_process(delta):
-	
 	var direction = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down")).normalized()
 	
 	if direction == Vector2.ZERO:

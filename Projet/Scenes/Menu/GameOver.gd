@@ -6,6 +6,8 @@ extends CanvasLayer
 func _ready():
 	$UI/QuitButton.pressed.connect(quit)
 	$UI/RetryButton.pressed.connect(retry)
+	
+	Music.play("Death")
 
 func _out_anim(callback: Callable):
 	var t := create_tween()
