@@ -19,6 +19,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 func gatherMaterial(materialType: int, quantity: int):
 	print("J'ai rammassé %d" % materialType)
 	$Inventory.addMaterial(materialType, quantity)
+	$gather.play()
 
 func _ready():
 	$SummonSpawner.spawnTargetNode = get_parent()
