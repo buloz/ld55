@@ -1,16 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://blllcwc26unxx"]
+[gd_scene load_steps=4 format=3 uid="uid://blllcwc26unxx"]
 
 [ext_resource type="Shader" path="res://Scenes/ScreenFilter/ScreenFilter.gdshader" id="1_kknqd"]
+[ext_resource type="Script" path="res://Scenes/ScreenFilter/ScreenFilter.gd" id="2_qvkbd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_egp2m"]
 shader = ExtResource("1_kknqd")
-shader_parameter/screenLoadScale = 0.369
+shader_parameter/screenLoadScale = 0.0
 
-[node name="ScreenFilter" type="ColorRect"]
-visible = false
+[node name="ScreenFilter" type="CanvasLayer"]
+
+[node name="ScreenFilterRect" type="ColorRect" parent="."]
 z_index = 10
 material = SubResource("ShaderMaterial_egp2m")
 offset_left = -1440.0
 offset_top = -810.0
-offset_right = 1440.0
+offset_right = 1448.0
 offset_bottom = 810.0
+script = ExtResource("2_qvkbd")

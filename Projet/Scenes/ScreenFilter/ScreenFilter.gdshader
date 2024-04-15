@@ -7,13 +7,14 @@ uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_n
 void fragment() {
 	ivec2 size = textureSize(screen_texture, 0);
 	vec2 center = (SCREEN_UV * 2.0 - 1.0);
+	float xRatio = float(size.x) / float(size.y);
 
-	center.x *= float(size.x) / float(size.y);
+	center.x *= xRatio;
 
 
 	
 	COLOR.rbg = vec3(0.0);
-	if ( length(center) > sin(screenLoadScale * PI / 2.0) * 1.5 ) {
+	if ( screenLoadScale != 1.0 && length(center) > sin(screenLoadScale * PI / 2.0) * (xRatio * 1.4) ) {
 		COLOR.a =  1.0;
 	}
 	else {
