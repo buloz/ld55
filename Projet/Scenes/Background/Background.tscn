@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://lklc8nrekfu5"]
+
+[ext_resource type="Texture2D" uid="uid://dkn7p0w1mugk" path="res://Ressources/background/Tiling.png" id="1_t8ltm"]
+
+[node name="Background" type="ParallaxBackground"]
+scale = Vector2(0.15, 0.15)
+transform = Transform2D(0.15, 0, 0, 0.15, 0, 0)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(6.5, 6.5)
+motion_mirroring = Vector2(38880, 38880)
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxLayer"]
+texture_repeat = 2
+scale = Vector2(3, 3)
+texture = ExtResource("1_t8ltm")
+region_enabled = true
+region_rect = Rect2(0, 0, 14000, 14000)

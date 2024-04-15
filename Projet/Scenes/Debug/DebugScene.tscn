@@ -2,27 +2,14 @@
 
 [ext_resource type="Script" path="res://Scenes/Debug/DebugScene.gd" id="1_2lmlw"]
 [ext_resource type="PackedScene" uid="uid://bu2rqxb6vsfem" path="res://Scenes/Menu/main_scene.tscn" id="2_lp5v5"]
+[ext_resource type="PackedScene" uid="uid://lklc8nrekfu5" path="res://Scenes/Background/Background.tscn" id="3_nqme5"]
 [ext_resource type="PackedScene" uid="uid://nxr7b0d625fr" path="res://Scenes/UserInterface/UI.tscn" id="6_yl73a"]
-[ext_resource type="Texture2D" uid="uid://dkn7p0w1mugk" path="res://Ressources/background/Tiling.png" id="10_ttqea"]
 
 [node name="DebugScene" type="Node"]
 script = ExtResource("1_2lmlw")
 
 [node name="MainScene" parent="." instance=ExtResource("2_lp5v5")]
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-scale = Vector2(0.15, 0.15)
-transform = Transform2D(0.15, 0, 0, 0.15, 0, 0)
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(6.5, 6.5)
-motion_mirroring = Vector2(38880, 38880)
-
-[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-texture_repeat = 2
-scale = Vector2(3, 3)
-texture = ExtResource("10_ttqea")
-region_enabled = true
-region_rect = Rect2(0, 0, 14000, 14000)
+[node name="Background" parent="." instance=ExtResource("3_nqme5")]
 
 [node name="UI" parent="." instance=ExtResource("6_yl73a")]
