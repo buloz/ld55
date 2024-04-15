@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://wdc3ni6egi2a"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4u3wx"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label"]
+custom_minimum_size = Vector2(422, 0)
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 40.0
+offset_top = -148.5
+offset_right = 440.0
+offset_bottom = 148.5
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_4u3wx")
+vertical_alignment = 1
+autowrap_mode = 2

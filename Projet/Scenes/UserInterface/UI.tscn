@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://djefnqxd4ovdf" path="res://Ressources/UI/herb.png" id="6_axdck"]
 [ext_resource type="Texture2D" uid="uid://cklhskx8mt2no" path="res://Ressources/UI/wood.png" id="7_p8u5l"]
 [ext_resource type="Texture2D" uid="uid://eei8a85cj7d2" path="res://Ressources/UI/shroom.png" id="8_d2cv1"]
+[ext_resource type="PackedScene" uid="uid://wdc3ni6egi2a" path="res://Scenes/UserInterface/tutoLabel.tscn" id="10_xfhny"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_eae5c"]
 device = -1
@@ -100,19 +101,7 @@ texture_disabled = ExtResource("4_wug80")
 texture_focused = ExtResource("4_wug80")
 stretch_mode = 3
 
-[node name="Label" type="Label" parent="."]
-custom_minimum_size = Vector2(422, 0)
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 40.0
-offset_top = -148.5
-offset_right = 440.0
-offset_bottom = 148.5
-grow_vertical = 2
-label_settings = SubResource("LabelSettings_4u3wx")
-vertical_alignment = 1
-autowrap_mode = 2
+[node name="Label" parent="." instance=ExtResource("10_xfhny")]
 
 [node name="Tutorial" parent="." instance=ExtResource("5_kivo1")]
 visible = false

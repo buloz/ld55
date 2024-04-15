@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+@onready var tutoLabel = preload("res://Scenes/UserInterface/tutoLabel.tscn")
+
 func _ready():
 	$Tutorial.exit_tutorial.connect(reactivate_button)
 	set_process_input(true)
@@ -15,6 +17,9 @@ func setNewScene(scene:Node2D):
 	inventory.inventoryUpdate.connect(updateSlotTooltip)
 	for index in inventory.storedMaterials.size():
 		updateSlotTooltip(index, inventory.storedMaterials[index])
+	if($Label):
+		add_child(tutoLabel.instantiate())
+		player.tutoStep.connect(updateText)
 	$Label.text = "Gather materials by walking over it."
 
 func _on_texture_button_pressed():
