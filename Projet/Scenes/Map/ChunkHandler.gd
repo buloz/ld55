@@ -33,8 +33,6 @@ func explore():
 	
 	#if targetCell in exploredCell:
 		#return
-		
-	print(targetCell, ", position: targetNode.position")
 	
 	#Insert new target node cell in explored cell
 	#exploredCell[targetCell] = null

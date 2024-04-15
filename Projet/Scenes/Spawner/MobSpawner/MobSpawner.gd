@@ -1,7 +1,7 @@
 class_name MobSpawner extends Node2D
 
 #max ennemies instanciated at full difficulty
-const MAX_ENNEMIES = 300
+const MAX_ENNEMIES = 400
 
 @export var mobScene: PackedScene
 
@@ -60,8 +60,8 @@ func spawnMob(count: int):
 		newMob.position = spawnPosition
 		newMob.speed = difficutyScaledSpeed
 		newMob.speedAcceleration = 50 + 150 * _difficulty
+		newMob.get_node("HealthComponent").MaxHealth += 100 * _difficulty
 		
-		print(difficutyScaledSpeed)
 		
 		add_child(newMob)
 

@@ -1,7 +1,7 @@
 class_name Summon extends "res://Scenes/Entity/Entity.gd"
 
 var isMovingTowardPlayer: bool = false
-var confortableRangeToPlayer: Vector2 = Vector2(800, 500)
+var confortableRangeToPlayer: Vector2 = Vector2(1000, 400)
 
 
 var idleNoise: FastNoiseLite = FastNoiseLite.new()
@@ -116,7 +116,7 @@ func _physics_process(delta):
 	#if Engine.get_physics_frames() % 2 != 0:
 		#return
 		
-	var minimalDistanceToPlayer: float = confortableRangeToPlayer.y if isMovingTowardPlayer else confortableRangeToPlayer.x
+	var minimalDistanceToPlayer: float = confortableRangeToPlayer.y if isMovingTowardPlayer or hasTarget else confortableRangeToPlayer.x
 	var distanceToPlayer: float = position.distance_to(get_node("/root/Global").playerPosition)
 	var directionToPlayer: Vector2 = position.direction_to(get_node("/root/Global").playerPosition)
 	
@@ -125,7 +125,6 @@ func _physics_process(delta):
 		isMovingTowardPlayer = true
 		animationState.walking = true
 		return
-		
 
 	isMovingTowardPlayer = false
 
