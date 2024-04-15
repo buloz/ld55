@@ -45,6 +45,7 @@ radius = 48.0
 shader = ExtResource("5_eym8e")
 shader_parameter/walkingAlpha = null
 shader_parameter/xOrientation = null
+shader_parameter/damageState = null
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_k5p6w"]
 animations = [{
@@ -188,3 +189,8 @@ volume_db = -11.0
 stream = SubResource("AudioStreamRandomizer_11skm")
 volume_db = -8.0
 pitch_scale = 1.25
+
+[node name="SpeedScaler" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+autostart = true

@@ -14,6 +14,9 @@ func damage(attack: AttackComponent):
 	
 	if currentHealth <= 0:
 		get_parent().die()
+	else:
+		#TODO else ou pas else
+		get_parent().animationState.damageTaken = 1.0
 
 func canAcceptCollision():
 	return currentHealth > 0

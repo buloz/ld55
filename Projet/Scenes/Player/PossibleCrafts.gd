@@ -4,21 +4,21 @@ var possibleCrafts: Array = [
 	#Materials -> 0: rock, 1: bone, 2: herb, 3: wood, 4: shroom
 	#Summon types -> 0golem, 1ghoul, 2skelleton, 3haunt
 	#SummonInfoClass -> type, subtype, spellType, health, damage, cooldown, range, confortDistance
-	[[0, 2], SummonInfo.new(0, 0, 0, 200, 50, 3, 800, 400)], #Golem Thumble
-	[[0, 2, 3], SummonInfo.new(0, 1, 1, 150, 40, 1.5, 300, 250)], #Golem shockwave
-	[[0, 2, 4], SummonInfo.new(0, 2, 2, 80, 20, 1, 800, 500)], #GolemCrumbs
+	[[0, 2], SummonInfo.new(0, 0, 0, 200, 50, 3, 800, 400, 400)], #Golem Thumble
+	[[0, 2, 3], SummonInfo.new(0, 1, 1, 150, 40, 1.5, 300, 250, 400)], #Golem shockwave
+	[[0, 2, 4], SummonInfo.new(0, 2, 2, 80, 20, 1, 800, 500, 400)], #GolemCrumbs
 	
-	[[2, 4], SummonInfo.new(1, 0, 3, 50, 25, 1.5, 800, 600)], #GhoulSpit
-	[[2, 4, 1], SummonInfo.new(1, 1, 4, 150, 40, 1.5, 800, 400)], #GhoulLeap
-	[[2, 4, 3], SummonInfo.new(1, 2, 5, 170, 35, 0.75, 300, 250)], #GhouleMelee
+	[[2, 4], SummonInfo.new(1, 0, 3, 50, 25, 1.5, 800, 600, 550)], #GhoulSpit
+	[[2, 4, 1], SummonInfo.new(1, 1, 4, 150, 40, 1.5, 800, 400, 550)], #GhoulLeap
+	[[2, 4, 3], SummonInfo.new(1, 2, 5, 170, 35, 0.75, 300, 250, 550)], #GhouleMelee
 	
-	[[1, 2], SummonInfo.new(2, 0, 7, 80, 20, 1, 700, 400)], #SkeletonMultishot
-	[[1, 2, 3], SummonInfo.new(2, 1, 6, 40, 10, 0.15, 1000, 900)], #SkeletonBomb
-	[[1, 2, 0], SummonInfo.new(2, 2, 8, 100, 25, 0.25, 300, 250)], #SkeletonMelee
+	[[1, 2], SummonInfo.new(2, 0, 7, 80, 20, 1, 700, 400, 700)], #SkeletonMultishot
+	[[1, 2, 3], SummonInfo.new(2, 1, 6, 40, 10, 0.15, 1000, 900, 700)], #SkeletonBomb
+	[[1, 2, 0], SummonInfo.new(2, 2, 8, 100, 25, 0.25, 300, 250, 700)], #SkeletonMelee
 	
-	[[4, 1], SummonInfo.new(3, 0, 9, 120, 10, 5, 800, 300)], #HauntedConjure
-	[[4, 1, 3], SummonInfo.new(3, 1, 10, 20, 40, 1.0, 1200, 1150)], #HauntedThunder
-	[[4, 1, 0], SummonInfo.new(3, 2, 11, 80, 75, 2.0, 400, 380)] #HauntedHowl
+	[[4, 1], SummonInfo.new(3, 0, 9, 120, 10, 5, 800, 300, 650)], #HauntedConjure
+	[[4, 1, 3], SummonInfo.new(3, 1, 10, 20, 40, 1.0, 1200, 1150, 650)], #HauntedThunder
+	[[4, 1, 0], SummonInfo.new(3, 2, 11, 80, 75, 2.0, 400, 380, 650)] #HauntedHowl
 ]
 
 

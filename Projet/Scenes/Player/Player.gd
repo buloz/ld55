@@ -21,11 +21,11 @@ func gatherMaterial(materialType: int, quantity: int):
 
 func _ready():
 	$SummonSpawner.spawnTargetNode = get_parent()
-	#$Inventory.storedMaterials[0] = 999
-	#$Inventory.storedMaterials[1] = 999
-	#$Inventory.storedMaterials[2] = 999
-	#$Inventory.storedMaterials[3] = 999
-	#$Inventory.storedMaterials[4] = 999
+	$Inventory.storedMaterials[0] = 999
+	$Inventory.storedMaterials[1] = 999
+	$Inventory.storedMaterials[2] = 999
+	$Inventory.storedMaterials[3] = 999
+	$Inventory.storedMaterials[4] = 999
 	get_node("/root/Global").Player = self
 
 func die():

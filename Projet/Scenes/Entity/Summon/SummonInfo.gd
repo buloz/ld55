@@ -18,8 +18,9 @@ var attackRange: float
 #Radius (distance)
 var confortDistance: float
 
+var speed: float
 
-func _init(type: int, subtype: int, spellType: int, health: float, damage: float, cooldown: float, attackRange: float, confortDistance: float):
+func _init(type: int, subtype: int, spellType: int, health: float, damage: float, cooldown: float, attackRange: float, confortDistance: float, speed: float):
 	self.type = type
 	self.subtype = subtype
 	self.spellType = spellType
@@ -28,3 +29,4 @@ func _init(type: int, subtype: int, spellType: int, health: float, damage: float
 	self.cooldown = cooldown
 	self.attackRange = attackRange
 	self.confortDistance = confortDistance
+	self.speed = speed

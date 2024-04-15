@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://ckcs3tp3esw28"]
+
+[ext_resource type="Script" path="res://Scenes/Map/Environement/Tree.gd" id="1_eiamn"]
+[ext_resource type="PackedScene" uid="uid://bbs6el4k23yex" path="res://Scenes/Animation/Environement/EnvironementShaderAnimation.tscn" id="2_iwugu"]
+[ext_resource type="Shader" path="res://Scenes/Map/Environement/Tree.gdshader" id="3_qfdkv"]
+[ext_resource type="Texture2D" uid="uid://b3ixs3iymnh76" path="res://Ressources/environement/Arbrev1.png" id="4_laekt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_csgqm"]
+resource_local_to_scene = true
+shader = ExtResource("3_qfdkv")
+shader_parameter/randValue = null
+shader_parameter/touched = null
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0fsnv"]
+radius = 91.0494
+
+[node name="Tree" type="Node2D"]
+script = ExtResource("1_eiamn")
+
+[node name="EnvironementShaderAnimation" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("2_iwugu")]
+sprite = NodePath("../Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_csgqm")
+position = Vector2(4, -393)
+texture = ExtResource("4_laekt")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -60)
+shape = SubResource("CircleShape2D_0fsnv")
+
+[connection signal="area_entered" from="Area2D" to="EnvironementShaderAnimation" method="environementTouchedByArea"]
+[connection signal="body_entered" from="Area2D" to="EnvironementShaderAnimation" method="environementTouchedByBody"]

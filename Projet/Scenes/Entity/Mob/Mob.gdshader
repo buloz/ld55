@@ -2,12 +2,18 @@ shader_type canvas_item;
 
 uniform float walkingAlpha : hint_range(-1.0, 1.0);
 uniform float xOrientation : hint_range(-1.0, 1.0);
+uniform float damageState : hint_range(0.0, 1.0);
 
 void vertex() {
 	VERTEX.x += xOrientation * 50.0;
 	
 	//VERTEX.y -= xOrientation * (UV.x * 2.0 - 1.0) * 400.0 * abs(UV.y * 2.0 - 1.0);
 	VERTEX.y -= xOrientation * (UV.x * 2.0 - 1.0) * 100.0;
+	
+	
+	float touchSmoothRatio = pow(damageState, 2);
+	VERTEX.x += (sin(touchSmoothRatio * 20.0)) * 50.0 * (1.0 - UV.y);
+	
 	
 }
 
@@ -49,6 +55,13 @@ void timeIdle(inout vec2 uv) {
 	uv.y = getStretchY((uv.y), timeSinine * 1.0);
 }
 
+void gotHit(inout vec2 uv) {
+	float timeCosine = cos(TIME * 2.0) * 0.5 + 0.5;
+	float timeSinine = sin(TIME * 2.0) * 0.5 + 0.5;
+	uv.x = getStretchX(uv.x, 0.4 + timeCosine * 0.6);
+	uv.y = getStretchY((uv.y), timeSinine * 1.0);
+}
+
 void fragment() {
 	vec2 uv = UV;
 	timeIdle(uv);
@@ -56,4 +69,12 @@ void fragment() {
 	computeXOrientationUV(uv);
 	
 	COLOR = texture(TEXTURE, uv);
+	
+	//Ca
+	COLOR.r += damageState * 0.5;
+	
+	//Ou ca
+	//COLOR.rgb -= (vec3(1.0) - vec3(1.0, 0.0, 0.0)) * damageState;
+	
+
 }

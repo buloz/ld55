@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://y542tm5v30rt"]
+[gd_scene load_steps=8 format=3 uid="uid://y542tm5v30rt"]
 
 [ext_resource type="Script" path="res://Scenes/Map/EnvironementSpawner.gd" id="1_00vvb"]
 [ext_resource type="Script" path="res://Scenes/Map/Map.gd" id="1_f3xqx"]
 [ext_resource type="Script" path="res://Scenes/Map/ChunkHandler.gd" id="1_sicxo"]
 [ext_resource type="PackedScene" uid="uid://dwgs0j8x0cbyr" path="res://Scenes/Map/Environement/Bush.tscn" id="3_7l7e1"]
 [ext_resource type="PackedScene" uid="uid://c07qpjoa0naiq" path="res://Scenes/Material/Material.tscn" id="4_4qou7"]
+[ext_resource type="PackedScene" uid="uid://ckcs3tp3esw28" path="res://Scenes/Map/Environement/Tree.tscn" id="4_qv3eu"]
 [ext_resource type="PackedScene" uid="uid://c1qnpyvk0xked" path="res://Scenes/Map/Chunk.tscn" id="5_6jewa"]
 
 [node name="Map" type="Node2D"]
@@ -15,13 +16,13 @@ script = ExtResource("1_f3xqx")
 y_sort_enabled = true
 position = Vector2(75, 128)
 script = ExtResource("1_00vvb")
-environementItems = Array[PackedScene]([ExtResource("3_7l7e1")])
+environementItem = ExtResource("3_7l7e1")
+treeItems = ExtResource("4_qv3eu")
 materialScene = ExtResource("4_4qou7")
+treeProbabilty = 0.9
 
 [node name="ChunkHandler" type="Node2D" parent="." node_paths=PackedStringArray("environementSpawner")]
 y_sort_enabled = true
 script = ExtResource("1_sicxo")
 environementSpawner = NodePath("../EnvironementSpawner")
 chunkScene = ExtResource("5_6jewa")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]

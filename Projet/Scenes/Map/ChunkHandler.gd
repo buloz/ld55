@@ -10,7 +10,7 @@ var chunkSize: Vector2
 
 
 #Cell in which the camera entered
-var exploredCell: Dictionary = {}
+#var exploredCell: Dictionary = {}
 
 #Cell that got loaded
 var loadedCell: Dictionary = {}
@@ -18,7 +18,7 @@ var loadedCell: Dictionary = {}
 
 func dealocatedChunk(chunkPosition: Vector2i):
 	loadedCell.erase(chunkPosition)
-	exploredCell.erase(chunkPosition)
+	#exploredCell.erase(chunkPosition)
 
 func getChunksFromRectMask(targetCell: Vector2i):
 	var chunks: Array[Vector2i]
@@ -31,11 +31,13 @@ func getChunksFromRectMask(targetCell: Vector2i):
 func explore():
 	var targetCell: Vector2i = (targetNode.position / chunkSize).floor()
 	
-	if targetCell in exploredCell:
-		return
+	#if targetCell in exploredCell:
+		#return
+		
+	print(targetCell, ", position: targetNode.position")
 	
 	#Insert new target node cell in explored cell
-	exploredCell[targetCell] = null
+	#exploredCell[targetCell] = null
 	
 	var chunksToLoad: Array[Vector2i] = getChunksFromRectMask(targetCell)
 	

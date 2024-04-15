@@ -4,6 +4,8 @@ class_name Mob extends "res://Scenes/Entity/Entity.gd"
 @onready var sprite := $ShaderAnimation/Sprite2D
 
 
+@export var speedAcceleration: float = 500
+
 func _init():
 	playerTeam = false
 	chaseTarget = true
@@ -45,6 +47,9 @@ func die():
 	t.tween_callback(queue_free)
 
 func _physics_process(delta):
+	
+	var timeScale = (1.0 - $SpeedScaler.time_left/$SpeedScaler.wait_time)
+	
 	if hasTarget and chaseTarget:
 		distanceToTarget = position.distance_to(targetPosition)
 		if distanceToTarget > confortDistance:
@@ -52,4 +57,4 @@ func _physics_process(delta):
 			
 			animationState.orientation = direction.normalized().x
 			
-			position += direction * speed * delta
+			position += direction * (speed + timeScale * speedAcceleration) * delta

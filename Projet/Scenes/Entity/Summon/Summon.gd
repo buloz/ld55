@@ -1,7 +1,7 @@
 class_name Summon extends "res://Scenes/Entity/Entity.gd"
 
 var isMovingTowardPlayer: bool = false
-var confortableRangeToPlayer: Vector2 = Vector2(1000, 500)
+var confortableRangeToPlayer: Vector2 = Vector2(800, 500)
 
 
 var idleNoise: FastNoiseLite = FastNoiseLite.new()
@@ -67,6 +67,8 @@ func initializeFromInfo(_summonInfo: SummonInfo):
 	
 	self.confortDistance = summonInfo.confortDistance
 	
+	self.speed = _summonInfo.speed
+	
 func _ready():
 	loadSummonData(summonInfo.type, summonInfo.subtype)
 	$ShaderAnimation.setUnique()
@@ -111,9 +113,22 @@ func updateMovement(direction, updateSpeed, delta):
 
 func _physics_process(delta):
 	
-	if Engine.get_physics_frames() % 2 != 0:
-		return
+	#if Engine.get_physics_frames() % 2 != 0:
+		#return
+		
+	var minimalDistanceToPlayer: float = confortableRangeToPlayer.y if isMovingTowardPlayer else confortableRangeToPlayer.x
+	var distanceToPlayer: float = position.distance_to(get_node("/root/Global").playerPosition)
+	var directionToPlayer: Vector2 = position.direction_to(get_node("/root/Global").playerPosition)
 	
+	if distanceToPlayer > minimalDistanceToPlayer:
+		updateMovement(directionToPlayer, speed, delta)
+		isMovingTowardPlayer = true
+		animationState.walking = true
+		return
+		
+
+	isMovingTowardPlayer = false
+
 	var isChasing: bool = false
 	if hasTarget:
 		if chaseTarget and hasTarget:
@@ -125,24 +140,11 @@ func _physics_process(delta):
 	
 	if not isChasing:
 		
-		var distanceToPlayer: float = position.distance_to(get_node("/root/Global").playerPosition)
-		var directionToPlayer: Vector2 = position.direction_to(get_node("/root/Global").playerPosition)
+		#IDLE STATE HERE
+		var angleFactor: float = idleNoise.get_noise_2d(position.x + (Time.get_ticks_msec() / 1000.0), position.y - (Time.get_ticks_msec() / 1000.0)) * 1.5
 		
-		var minimalDistanceToPlayer: float = confortableRangeToPlayer.y if isMovingTowardPlayer else confortableRangeToPlayer.x
+		updateMovement((directionToPlayer * (distanceToPlayer / confortableRangeToPlayer.x) + Vector2.from_angle(2 * PI * angleFactor)).normalized(), speed * 0.2, delta)
 		
-		if distanceToPlayer > minimalDistanceToPlayer:
-			updateMovement(directionToPlayer, speed, delta)
-			isMovingTowardPlayer = true
-			animationState.walking = true
-			
-		else:
-			isMovingTowardPlayer = false
-			
-			#IDLE STATE HERE
-			var angleFactor: float = idleNoise.get_noise_2d(position.x + (Time.get_ticks_msec() / 1000.0), position.y - (Time.get_ticks_msec() / 1000.0)) * 1.5
-			
-			updateMovement((directionToPlayer * (distanceToPlayer / confortableRangeToPlayer.x) + Vector2.from_angle(2 * PI * angleFactor)).normalized(), speed * 0.2, delta)
-			
-			#TODO: pondérer le walking
-			animationState.walking = false
+		#TODO: pondérer le walking
+		animationState.walking = false
 

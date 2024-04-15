@@ -60,6 +60,11 @@ func _process(delta):
 		if oldSign != sign(xOrientationFactor) or is_equal_approx(xOrientationFactor, 0.0):
 			xOrientationFactor = 0.0
 	
+	if $AnimationState.damageTaken > 0.0:
+		$AnimationState.damageTaken -= delta
+		if $AnimationState.damageTaken < 0.0:
+			$AnimationState.damageTaken = 0.0
+	
 	sprite.material.set_shader_parameter("walkingAlpha", walkingFactor)
 	sprite.material.set_shader_parameter("xOrientation", xOrientationFactor)
-
+	sprite.material.set_shader_parameter("damageState", $AnimationState.damageTaken)

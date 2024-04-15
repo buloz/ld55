@@ -50,6 +50,7 @@ size = Vector2(40, 40)
 shader = ExtResource("9_f7ot6")
 shader_parameter/walkingAlpha = null
 shader_parameter/xOrientation = null
+shader_parameter/damageState = null
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7tkqq"]
 animations = [{

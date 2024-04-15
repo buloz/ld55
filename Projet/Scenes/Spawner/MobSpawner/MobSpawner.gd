@@ -1,7 +1,7 @@
 class_name MobSpawner extends Node2D
 
 #max ennemies instanciated at full difficulty
-const MAX_ENNEMIES = 150
+const MAX_ENNEMIES = 300
 
 @export var mobScene: PackedScene
 
@@ -16,6 +16,11 @@ const MAX_ENNEMIES = 150
 
 #maximum spawn distance 1.0 = viewport borders
 @export var maxSpawnDistance:float
+
+
+@export var minMobSpeed: float = 150
+@export var maxMobSpeed: float = 600
+@onready var speedOffset: float = maxMobSpeed - minMobSpeed
 
 var _isSpawning:bool = false
 
@@ -37,12 +42,26 @@ func _ready():
 
 func spawnMob(count: int):
 	
+	
+	"""
+	A scale en fonction de la difficulté
+	Speed
+	
+	"""
+	
+	var difficutyScaledSpeed: float = minMobSpeed + _difficulty * speedOffset
+	
+	
 	for i in count:
 		var newMob: Mob = mobScene.instantiate()
 		
 		var spawnPosition: Vector2 = get_random_position()
 		
 		newMob.position = spawnPosition
+		newMob.speed = difficutyScaledSpeed
+		newMob.speedAcceleration = 50 + 150 * _difficulty
+		
+		print(difficutyScaledSpeed)
 		
 		add_child(newMob)
 
