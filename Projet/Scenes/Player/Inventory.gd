@@ -1,4 +1,4 @@
-extends Node
+extends CanvasLayer
 
 #Note: If gathering order has an importance, change the datastructure type
 var storedMaterials: PackedInt32Array
@@ -18,6 +18,15 @@ var mouseSummonCursor = preload("res://Ressources/cursor/summonCursor.png")
 func _ready():
 	storedMaterials.resize(get_node("/root/Global").nbMaterials)
 	hotbar.slotbar.connect(_slotbar_pressed)
+	set_pentagram(false)
+
+func _process(_delta):
+	var mp := get_viewport().get_mouse_position()
+	$pentagram.global_position = get_viewport().get_mouse_position()
+
+func set_pentagram(b : bool):
+	$pentagram.visible = b
+	$pentagram/AudioStreamPlayer.playing = b
 
 #Materials -> 0rock, 1bone, 2herb, 3wood, 4shroom
 func addMaterial(materialType: int, quantity: int):
@@ -30,16 +39,10 @@ func addMaterial(materialType: int, quantity: int):
 	inventoryUpdate.emit(materialType, storedMaterials[materialType])
 
 func _slotbar_pressed(value, toggled_on):
-
 	if toggled_on:
 		if storedMaterials[value] > 0:
 			floatingMaterials.append(value)
-			
-			if possibleCrafts.getCraftResult(floatingMaterials):
-				Input.set_custom_mouse_cursor(mouseSummonCursor, 0, Vector2(64, 64))
-			else:
-				Input.set_custom_mouse_cursor(null)
-			
+			set_pentagram(possibleCrafts.getCraftResult(floatingMaterials) != null)
 		else:
 			hotbar.get_node("Slot%d" % (5 + value)).button_pressed = false
 	else:
@@ -47,10 +50,8 @@ func _slotbar_pressed(value, toggled_on):
 		if index > -1 and not toggled_on:
 			floatingMaterials.remove_at(index)
 			
-			if floatingMaterials.is_empty() or not possibleCrafts.getCraftResult(floatingMaterials):
-				Input.set_custom_mouse_cursor(null)
-			else:
-				Input.set_custom_mouse_cursor(mouseSummonCursor, 0, Vector2(64, 64))
+			set_pentagram(!(floatingMaterials.is_empty() or not possibleCrafts.getCraftResult(floatingMaterials)))
+
 
 func try_craft():
 	var recipe = possibleCrafts.getCraftResult(floatingMaterials)
@@ -63,6 +64,6 @@ func try_craft():
 		if slot is BaseButton:
 			slot.set_pressed_no_signal(false)
 	
-	Input.set_custom_mouse_cursor(null)
+	set_pentagram(false)
 	
 	return recipe
