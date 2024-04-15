@@ -17,8 +17,10 @@ func _ready():
 	for i in count:
 		var newProjectile = projectile.duplicate()
 		newProjectile.direction = Vector2.from_angle(projectile.direction.angle() + -spreadAngle/2 + (spreadAngle/count)*i)
-		add_child(newProjectile)
+		get_parent().add_child(newProjectile)
 		await get_tree().create_timer(time_between_projectile).timeout
+		
+	queue_free()
 
 func initialize(senderPosition: Vector2, _targetPosition: Vector2, _playerTeam: bool):
 	playerTeam = _playerTeam

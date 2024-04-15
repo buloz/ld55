@@ -31,19 +31,23 @@ func loadSummonType(summonType: int):
 		0:
 			$Sprite2D.texture = preload("res://Ressources/sprites/Summon/Golem.png")
 			$Sprite2D.scale = Vector2(0.75, 0.75)
-			$Sprite2D.position.y = -126
+			$Sprite2D.offset.y = -290
+
 		1:
 			$Sprite2D.texture = preload("res://Ressources/sprites/Summon/Goule.png")
 			$Sprite2D.scale = Vector2(0.5, 0.5)
-			$Sprite2D.position.y = -92
+			$Sprite2D.offset.y = -307
+
 		2:
 			$Sprite2D.texture = preload("res://Ressources/sprites/Summon/Squelette.png")
 			$Sprite2D.scale = Vector2(0.4, 0.4)
-			$Sprite2D.position.y = -68
+			$Sprite2D.offset.y = -312
+
 		3:
 			$Sprite2D.texture = preload("res://Ressources/sprites/Summon/Spectre.png")
 			$Sprite2D.scale = Vector2(0.5, 0.5)
-			$Sprite2D.position.y = -86
+			$Sprite2D.offset.y = -369
+
 
 func initializeFromInfo(summonInfo: SummonInfo):
 	

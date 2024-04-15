@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbs6el4k23yex"]
+
+[ext_resource type="Script" path="res://Scenes/Animation/Environement/EnvironementShaderAnimation.gd" id="1_m08o8"]
+[ext_resource type="Script" path="res://Scenes/Animation/Environement/EnvironementAnimationState.gd" id="2_um4gl"]
+
+[node name="EnvironementShaderAnimation" type="Node"]
+script = ExtResource("1_m08o8")
+
+[node name="EnvironementAnimationState" type="Node" parent="."]
+script = ExtResource("2_um4gl")

@@ -39,8 +39,10 @@ func _process(delta):
 			walkingSign = 1.0
 		
 	else:
-		walkingFactor -= walkingSpeed * delta * sign(walkingFactor)
-		if is_equal_approx(walkingFactor, 0.0):
+		var oldSign: float = sign(walkingFactor)
+		walkingFactor -= walkingSpeed * delta * oldSign
+		
+		if oldSign != sign(walkingFactor) or is_equal_approx(walkingFactor, 0.0):
 			walkingFactor = 0.0
 	
 	
@@ -54,8 +56,10 @@ func _process(delta):
 		if xOrientationFactor <= $AnimationState.orientation:
 			xOrientationFactor = $AnimationState.orientation
 	else:
-		xOrientationFactor -= orientationSpeed * delta * sign(xOrientationFactor)
-		if is_equal_approx(xOrientationFactor, 0.0):
+		var oldSign: float = sign(xOrientationFactor)
+		xOrientationFactor -= orientationSpeed * delta * oldSign
+		
+		if oldSign != sign(xOrientationFactor) or is_equal_approx(xOrientationFactor, 0.0):
 			xOrientationFactor = 0.0
 	
 	sprite.material.set_shader_parameter("walkingAlpha", walkingFactor)

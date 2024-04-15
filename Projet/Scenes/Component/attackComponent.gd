@@ -15,7 +15,8 @@ func _set_cooldown(b : bool):
 func setOnCooldown():
 	if attack_cooldown > 0:
 		_set_cooldown(true)
-		get_tree().create_timer(attack_cooldown).timeout.connect(offCooldown)
+		var test = get_tree().create_timer(attack_cooldown)
+		test.timeout.connect(offCooldown)
 
 func offCooldown():
 	if attack_cooldown != 0 and on_cooldown:

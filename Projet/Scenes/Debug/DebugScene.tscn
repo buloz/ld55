@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://l2wvjjpnjul4"]
+[gd_scene load_steps=7 format=3 uid="uid://l2wvjjpnjul4"]
 
 [ext_resource type="Script" path="res://Scenes/Debug/DebugScene.gd" id="1_2lmlw"]
 [ext_resource type="PackedScene" uid="uid://y542tm5v30rt" path="res://Scenes/Map/Map.tscn" id="1_lfq0a"]
 [ext_resource type="PackedScene" uid="uid://b433p5ck6nm4g" path="res://Scenes/Player/Player.tscn" id="2_vo8i1"]
-[ext_resource type="PackedScene" uid="uid://c07qpjoa0naiq" path="res://Scenes/Material/Material.tscn" id="4_j1540"]
 [ext_resource type="PackedScene" uid="uid://c4xat6u8vnn5l" path="res://Scenes/Spawner/MobSpawner/MobSpawner.tscn" id="4_r331g"]
 [ext_resource type="PackedScene" uid="uid://mqs0maudngeh" path="res://Scenes/UserInterface/UI.tscn" id="6_yl73a"]
 [ext_resource type="Texture2D" uid="uid://dkn7p0w1mugk" path="res://Ressources/background/Tiling.png" id="10_ttqea"]
@@ -14,8 +13,8 @@ script = ExtResource("1_2lmlw")
 [node name="MainScene" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="Map" parent="MainScene" instance=ExtResource("1_lfq0a")]
-visible = false
+[node name="Map" parent="MainScene" node_paths=PackedStringArray("targetNode") instance=ExtResource("1_lfq0a")]
+targetNode = NodePath("../Player")
 
 [node name="Player" parent="MainScene" instance=ExtResource("2_vo8i1")]
 position = Vector2(586, 373)
@@ -27,26 +26,6 @@ zoom = Vector2(0.4, 0.4)
 [node name="MobSpawner" parent="MainScene" node_paths=PackedStringArray("spawnTargetNode") instance=ExtResource("4_r331g")]
 spawnTargetNode = NodePath("..")
 
-[node name="Material_1" parent="MainScene" instance=ExtResource("4_j1540")]
-position = Vector2(546, 284)
-type = 1
-
-[node name="Material_1(2)" parent="MainScene" instance=ExtResource("4_j1540")]
-position = Vector2(645, 268)
-type = 5
-
-[node name="Material_2" parent="MainScene" instance=ExtResource("4_j1540")]
-position = Vector2(544, 223)
-type = 1
-
-[node name="Material_3" parent="MainScene" instance=ExtResource("4_j1540")]
-position = Vector2(598, 248)
-type = 3
-
-[node name="Material_8?" parent="MainScene" instance=ExtResource("4_j1540")]
-position = Vector2(487, 257)
-type = 5
-
 [node name="UI" parent="." instance=ExtResource("6_yl73a")]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -54,7 +33,7 @@ scale = Vector2(0.15, 0.15)
 transform = Transform2D(0.15, 0, 0, 0.15, 0, 0)
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(6, 6)
+motion_scale = Vector2(6.5, 6.5)
 motion_mirroring = Vector2(38880, 38880)
 
 [node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]

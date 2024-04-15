@@ -3,7 +3,7 @@ extends Node
 @export var hitBoxComponent: HitboxComponent
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _physics_process(_delta):
 	if hitBoxComponent.has_overlapping_areas():
 		for body in hitBoxComponent.get_overlapping_areas():
 			if body.get_parent().has_node("AttackComponent"):
