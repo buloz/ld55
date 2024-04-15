@@ -4,7 +4,10 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_b2kuk"]
 font_size = 64
-font_color = Color(0, 0, 0, 1)
+font_color = Color(0.960784, 0.847059, 0, 1)
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 7
+shadow_color = Color(0, 0, 0, 0.568627)
 
 [node name="Panel" type="Sprite2D"]
 position = Vector2(218.691, 76.9125)
