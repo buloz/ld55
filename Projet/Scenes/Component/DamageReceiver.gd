@@ -2,6 +2,8 @@ extends Node
 
 @export var hitBoxComponent: HitboxComponent
 
+signal healthUpdated
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
 	if hitBoxComponent.has_overlapping_areas():
@@ -10,4 +12,5 @@ func _physics_process(_delta):
 				var attackComponent: AttackComponent = body.get_parent().get_node("AttackComponent")
 				if not attackComponent.on_cooldown:
 					hitBoxComponent.damage(attackComponent)
+					healthUpdated.emit(hitBoxComponent.healthComponent.currentHealth)
 					attackComponent.setOnCooldown()

@@ -1,16 +1,17 @@
-[gd_scene load_steps=17 format=3 uid="uid://nxr7b0d625fr"]
+[gd_scene load_steps=18 format=3 uid="uid://nxr7b0d625fr"]
 
 [ext_resource type="Script" path="res://Scenes/UserInterface/UI.gd" id="1_4p5ls"]
 [ext_resource type="Script" path="res://Scenes/UserInterface/hotbar.gd" id="2_704ia"]
 [ext_resource type="PackedScene" uid="uid://bo0ukg5akkk7i" path="res://Scenes/UserInterface/slot.tscn" id="3_c5nv1"]
 [ext_resource type="Texture2D" uid="uid://cpsd6oce21let" path="res://Ressources/UI/rock.png" id="4_sylqw"]
 [ext_resource type="Texture2D" uid="uid://b0342lb04owk5" path="res://Ressources/menu/interro.png" id="4_wug80"]
-[ext_resource type="PackedScene" uid="uid://7rq7mv24q25c" path="res://Scenes/UserInterface/Tutorial.tscn" id="5_kivo1"]
+[ext_resource type="PackedScene" uid="uid://cod1nguf5sfab" path="res://Scenes/UserInterface/Tutorial.tscn" id="5_kivo1"]
 [ext_resource type="Texture2D" uid="uid://eqjpgbv5eboi" path="res://Ressources/UI/bone.png" id="5_vw8t3"]
 [ext_resource type="Texture2D" uid="uid://djefnqxd4ovdf" path="res://Ressources/UI/herb.png" id="6_axdck"]
 [ext_resource type="Texture2D" uid="uid://cklhskx8mt2no" path="res://Ressources/UI/wood.png" id="7_p8u5l"]
 [ext_resource type="Texture2D" uid="uid://eei8a85cj7d2" path="res://Ressources/UI/shroom.png" id="8_d2cv1"]
 [ext_resource type="PackedScene" uid="uid://wdc3ni6egi2a" path="res://Scenes/UserInterface/tutoLabel.tscn" id="10_xfhny"]
+[ext_resource type="PackedScene" uid="uid://d0d61qxb5c671" path="res://Scenes/UserInterface/health_bar.tscn" id="12_8sgdl"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_eae5c"]
 device = -1
@@ -41,10 +42,6 @@ device = -1
 keycode = 53
 physical_keycode = 53
 unicode = 53
-
-[sub_resource type="LabelSettings" id="LabelSettings_4u3wx"]
-font_size = 20
-font_color = Color(0, 0, 0, 1)
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_4p5ls")
@@ -105,6 +102,8 @@ stretch_mode = 3
 
 [node name="Tutorial" parent="." instance=ExtResource("5_kivo1")]
 visible = false
+
+[node name="HealthBar" parent="." instance=ExtResource("12_8sgdl")]
 
 [connection signal="toggled" from="Hotbar/Slot5" to="Hotbar" method="_on_slot_5_toggled"]
 [connection signal="toggled" from="Hotbar/Slot6" to="Hotbar" method="_on_slot_6_toggled"]
