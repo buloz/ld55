@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bu2rqxb6vsfem"]
+[gd_scene load_steps=6 format=3 uid="uid://bu2rqxb6vsfem"]
 
 [ext_resource type="Script" path="res://Scenes/Debug/MainScene.gd" id="1_im8m3"]
 [ext_resource type="PackedScene" uid="uid://y542tm5v30rt" path="res://Scenes/Map/Map.tscn" id="2_tkxxv"]
 [ext_resource type="PackedScene" uid="uid://b433p5ck6nm4g" path="res://Scenes/Player/Player.tscn" id="3_rbuhm"]
 [ext_resource type="PackedScene" uid="uid://c4xat6u8vnn5l" path="res://Scenes/Spawner/MobSpawner/MobSpawner.tscn" id="4_kyleg"]
+[ext_resource type="PackedScene" uid="uid://blllcwc26unxx" path="res://Scenes/ScreenFilter/ScreenFilter.tscn" id="5_p5f5c"]
 
 [node name="MainScene" type="Node2D"]
 y_sort_enabled = true
@@ -13,8 +14,14 @@ script = ExtResource("1_im8m3")
 targetNode = NodePath("../Player")
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("3_rbuhm")]
-position = Vector2(586, 373)
+position = Vector2(586, 374)
 collision_mask = 9
+
+[node name="ScreenFilter" parent="Player" instance=ExtResource("5_p5f5c")]
+offset_left = -1441.0
+offset_top = -811.0
+offset_right = 1439.0
+offset_bottom = 809.0
 
 [node name="Camera2D" type="Camera2D" parent="Player" groups=["player"]]
 zoom = Vector2(0.4, 0.4)

@@ -14,7 +14,6 @@ void vertex() {
 	float touchSmoothRatio = pow(damageState, 2);
 	VERTEX.x += (sin(touchSmoothRatio * 20.0)) * 50.0 * (1.0 - UV.y);
 	
-	
 }
 
 float getStretchX(float xUV, float distortion) {

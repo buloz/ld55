@@ -5,12 +5,16 @@ uniform float randomFloat : hint_range(0.0, 1.0);
 
 uniform float walkingAlpha : hint_range(-1.0, 1.0);
 uniform float xOrientation : hint_range(-1.0, 1.0);
+uniform float damageState : hint_range(0.0, 1.0);
 
 void vertex() {
 	VERTEX.x += xOrientation * 50.0;
 	
 	//VERTEX.y -= xOrientation * (UV.x * 2.0 - 1.0) * 400.0 * abs(UV.y * 2.0 - 1.0);
 	VERTEX.y -= xOrientation * (UV.x * 2.0 - 1.0) * 400.0;
+	
+	float touchSmoothRatio = pow(damageState, 2);
+	VERTEX.x += (sin(touchSmoothRatio * 30.0)) * 125.0 * (1.0 - UV.y);
 	
 }
 
@@ -58,31 +62,11 @@ void fragment() {
 	timeIdle(uv);
 	computeWalkingUV(uv);
 	computeXOrientationUV(uv);
-	//float timeCosine = cos(TIME * 2.0) * 0.5 + 0.5;
 	
-
-	
-	
-	vec2 position = UV * 2.0 - 1.0;
-	
-	//TODO: Tester walkingAlpha ou smoothalha
-
-	
-	//vec2 uv = position + length(position) * mix(0.2, 1.0, timeCosine);
-	//
-	//uv = (uv + 1.0) / 2.0;
-	
-	//float timeCosine = cos(TIME * 2.0) * 0.5 + 0.5;
-	//
-	//float factor = mix(0.75, 1.0, cos(TIME * 2.0) * 0.5 + 0.5);
-	//
-	//float xUV = getStretchX(UV.x, 0.4 + timeCosine * 0.6);
-	//float yUV = getStretchY((UV.y - 0.05), timeCosine * 0.5);
-	
-	//vec2 uv = vec2(UV.x, yUV);
 	
 	COLOR = texture(TEXTURE, uv);
 	
+	COLOR.r += damageState * 0.5;
 }
 
 //void light() {

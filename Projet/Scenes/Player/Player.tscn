@@ -19,6 +19,7 @@ shader = ExtResource("7_h3iq2")
 shader_parameter/randomFloat = null
 shader_parameter/walkingAlpha = 4.75e-08
 shader_parameter/xOrientation = 4.75e-08
+shader_parameter/damageState = null
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tu73w"]
 random_pitch = 1.5
