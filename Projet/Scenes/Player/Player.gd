@@ -48,8 +48,10 @@ func die():
 	
 	set_physics_process(false)
 	set_process_input(false)
-	
-	get_node("../../MainScene").lose.emit(score)
+
+	$die.play()
+	$ShaderAnimation.get_node("AnimationPlayer").play("death")
+	get_node("../../MainScene").lose.emit(0)
 
 #TODO: faire un déplacement plus smooooooooth
 func _physics_process(delta):
