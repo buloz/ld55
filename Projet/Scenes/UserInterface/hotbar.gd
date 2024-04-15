@@ -1,6 +1,6 @@
 class_name Hotbar extends HBoxContainer
 
-signal slotbar(slot_name)
+signal slotbar(slot_name, state)
 
 func _on_slot_5_toggled(toggled_on):
 	slotbar.emit(0, toggled_on)

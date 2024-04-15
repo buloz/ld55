@@ -1,21 +1,21 @@
 class_name PossibleCrafts extends Node
 
 var possibleCrafts: Array = [
-	#Materials -> 0rock, 1bone, 2herb, 3wood, 4shroom
+	#Materials -> 0: rock, 1: bone, 2: herb, 3: wood, 4: shroom
 	#Summon types -> 0golem, 1ghoul, 2skelleton, 3haunt
 	#SummonInfoClass -> type: int, spellType:int, health: float, damage: float, cooldown: float, range: float, confortDistance: float
-	[[0, 2], SummonInfo.new(0, 0, 100, 10, 6, 800, 20)],
-	[[0, 2, 3], SummonInfo.new(0, 1, 150, 15, 8, 250, 80)],
-	[[0, 2, 4], SummonInfo.new(0, 2, 80, 5, 3, 800, 300)],
-	[[2, 4], SummonInfo.new(1, 3, 40, 1, 5, 800, 600)],
-	[[2, 4, 1], SummonInfo.new(1, 4, 100, 10, 8, 800, 20)],
-	[[2, 4, 3], SummonInfo.new(1, 5, 80, 35, 2, 20, 20)],
-	[[1, 2], SummonInfo.new(2, 6, 40, 25, 5, 800, 600)],
-	[[1, 2, 3], SummonInfo.new(2, 7, 40, 2, 2.5, 500, 300)],
-	[[1, 2, 0], SummonInfo.new(2, 8, 80, 20, 1, 20, 20)],
-	[[4, 1], SummonInfo.new(3, 9, 60, 20, 15, 200, 200)],
-	[[4, 1, 3], SummonInfo.new(3, 10, 30, 30, 1, 1000, 600)],
-	[[4, 1, 0], SummonInfo.new(3, 11, 60, 15, 2.5, 200, 100)]
+	[[0, 2], SummonInfo.new(0, 0, 0, 100, 10, 6, 800, 20)],
+	[[0, 2, 3], SummonInfo.new(0, 1, 1, 150, 15, 8, 250, 80)],
+	[[0, 2, 4], SummonInfo.new(0, 2, 2, 80, 5, 3, 800, 300)],
+	[[2, 4], SummonInfo.new(1, 0, 3, 40, 1, 5, 800, 600)],
+	[[2, 4, 1], SummonInfo.new(1, 1, 4, 100, 10, 8, 800, 20)],
+	[[2, 4, 3], SummonInfo.new(1, 2, 5, 80, 35, 2, 20, 20)],
+	[[1, 2], SummonInfo.new(2, 0, 6, 40, 25, 5, 800, 600)],
+	[[1, 2, 3], SummonInfo.new(2, 1, 7, 40, 2, 2.5, 500, 300)],
+	[[1, 2, 0], SummonInfo.new(2, 2, 8, 80, 20, 1, 20, 20)],
+	[[4, 1], SummonInfo.new(3, 0, 9, 60, 20, 15, 200, 200)],
+	[[4, 1, 3], SummonInfo.new(3, 1, 10, 30, 30, 1, 1000, 600)],
+	[[4, 1, 0], SummonInfo.new(3, 2, 11, 60, 15, 2.5, 200, 100)]
 ]
 
 

@@ -17,7 +17,6 @@ position = Vector2(75, 128)
 script = ExtResource("1_00vvb")
 environementItems = Array[PackedScene]([ExtResource("3_7l7e1")])
 materialScene = ExtResource("4_4qou7")
-materialProbabilty = 0.58
 
 [node name="ChunkHandler" type="Node2D" parent="." node_paths=PackedStringArray("environementSpawner")]
 y_sort_enabled = true

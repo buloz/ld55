@@ -2,6 +2,7 @@ class_name SummonInfo extends Node
 
 #GOLEM, GOULE, SQUELETTE, SPECTRE
 var type: int
+var subtype: int
 var spellType: int
 
 var health: float
@@ -18,8 +19,9 @@ var attackRange: float
 var confortDistance: float
 
 
-func _init(type: int, spellType: int, health: float, damage: float, cooldown: float, attackRange: float, confortDistance: float):
+func _init(type: int, subtype: int, spellType: int, health: float, damage: float, cooldown: float, attackRange: float, confortDistance: float):
 	self.type = type
+	self.subtype = subtype
 	self.spellType = spellType
 	self.health = health
 	self.damage = damage

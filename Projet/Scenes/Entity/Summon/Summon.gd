@@ -22,8 +22,7 @@ func _init():
 	chaseTarget = true
 
 func loadRandomSummon():
-	var choosenSpriteIndex: int = randi_range(0, 3)
-	loadSummonType(choosenSpriteIndex)
+	loadSummonType(randi_range(0, 3), randi_range(0, 2))
 	
 func loadSpellType(spellType:int):
 	match spellType:
@@ -52,32 +51,58 @@ func loadSpellType(spellType:int):
 		11:
 			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Haunted/Howl.tscn")
 
-func loadSummonType(summonType: int):
+func loadSummonType(summonType: int, summonSubtype: int):
+	
+	
 	match summonType:
 		0:
-			$Sprite2D.texture = preload("res://Ressources/sprites/Summon/Golem.png")
+			if summonSubtype == 1:
+				$Sprite2D.texture = preload("res://Ressources/sprites/Summon/Golem_1.png")
+			elif summonSubtype == 2:
+				$Sprite2D.texture = preload("res://Ressources/sprites/Summon/Golem_2.png")
+			else:
+				$Sprite2D.texture = preload("res://Ressources/sprites/Summon/Golem.png")
+				
 			$Sprite2D.scale = Vector2(0.75, 0.75)
 			$Sprite2D.offset.y = -290
 
 		1:
-			$Sprite2D.texture = preload("res://Ressources/sprites/Summon/Goule.png")
+			if summonSubtype == 1:
+				$Sprite2D.texture = preload("res://Ressources/sprites/Summon/Goule_1.png")
+			elif summonSubtype == 2:
+				$Sprite2D.texture = preload("res://Ressources/sprites/Summon/Goule_2.png")
+			else:
+				$Sprite2D.texture = preload("res://Ressources/sprites/Summon/Goule.png")
+				
 			$Sprite2D.scale = Vector2(0.5, 0.5)
 			$Sprite2D.offset.y = -307
 
 		2:
-			$Sprite2D.texture = preload("res://Ressources/sprites/Summon/Squelette.png")
+			if summonSubtype == 1:
+				$Sprite2D.texture = preload("res://Ressources/sprites/Summon/Squelette_1.png")
+			elif summonSubtype == 2:
+				$Sprite2D.texture = preload("res://Ressources/sprites/Summon/Squelette_2.png")
+			else:
+				$Sprite2D.texture = preload("res://Ressources/sprites/Summon/Squelette.png")
+			
 			$Sprite2D.scale = Vector2(0.4, 0.4)
 			$Sprite2D.offset.y = -312
 
 		3:
-			$Sprite2D.texture = preload("res://Ressources/sprites/Summon/Spectre.png")
+			if summonSubtype == 1:
+				$Sprite2D.texture = preload("res://Ressources/sprites/Summon/Spectre_1.png")
+			elif summonSubtype == 2:
+				$Sprite2D.texture = preload("res://Ressources/sprites/Summon/Spectre_2.png")
+			else:
+				$Sprite2D.texture = preload("res://Ressources/sprites/Summon/Spectre.png")
+				
 			$Sprite2D.scale = Vector2(0.5, 0.5)
 			$Sprite2D.offset.y = -369
 
 
 func initializeFromInfo(summonInfo: SummonInfo):
 	
-	loadSummonType(summonInfo.type)
+	loadSummonType(summonInfo.type, summonInfo.subtype)
 	loadSpellType(summonInfo.spellType)
 	
 	$HealthComponent.MaxHealth = summonInfo.health

@@ -10,6 +10,8 @@ var floatingMaterials: Array[int]
 
 var possibleCrafts: PossibleCrafts = preload("res://Scenes/Player/PossibleCrafts.gd").new()
 
+#Mouse cursor
+var mouseSummonCursor = preload("res://Ressources/cursor/summonCursor.png")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,13 +29,22 @@ func addMaterial(materialType: int, quantity: int):
 	print("New inventory: ", storedMaterials)
 
 func _slotbar_pressed(value, toggled_on):
+
 	if toggled_on:
 		if storedMaterials[value] > 0:
 			floatingMaterials.append(value)
+			
+			Input.set_custom_mouse_cursor(mouseSummonCursor, 0, Vector2(64, 64))
+			
+		else:
+			hotbar.get_node("Slot%d" % (5 + value)).button_pressed = false
 	else:
 		var index = floatingMaterials.rfind(value)
-		if index > -1 and !toggled_on:
+		if index > -1 and not toggled_on:
 			floatingMaterials.remove_at(index)
+			if floatingMaterials.is_empty():
+				Input.set_custom_mouse_cursor(null)
+
 
 func try_craft():
 	var recipe = possibleCrafts.getCraftResult(floatingMaterials)
@@ -44,4 +55,7 @@ func try_craft():
 	for slot in get_node("/root/DebugScene/UI/Hotbar").get_children(true):
 		if slot is BaseButton:
 			slot.set_pressed_no_signal(false)
+	
+	Input.set_custom_mouse_cursor(null)
+	
 	return recipe
