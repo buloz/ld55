@@ -189,18 +189,18 @@ sprite_frames = SubResource("SpriteFrames_7tkqq")
 
 [node name="golem" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_6mdua")
-volume_db = -10.0
+volume_db = -5.0
 
 [node name="goule" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_rj2io")
-volume_db = -10.0
+volume_db = -5.0
 
 [node name="spectre" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_4d07e")
-volume_db = -9.0
+volume_db = -4.0
 pitch_scale = 1.15
 
 [node name="squelette" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_qka3f")
-volume_db = -10.0
+volume_db = -5.0
 pitch_scale = 0.8
