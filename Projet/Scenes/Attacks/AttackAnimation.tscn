@@ -1,7 +1,21 @@
-[gd_scene load_steps=13 format=3 uid="uid://bboirua8lcxis"]
+[gd_scene load_steps=30 format=3 uid="uid://d3w3i6cx5om4s"]
 
 [ext_resource type="Texture2D" uid="uid://bjhpuotlsbmkj" path="res://Ressources/attacks/proj_1.png" id="1_hillv"]
 [ext_resource type="Script" path="res://Scenes/Attacks/AttackAnimation.gd" id="2_wke3x"]
+[ext_resource type="AudioStream" uid="uid://yy0a0vk843xn" path="res://Ressources/sounds/attack/melee1.wav" id="3_k8v58"]
+[ext_resource type="AudioStream" uid="uid://cfk37cmn5ev4g" path="res://Ressources/sounds/attack/melee2.wav" id="4_bpsyj"]
+[ext_resource type="AudioStream" uid="uid://derci2gl7tjh6" path="res://Ressources/sounds/attack/melee3.wav" id="5_sqcun"]
+[ext_resource type="AudioStream" uid="uid://dfvthvqlq0huh" path="res://Ressources/sounds/attack/melee4.wav" id="6_ut303"]
+[ext_resource type="AudioStream" uid="uid://doysu7ljrykqf" path="res://Ressources/sounds/attack/melee5.wav" id="7_36xkr"]
+[ext_resource type="AudioStream" uid="uid://c65mwojx0kbl6" path="res://Ressources/sounds/attack/melee6.wav" id="8_demim"]
+[ext_resource type="AudioStream" uid="uid://b4sga3f832d4g" path="res://Ressources/sounds/attack/melee7.wav" id="9_84pky"]
+[ext_resource type="AudioStream" uid="uid://cvo6lv0a4t47b" path="res://Ressources/sounds/attack/melee8.wav" id="10_k1ahp"]
+[ext_resource type="AudioStream" uid="uid://q1yko6y1vgdd" path="res://Ressources/sounds/attack/melee9.wav" id="11_gn0p7"]
+[ext_resource type="AudioStream" uid="uid://jsah5c3a65dd" path="res://Ressources/sounds/attack/melee10.wav" id="12_b2ero"]
+[ext_resource type="AudioStream" uid="uid://kdm0xyt7ex1b" path="res://Ressources/sounds/attack/fireball1.wav" id="13_54n1l"]
+[ext_resource type="AudioStream" uid="uid://c63j27xkhqofe" path="res://Ressources/sounds/attack/fireball2.wav" id="14_jmeud"]
+[ext_resource type="AudioStream" uid="uid://d4ac7vndvamuv" path="res://Ressources/sounds/attack/explosion1.wav" id="15_5ghtl"]
+[ext_resource type="AudioStream" uid="uid://cesr7dpc84k6h" path="res://Ressources/sounds/attack/explosion2.wav" id="16_f4b0l"]
 
 [sub_resource type="Animation" id="Animation_edlb4"]
 length = 0.001
@@ -162,11 +176,51 @@ _data = {
 "stain": SubResource("Animation_30pkj")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ky3vj"]
+random_pitch = 1.25
+streams_count = 10
+stream_0/stream = ExtResource("3_k8v58")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("4_bpsyj")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("5_sqcun")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("6_ut303")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("7_36xkr")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("8_demim")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("9_84pky")
+stream_6/weight = 1.0
+stream_7/stream = ExtResource("10_k1ahp")
+stream_7/weight = 1.0
+stream_8/stream = ExtResource("11_gn0p7")
+stream_8/weight = 1.0
+stream_9/stream = ExtResource("12_b2ero")
+stream_9/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5g7yo"]
+random_pitch = 1.5
+streams_count = 2
+stream_0/stream = ExtResource("13_54n1l")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("14_jmeud")
+stream_1/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0m3rc"]
+random_pitch = 1.25
+streams_count = 2
+stream_0/stream = ExtResource("15_5ghtl")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("16_f4b0l")
+stream_1/weight = 1.0
+
 [node name="AttackAnimation" type="Sprite2D"]
 texture = ExtResource("1_hillv")
 hframes = 7
 vframes = 8
-frame = 25
+frame = 29
 script = ExtResource("2_wke3x")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -174,3 +228,21 @@ root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_d3ugg")
 }
+
+[node name="melee" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_ky3vj")
+volume_db = -10.0
+
+[node name="fireball" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_5g7yo")
+volume_db = -7.0
+pitch_scale = 1.25
+
+[node name="flaque" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_5g7yo")
+volume_db = -5.0
+pitch_scale = 0.6
+
+[node name="explosion" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_0m3rc")
+volume_db = -8.0
