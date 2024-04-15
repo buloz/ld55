@@ -64,7 +64,13 @@ func _process(delta):
 		$AnimationState.damageTaken -= delta
 		if $AnimationState.damageTaken < 0.0:
 			$AnimationState.damageTaken = 0.0
+			
+	if $AnimationState.spawned > 0.0:
+		$AnimationState.spawned -= delta * 5.0
+		if $AnimationState.spawned < 0.0:
+			$AnimationState.spawned = 0.0
 	
 	sprite.material.set_shader_parameter("walkingAlpha", walkingFactor)
 	sprite.material.set_shader_parameter("xOrientation", xOrientationFactor)
 	sprite.material.set_shader_parameter("damageState", $AnimationState.damageTaken)
+	sprite.material.set_shader_parameter("spawnState", $AnimationState.spawned)

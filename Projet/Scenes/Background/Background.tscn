@@ -7,7 +7,7 @@ scale = Vector2(0.15, 0.15)
 transform = Transform2D(0.15, 0, 0, 0.15, 0, 0)
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(6.5, 6.5)
+motion_scale = Vector2(6.6, 6.6)
 motion_mirroring = Vector2(38880, 38880)
 
 [node name="Sprite2D2" type="Sprite2D" parent="ParallaxLayer"]

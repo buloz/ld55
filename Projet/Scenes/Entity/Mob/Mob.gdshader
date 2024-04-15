@@ -3,6 +3,7 @@ shader_type canvas_item;
 uniform float walkingAlpha : hint_range(-1.0, 1.0);
 uniform float xOrientation : hint_range(-1.0, 1.0);
 uniform float damageState : hint_range(0.0, 1.0);
+uniform float spawnState : hint_range(0.0, 1.0);
 
 void vertex() {
 	VERTEX.x += xOrientation * 50.0;
@@ -14,6 +15,8 @@ void vertex() {
 	float touchSmoothRatio = pow(damageState, 2);
 	VERTEX.x += (sin(touchSmoothRatio * 20.0)) * 50.0 * (1.0 - UV.y);
 	
+	VERTEX.xy *= sin((1.0 - spawnState) * PI/2.0);
+
 }
 
 float getStretchX(float xUV, float distortion) {

@@ -7,12 +7,13 @@
 y_sort_enabled = true
 script = ExtResource("1_kgpnj")
 mobScene = ExtResource("2_8uuyr")
-minSpawnFrameDelay = 200
-maxSpawnFrameDelay = 600
-minSpawnDistance = 1.0
-maxSpawnDistance = 1.5
+minSpawnDistance = 2000.0
+maxSpawnDistance = 3000.0
 
 [node name="LifeTime" type="Timer" parent="."]
 wait_time = 180.0
 one_shot = true
 autostart = true
+
+[node name="SpawnDelay" type="Timer" parent="."]
+one_shot = true

@@ -8,8 +8,8 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_csgqm"]
 resource_local_to_scene = true
 shader = ExtResource("3_qfdkv")
-shader_parameter/randValue = null
-shader_parameter/touched = null
+shader_parameter/randValue = 0.0
+shader_parameter/touched = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0fsnv"]
 radius = 91.0494

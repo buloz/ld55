@@ -15,7 +15,7 @@ void fragment() {
 	
 	float touchSmoothRatio = pow(touched, 2);
 	
-	uv.x += (cos(time + touchSmoothRatio * 20.0)) * 1.0 * pow(1.0 - uv.y, 3.0) * 0.1;
+	uv.x += (cos(time + touchSmoothRatio * 20.0)) * 1.0 * pow(1.0 - uv.y, 3.0) * 0.05;
 	
 	COLOR = texture(TEXTURE, uv);
 	

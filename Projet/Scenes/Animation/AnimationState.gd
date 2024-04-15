@@ -7,3 +7,5 @@ var walking: bool = false
 var orientation: float = 0.0
 
 var damageTaken: float = 0.0
+
+var spawned: float = 0.0

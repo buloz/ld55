@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/Attacks/Projectile/projectile.gd" id="1_ootg3"]
 [ext_resource type="PackedScene" uid="uid://blc1sjka6ahc6" path="res://Scenes/Component/attackComponent.tscn" id="2_bhvmv"]
-[ext_resource type="PackedScene" uid="uid://bboirua8lcxis" path="res://Scenes/Attacks/AttackAnimation.tscn" id="3_uhljn"]
+[ext_resource type="PackedScene" uid="uid://d3w3i6cx5om4s" path="res://Scenes/Attacks/AttackAnimation.tscn" id="3_uhljn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p7j8d"]
 radius = 74.027
@@ -13,12 +13,12 @@ collision_mask = 0
 script = ExtResource("1_ootg3")
 attack = NodePath("AttackComponent")
 speed = 1000.0
+piercingEntities = 3
 is_top_level = true
 
 [node name="AttackAnimation" parent="." instance=ExtResource("3_uhljn")]
 position = Vector2(-2, 5)
 scale = Vector2(0.75, 0.75)
-frame = 29
 animationIndex = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

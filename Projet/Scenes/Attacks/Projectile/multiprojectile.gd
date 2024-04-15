@@ -7,6 +7,7 @@ class_name MultiProjectile extends Node2D
 @export var spreadAngle:float
 @export var projectileScene:PackedScene
 @export var time_between_projectile:float
+#@export var piercingEntities: int = 0
 
 @export var animationIndex: int
 @export var animationScale: Vector2 = Vector2.ONE
@@ -35,6 +36,7 @@ func _ready():
 		newProjectile.get_node("AttackAnimation").animationIndex = animationIndex
 		newProjectile.scale = animationScale
 		newProjectile.get_node("CollisionShape2D").shape.radius = collisionRadius
+		#newProjectile.piercingEntities = piercingEntities
 		
 		var newAngle = projectile.direction.angle() + -spreadAngle/2 + (spreadAngle/count)*i
 		newProjectile.direction = Vector2.from_angle(newAngle)

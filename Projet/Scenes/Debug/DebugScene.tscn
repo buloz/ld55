@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cbm6jbfyweonk"]
+[gd_scene load_steps=5 format=3 uid="uid://cbm6jbfyweonk"]
 
 [ext_resource type="PackedScene" uid="uid://nxr7b0d625fr" path="res://Scenes/UserInterface/UI.tscn" id="1_ateoe"]
 [ext_resource type="Script" path="res://Scenes/Debug/DebugScene.gd" id="1_y7tw8"]
-[ext_resource type="PackedScene" uid="uid://lklc8nrekfu5" path="res://Scenes/Background/Background.tscn" id="2_5chqx"]
 [ext_resource type="PackedScene" uid="uid://bu2rqxb6vsfem" path="res://Scenes/Menu/main_scene.tscn" id="3_bk2pp"]
 [ext_resource type="PackedScene" uid="uid://blllcwc26unxx" path="res://Scenes/ScreenFilter/ScreenFilter.tscn" id="4_tquym"]
 
@@ -11,8 +10,7 @@ script = ExtResource("1_y7tw8")
 
 [node name="UI" parent="." instance=ExtResource("1_ateoe")]
 
-[node name="Background" parent="." instance=ExtResource("2_5chqx")]
-
 [node name="MainScene" parent="." instance=ExtResource("3_bk2pp")]
 
 [node name="ScreenFilter" parent="." instance=ExtResource("4_tquym")]
+visible = false

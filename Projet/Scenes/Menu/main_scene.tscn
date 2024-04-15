@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bu2rqxb6vsfem"]
+[gd_scene load_steps=6 format=3 uid="uid://bu2rqxb6vsfem"]
 
 [ext_resource type="Script" path="res://Scenes/Debug/MainScene.gd" id="1_im8m3"]
+[ext_resource type="PackedScene" uid="uid://lklc8nrekfu5" path="res://Scenes/Background/Background.tscn" id="2_r45ms"]
 [ext_resource type="PackedScene" uid="uid://y542tm5v30rt" path="res://Scenes/Map/Map.tscn" id="2_tkxxv"]
 [ext_resource type="PackedScene" uid="uid://b433p5ck6nm4g" path="res://Scenes/Player/Player.tscn" id="3_rbuhm"]
 [ext_resource type="PackedScene" uid="uid://c4xat6u8vnn5l" path="res://Scenes/Spawner/MobSpawner/MobSpawner.tscn" id="4_kyleg"]
@@ -8,6 +9,9 @@
 [node name="MainScene" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_im8m3")
+
+[node name="Background" parent="." instance=ExtResource("2_r45ms")]
+layer = -1
 
 [node name="Map" parent="." node_paths=PackedStringArray("targetNode") instance=ExtResource("2_tkxxv")]
 targetNode = NodePath("../Player")
@@ -20,3 +24,5 @@ collision_mask = 9
 zoom = Vector2(0.4, 0.4)
 
 [node name="MobSpawner" parent="." instance=ExtResource("4_kyleg")]
+minSpawnFrameDelay = 2.0
+maxSpawnFrameDelay = 4.0

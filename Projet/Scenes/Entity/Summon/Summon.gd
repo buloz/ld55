@@ -73,6 +73,7 @@ func _ready():
 	loadSummonData(summonInfo.type, summonInfo.subtype)
 	$ShaderAnimation.setUnique()
 	$NearestEnnemyFinder.setRadius(1200)
+	animationState.spawned = 1.0
 
 func die():
 	$HealthComponent.queue_free()
