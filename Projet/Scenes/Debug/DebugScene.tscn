@@ -1,15 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://l2wvjjpnjul4"]
+[gd_scene load_steps=4 format=3 uid="uid://cla01sqgxutwc"]
 
-[ext_resource type="Script" path="res://Scenes/Debug/DebugScene.gd" id="1_2lmlw"]
-[ext_resource type="PackedScene" uid="uid://bu2rqxb6vsfem" path="res://Scenes/Menu/main_scene.tscn" id="2_lp5v5"]
-[ext_resource type="PackedScene" uid="uid://lklc8nrekfu5" path="res://Scenes/Background/Background.tscn" id="3_nqme5"]
-[ext_resource type="PackedScene" uid="uid://nxr7b0d625fr" path="res://Scenes/UserInterface/UI.tscn" id="6_yl73a"]
+[ext_resource type="PackedScene" uid="uid://bu2rqxb6vsfem" path="res://Scenes/Menu/main_scene.tscn" id="1_2ysjv"]
+[ext_resource type="PackedScene" uid="uid://nxr7b0d625fr" path="res://Scenes/UserInterface/UI.tscn" id="2_wnfjq"]
+[ext_resource type="PackedScene" uid="uid://lklc8nrekfu5" path="res://Scenes/Background/Background.tscn" id="3_ff1gs"]
 
 [node name="DebugScene" type="Node"]
-script = ExtResource("1_2lmlw")
 
-[node name="MainScene" parent="." instance=ExtResource("2_lp5v5")]
+[node name="MainScene" parent="." instance=ExtResource("1_2ysjv")]
 
-[node name="Background" parent="." instance=ExtResource("3_nqme5")]
+[node name="UI" parent="." instance=ExtResource("2_wnfjq")]
 
-[node name="UI" parent="." instance=ExtResource("6_yl73a")]
+[node name="Background" parent="." instance=ExtResource("3_ff1gs")]
