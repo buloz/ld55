@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://r6jx8ibqickc"]
+
+[ext_resource type="Script" path="res://Scenes/Attacks/Projectile/projectile.gd" id="1_ootg3"]
+[ext_resource type="PackedScene" uid="uid://blc1sjka6ahc6" path="res://Scenes/Component/attackComponent.tscn" id="2_bhvmv"]
+
+[node name="SkeletonBomb" type="Area2D" node_paths=PackedStringArray("attack")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_ootg3")
+attack = NodePath("AttackComponent")
+speed = 1000.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="AttackComponent" parent="." instance=ExtResource("2_bhvmv")]
+attack_damage = 2.0
+
+[node name="LifeSpan" type="Timer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -10.0
+offset_top = -1.0
+offset_right = 10.0
+offset_bottom = 1.0
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

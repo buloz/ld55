@@ -7,10 +7,10 @@ extends Node2D
 func _ready():
 	top_level = true
 
-func spawnSummon(position: Vector2, spell: PackedScene):
+func spawnSummon(position: Vector2, info: SummonInfo):
 	var newSummon: Summon = summonScene.instantiate()
 	
-	newSummon.get_node("CasterComponent").spellScene = spell
+	newSummon.initializeFromInfo(info)
 	
 	newSummon.position = position
 	

@@ -22,7 +22,11 @@ func gatherMaterial(materialType: int, quantity: int):
 
 func _ready():
 	$SummonSpawner.spawnTargetNode = get_parent()
-	
+	$Inventory.storedMaterials[0] = 999
+	$Inventory.storedMaterials[1] = 999
+	$Inventory.storedMaterials[2] = 999
+	$Inventory.storedMaterials[3] = 999
+	$Inventory.storedMaterials[4] = 999
 	get_node("/root/Global").Player = self
 
 #TODO: faire un déplacement plus smooooooooth
@@ -56,23 +60,9 @@ func _physics_process(delta):
 	
 	#Update global
 	get_node("/root/Global").playerPosition = position
-	
-func _process(_delta):
-	if Input.is_action_pressed("primary_action"):
-		#$SummonSpawner.spawnSummon(get_global_mouse_position(), ballScene)
-		var newProjectile = projectileScene.instantiate()
-		
-		newProjectile.initialize(position, get_global_mouse_position(), true)
-		
-		add_child( newProjectile )
-	
-	if Input.is_action_just_pressed("test"):
-		$SummonSpawner.spawnSummon(get_global_mouse_position(), multiProjectileScene)
-		
-		
+
 func _unhandled_input(event):
-	if event is InputEventKey:
-		if event.pressed and event.keycode == KEY_SPACE:
-			$SummonSpawner.spawnSummon(get_global_mouse_position(), blastScene)
-		if event.pressed and event.keycode == KEY_R:
-			$SummonSpawner.spawnSummon(get_global_mouse_position(), strikeScene)
+	if event.is_action_pressed("primary_action"):
+		var summon = $Inventory.try_craft()
+		if summon:
+			$SummonSpawner.spawnSummon(get_global_mouse_position(), summon)

@@ -6,7 +6,6 @@ var confortableRangeToPlayer: Vector2 = Vector2(1000, 500)
 
 var idleNoise: FastNoiseLite = FastNoiseLite.new()
 
-
 #Tempo to smooth movements
 var currentDirection: Vector2 = Vector2.ZERO
 
@@ -26,6 +25,33 @@ func loadRandomSummon():
 	var choosenSpriteIndex: int = randi_range(0, 3)
 	loadSummonType(choosenSpriteIndex)
 	
+func loadSpellType(spellType:int):
+	match spellType:
+		0:
+			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Golem/Tumble.tscn")
+		1:
+			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Golem/Shockwave.tscn")
+		2:
+			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Golem/Crumbs.tscn")
+		3:
+			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Ghoul/Spit.tscn")
+		4:
+			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Ghoul/Leap.tscn")
+		5:
+			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Ghoul/GhoulMelee.tscn")
+		6:
+			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Skeleton/Bomb.tscn")
+		7:
+			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Skeleton/Multishot.tscn")
+		8:
+			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Skeleton/SkeletonMelee.tscn")
+		9:
+			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Haunted/Conjure.tscn")
+		10:
+			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Haunted/Thunder.tscn")
+		11:
+			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Haunted/Howl.tscn")
+
 func loadSummonType(summonType: int):
 	match summonType:
 		0:
@@ -52,9 +78,7 @@ func loadSummonType(summonType: int):
 func initializeFromInfo(summonInfo: SummonInfo):
 	
 	loadSummonType(summonInfo.type)
-	
-	#TODO: Charger le type de sort ICI dans $CasterComponent
-	#summonInfo.spellType
+	loadSpellType(summonInfo.spellType)
 	
 	$HealthComponent.MaxHealth = summonInfo.health
 	
@@ -66,7 +90,6 @@ func initializeFromInfo(summonInfo: SummonInfo):
 	self.confortDistance = confortDistance
 	
 func _ready():
-	loadRandomSummon()
 	$ShaderAnimation.setUnique()
 
 func updateMovement(direction, updateSpeed, delta):

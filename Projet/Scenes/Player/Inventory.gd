@@ -15,33 +15,8 @@ var possibleCrafts: PossibleCrafts = preload("res://Scenes/Player/PossibleCrafts
 func _ready():
 	storedMaterials.resize(get_node("/root/Global").nbMaterials)
 	hotbar.slotbar.connect(_slotbar_pressed)
-	
-	var isPossible = possibleCrafts.getCraftResult([5, 2, 3])
-	print(isPossible)
-	
-	isPossible = possibleCrafts.getCraftResult([1, 0])
-	print(isPossible)
-	
-	isPossible = possibleCrafts.getCraftResult([3, 4])
-	print(isPossible)
-	
-	isPossible = possibleCrafts.getCraftResult([4, 3])
-	print(isPossible)
-	
-	isPossible = possibleCrafts.getCraftResult([4, 3])
-	print(isPossible)
-	
-	isPossible = possibleCrafts.getCraftResult([1, 0, 2])
-	print(isPossible)
-	
-	isPossible = possibleCrafts.getCraftResult([2, 0, 1])
-	print(isPossible)
-	
-	isPossible = possibleCrafts.getCraftResult([5, 2, 0, 1, 2])
-	print(isPossible)
-	
-	pass
 
+#Materials -> 0rock, 1bone, 2herb, 3wood, 4shroom
 func addMaterial(materialType: int, quantity: int):
 	if materialType >= storedMaterials.size():
 		print("Unknown material type")
@@ -60,10 +35,13 @@ func _slotbar_pressed(value, toggled_on):
 		if index > -1 and !toggled_on:
 			floatingMaterials.remove_at(index)
 
-func _input(event):
-	if floatingMaterials.size() > 0 and event.is_action_pressed("primary_action"):
-		_try_craft(floatingMaterials)
-
-func _try_craft(materials):
-	#if materials is Array[int]:
-	pass
+func try_craft():
+	var recipe = possibleCrafts.getCraftResult(floatingMaterials)
+	if recipe:
+		for item in floatingMaterials:
+			storedMaterials[item] -= 1
+	floatingMaterials.clear()
+	for slot in get_node("/root/DebugScene/UI/Hotbar").get_children(true):
+		if slot is BaseButton:
+			slot.set_pressed_no_signal(false)
+	return recipe

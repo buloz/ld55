@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxqep3qxeyawt"]
+
+[ext_resource type="Script" path="res://Scenes/Attacks/Projectile/multiprojectile.gd" id="1_v4xfq"]
+[ext_resource type="PackedScene" uid="uid://cev6kffqmrxuq" path="res://Scenes/Attacks/Projectile/projectile.tscn" id="2_kyr2e"]
+[ext_resource type="PackedScene" uid="uid://blc1sjka6ahc6" path="res://Scenes/Component/attackComponent.tscn" id="3_bqe32"]
+
+[node name="SkeletonMultishot" type="Node2D"]
+script = ExtResource("1_v4xfq")
+count = 10
+spreadAngle = 6.283
+projectileScene = ExtResource("2_kyr2e")
+
+[node name="AttackComponent" parent="." instance=ExtResource("3_bqe32")]
+attack_damage = 2.0
+attack_cooldown = 20.0

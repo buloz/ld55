@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dcjb3a10tkvaa"]
+
+[ext_resource type="Script" path="res://Scenes/Attacks/Blast/Blast.gd" id="1_xtryg"]
+[ext_resource type="PackedScene" uid="uid://blc1sjka6ahc6" path="res://Scenes/Component/attackComponent.tscn" id="2_pkk7a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5147m"]
+
+[node name="HauntedHowl" type="Area2D" node_paths=PackedStringArray("attack")]
+collision_mask = 2
+script = ExtResource("1_xtryg")
+targetRadius = 200.0
+offsetRadius = 50.0
+travelTime = 0.01
+attack = NodePath("AttackComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5147m")
+
+[node name="TravelTimer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="AttackComponent" parent="." instance=ExtResource("2_pkk7a")]
+attack_damage = 15.0
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

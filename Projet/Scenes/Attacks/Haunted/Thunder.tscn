@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbsjt88j76x2b"]
+
+[ext_resource type="Script" path="res://Scenes/Attacks/Strike/Strike.gd" id="1_gr5cx"]
+[ext_resource type="PackedScene" uid="uid://qks2cmf75chg" path="res://Scenes/Component/NearestEnemyFinder.tscn" id="2_71uxc"]
+[ext_resource type="PackedScene" uid="uid://blc1sjka6ahc6" path="res://Scenes/Component/attackComponent.tscn" id="3_nsw5f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h1ffr"]
+radius = 67.42
+
+[node name="HauntedThunder" type="Area2D" node_paths=PackedStringArray("attack")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_gr5cx")
+delay = 0.5
+attack = NodePath("AttackComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_h1ffr")
+
+[node name="NearestEnemyFinder" parent="." instance=ExtResource("2_71uxc")]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -20.0
+offset_top = -21.0
+offset_right = 20.0
+offset_bottom = 19.0
+color = Color(0, 0.486275, 1, 1)
+
+[node name="AttackComponent" parent="." instance=ExtResource("3_nsw5f")]
+attack_damage = 30.0
+attack_cooldown = 1.0

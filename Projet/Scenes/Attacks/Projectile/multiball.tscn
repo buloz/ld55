@@ -13,6 +13,7 @@ projectileScene = ExtResource("2_p6yck")
 
 [node name="AttackComponent" parent="." instance=ExtResource("3_tfkit")]
 attack_damage = 8.0
+attack_cooldown = 20.0
 
 [node name="RotationComponent" type="Node" parent="."]
 script = ExtResource("3_un7j7")

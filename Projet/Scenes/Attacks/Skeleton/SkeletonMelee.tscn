@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cv8hlpipfbixq"]
+
+[ext_resource type="Script" path="res://Scenes/Attacks/Melee/Melee.gd" id="1_t4v6s"]
+[ext_resource type="Script" path="res://Scenes/Component/attackComponent.gd" id="2_kl78g"]
+
+[node name="SkeletonMelee" type="Node2D" node_paths=PackedStringArray("attack")]
+script = ExtResource("1_t4v6s")
+attackRange = 150.0
+attack = NodePath("AttackComponent")
+
+[node name="AttackComponent" type="Node" parent="."]
+script = ExtResource("2_kl78g")
