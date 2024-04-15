@@ -7,6 +7,7 @@ var floatingMaterials: Array[int]
 
 @onready var hotbar:Hotbar = get_node("/root/DebugScene/UI/Hotbar")
 
+signal inventoryUpdate(material:int, quantity:int)
 
 var possibleCrafts: PossibleCrafts = preload("res://Scenes/Player/PossibleCrafts.gd").new()
 
@@ -26,7 +27,7 @@ func addMaterial(materialType: int, quantity: int):
 	
 	storedMaterials[materialType] += quantity
 	
-	print("New inventory: ", storedMaterials)
+	inventoryUpdate.emit(materialType, storedMaterials[materialType])
 
 func _slotbar_pressed(value, toggled_on):
 
@@ -51,6 +52,7 @@ func try_craft():
 	if recipe:
 		for item in floatingMaterials:
 			storedMaterials[item] -= 1
+			inventoryUpdate.emit(item, storedMaterials[item])
 	floatingMaterials.clear()
 	for slot in get_node("/root/DebugScene/UI/Hotbar").get_children(true):
 		if slot is BaseButton:

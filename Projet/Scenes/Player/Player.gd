@@ -1,23 +1,21 @@
 class_name PlayerClass extends CharacterBody2D
 
-@export var projectileScene: PackedScene
-@export var multiProjectileScene: PackedScene
-@export var ballScene: PackedScene
-@export var blastScene: PackedScene
-@export var strikeScene: PackedScene
-@export var projectileShapeResource: Shape2D
-
 @export var maxSpeed: float = 700.0
 @export var acceleration: float = 6000.0
 @export var friction: float = 4000.0
 
 @onready var animationState: AnimationState = $ShaderAnimation.get_node("AnimationState")
 
+var actualTutoStep:int = 0
+
+signal tutoStep(text:String)
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func gatherMaterial(materialType: int, quantity: int):
-	print("J'ai rammassé %d" % materialType)
+	if actualTutoStep <= 1:
+		nextTutoStep()
 	$Inventory.addMaterial(materialType, quantity)
 	$gather.play()
 
@@ -70,3 +68,23 @@ func _unhandled_input(event):
 		var summon = $Inventory.try_craft()
 		if summon:
 			$SummonSpawner.spawnSummon(get_global_mouse_position(), summon)
+		if actualTutoStep >= 2 and actualTutoStep < 5:
+			nextTutoStep()
+	if event.is_action_pressed("test"):
+		var spell = load("res://Scenes/Attacks/Haunted/Conjure.tscn").instantiate()
+		spell.initialize(global_position, get_global_mouse_position(), true)
+		add_child(spell)
+
+func nextTutoStep():
+	actualTutoStep += 1
+	match actualTutoStep:
+		0:
+			tutoStep.emit("Gather materials by walking over it.")
+		1:
+			tutoStep.emit("Gather materials by walking over it.")
+		2:
+			tutoStep.emit("Summon your first creature by combining materials. (hint : golems loves rocks and herbs)")
+		3:
+			tutoStep.emit("There are plenty of tasty recipes in nature. Try yours !")
+		4: 
+			tutoStep.emit("")
