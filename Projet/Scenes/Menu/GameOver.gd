@@ -1,21 +1,21 @@
-extends Control
+extends CanvasLayer
 
 @export var quitButton:BaseButton
 @export var retryButton:BaseButton
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _ready():
+	$UI/QuitButton.pressed.connect(quit)
+	$UI/RetryButton.pressed.connect(retry)
 
+func _out_anim(callback: Callable):
+	var t := create_tween()
+	t.set_trans(Tween.TRANS_SINE)
+	t.set_ease(Tween.EASE_OUT)
+	t.tween_property($front, "position:y", 324, 2.0)
+	t.tween_callback(callback)
 
-func _on_quit_button_pressed():
-	get_tree().quit()
+func quit():
+	_out_anim(get_tree().change_scene_to_file.bind("res://Scenes/Menu/Menu.tscn"))
 
-
-func _on_retry_button_pressed():
-	var prevscene = get_node("/root/DebugScene/MainScene")
-	prevscene.free()
-	var newScene = load("res://Scenes/Menu/main_scene.tscn").instantiate()
-	get_node("/root/DebugScene").add_child(newScene)
-	get_node("/root/DebugScene/UI").setNewScene(newScene)
-	get_parent().queue_free()
+func retry():
+	_out_anim(get_tree().reload_current_scene)

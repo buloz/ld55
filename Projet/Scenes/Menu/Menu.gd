@@ -5,8 +5,7 @@ const mainScene := preload("res://Scenes/Debug/DebugScene.tscn")
 var selected = null
 
 func _ready():
-	var os_name := OS.get_name()
-	if os_name == "HTML5":
+	if OS.get_name() == "HTML5":
 		$UI/Quit.queue_free()
 	
 	unselect()

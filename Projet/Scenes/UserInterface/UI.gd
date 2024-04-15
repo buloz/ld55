@@ -6,13 +6,17 @@ func _ready():
 	$Tutorial.exit_tutorial.connect(reactivate_button)
 	set_process_input(true)
 	var player = get_parent().get_tree().get_first_node_in_group("player")
+	
 	player.tutoStep.connect(updateText)
+	
 	player.get_node("Inventory").inventoryUpdate.connect(updateSlotTooltip)
 	$Label.text = "Gather materials by walking over it."
+	
+	$HealthBar.setMaxHealth(player.get_node("HealthComponent").MaxHealth)
+	player.get_node("DamageReceiver").healthUpdated.connect($HealthBar.updateHealthPoint)
 
 func setNewScene(scene:Node2D):
 	var player = scene.get_node("Player")
-	#player.tutoStep.connect(updateText)
 	var inventory = player.get_node("Inventory")
 	inventory.inventoryUpdate.connect(updateSlotTooltip)
 	for index in inventory.storedMaterials.size():
@@ -21,6 +25,8 @@ func setNewScene(scene:Node2D):
 		add_child(tutoLabel.instantiate())
 		player.tutoStep.connect(updateText)
 		$Label.text = "Gather materials by walking over it."
+	$HealthBar.updateHealthPoint(player.get_node("HealthComponent").currentHealth)
+	player.get_node("DamageReceiver").healthUpdated.connect($HealthBar.updateHealthPoint)
 
 func _on_texture_button_pressed():
 	$TutorialButton.disabled = true
