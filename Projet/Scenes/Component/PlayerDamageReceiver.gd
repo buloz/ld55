@@ -13,8 +13,11 @@ func _physics_process(_delta):
 				if body.get_parent().has_node("AttackComponent"):
 					var attackComponent: AttackComponent = body.get_parent().get_node("AttackComponent")
 					if not attackComponent.on_cooldown:
+						print(attackComponent.attack_damage)
 						hitBoxComponent.damage(attackComponent)
 						healthUpdated.emit(hitBoxComponent.healthComponent.currentHealth)
 						
 						attackComponent.setOnCooldown()
 						$Cooldown.start()
+						
+						break

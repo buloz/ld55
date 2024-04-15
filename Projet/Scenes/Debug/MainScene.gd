@@ -3,6 +3,7 @@ extends Node2D
 signal lose(score:int)
 
 func _ready():
+	get_node("/root/Global").playerDead = false
 	lose.connect(game_over)
 	
 func game_over(score:int):

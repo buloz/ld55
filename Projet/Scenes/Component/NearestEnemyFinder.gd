@@ -52,7 +52,7 @@ func _physics_process(_delta):
 	if not playerTeam:
 		var playerDist: float = get_parent().position.distance_to(get_node("/root/Global").playerPosition)
 		
-		if playerDist < shortestDistance:
+		if playerDist < shortestDistance and not get_node("/root/Global").playerDead:
 			get_parent().hasTarget = true
 			get_parent().targetPosition = get_node("/root/Global").playerPosition
 			get_parent().distanceToTarget = playerDist

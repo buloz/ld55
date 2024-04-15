@@ -6,6 +6,8 @@ class_name Mob extends "res://Scenes/Entity/Entity.gd"
 
 @export var speedAcceleration: float = 500
 
+var idleNoise: FastNoiseLite = FastNoiseLite.new()
+
 func _init():
 	playerTeam = false
 	chaseTarget = true
@@ -30,6 +32,12 @@ func _ready():
 	loadRandomMob()
 	$ShaderAnimation.setUnique()
 	animationState.walking = true
+	
+	idleNoise.seed = randi()
+	
+	idleNoise.frequency = 0.001
+	idleNoise.fractal_octaves = 1
+	idleNoise.fractal_lacunarity = 1.4
 
 func die():
 	$AttackComponent.queue_free()
@@ -58,3 +66,15 @@ func _physics_process(delta):
 			animationState.orientation = direction.normalized().x
 			
 			position += direction * (speed + timeScale * speedAcceleration) * delta
+			
+			animationState.walking = true
+		
+		else:
+			animationState.walking = false
+	
+	else:
+		var angleFactor: float = idleNoise.get_noise_2d(position.x + (Time.get_ticks_msec() / 1000.0), position.y - (Time.get_ticks_msec() / 1000.0)) * 1.5
+		
+		position += Vector2.from_angle(2 * PI * angleFactor).normalized() * speed * 0.2 * delta
+
+		animationState.walking = false

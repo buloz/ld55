@@ -37,6 +37,9 @@ func damage(v: int):
 		$damage.play()
 
 func die():
+	
+	get_node("/root/Global").playerDead = true
+	
 	$SummonSpawner.queue_free()
 	$HealthComponent.queue_free()
 	$HitBoxComponent.queue_free()
@@ -85,7 +88,7 @@ func _physics_process(delta):
 	get_node("/root/Global").playerPosition = position
 
 func _unhandled_input(event):
-	if event.is_action_pressed("primary_action"):
+	if event.is_action_pressed("primary_action") and not get_node("/root/Global").playerDead:
 		var summon = $Inventory.try_craft()
 		if summon:
 			$SummonSpawner.spawnSummon(get_global_mouse_position(), summon)
