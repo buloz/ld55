@@ -62,7 +62,7 @@ volume_db = -13.0
 max_polyphony = 5
 
 [node name="HealthComponent" parent="." instance=ExtResource("11_1nqvj")]
-MaxHealth = 20.0
+MaxHealth = 100.0
 
 [node name="HitBoxComponent" parent="." node_paths=PackedStringArray("healthComponent") instance=ExtResource("12_1u2hb")]
 collision_mask = 2

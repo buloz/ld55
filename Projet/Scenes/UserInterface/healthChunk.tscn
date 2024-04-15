@@ -1,17 +1,14 @@
 [gd_scene load_steps=6 format=3 uid="uid://cyjl10nkwmh0b"]
 
-[ext_resource type="Texture2D" uid="uid://cunv3qprma7gk" path="res://Ressources/UI/health_0.png" id="1_m47s6"]
-[ext_resource type="Texture2D" uid="uid://ba6e15p34hwqc" path="res://Ressources/UI/health_1.png" id="2_kymu1"]
-[ext_resource type="Texture2D" uid="uid://dnbww6ucph4tv" path="res://Ressources/UI/health_2.png" id="3_y037s"]
+[ext_resource type="Texture2D" uid="uid://ch7pmyu34gpt7" path="res://Ressources/UI/health_0.png" id="1_m47s6"]
+[ext_resource type="Texture2D" uid="uid://bb6tms8r4or74" path="res://Ressources/UI/health_1.png" id="2_kymu1"]
+[ext_resource type="Texture2D" uid="uid://5chknqshmcdn" path="res://Ressources/UI/health_2.png" id="3_y037s"]
 
 [sub_resource type="GDScript" id="GDScript_wbu6l"]
 script/source = "extends Panel
 
-@onready var sprite = $sprite
-
-func update(full:bool):
-	if full: sprite.frame = 2
-	else: sprite.frame = 0
+func update(value:int):
+	$sprite.frame = value
 "
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_f4wdb"]

@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cklhskx8mt2no" path="res://Ressources/UI/wood.png" id="7_p8u5l"]
 [ext_resource type="Texture2D" uid="uid://eei8a85cj7d2" path="res://Ressources/UI/shroom.png" id="8_d2cv1"]
 [ext_resource type="PackedScene" uid="uid://wdc3ni6egi2a" path="res://Scenes/UserInterface/tutoLabel.tscn" id="10_xfhny"]
-[ext_resource type="PackedScene" uid="uid://d0d61qxb5c671" path="res://Scenes/UserInterface/health_bar.tscn" id="12_8sgdl"]
+[ext_resource type="PackedScene" uid="uid://di8plgh71bb1w" path="res://Scenes/UserInterface/health_bar.tscn" id="12_8sgdl"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_eae5c"]
 device = -1

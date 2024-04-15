@@ -16,12 +16,16 @@ func _process(delta):
 func setMaxHealth(max:float):
 	maxHp = max
 	for i in 10:
-		add_child(healthChunk.instantiate())
+		var child = healthChunk.instantiate()
+		child.update(2)
+		add_child(child)
 
 func updateHealthPoint(currentHealthPoint:float):
 	var chunks = round(currentHealthPoint/maxHp * 10)
+	var state = snapped(currentHealthPoint/maxHp * 3, 1)
 	var children = get_children()
 	for i in chunks:
-		children[i].update(true)
+		children[i].update(state)
 	for i in range(chunks, children.size()):
-		children[i].update(false)
+		children[i].update(state)
+		children[i].visible = false

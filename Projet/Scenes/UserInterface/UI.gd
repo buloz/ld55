@@ -25,7 +25,9 @@ func setNewScene(scene:Node2D):
 		add_child(tutoLabel.instantiate())
 		player.tutoStep.connect(updateText)
 		$Label.text = "Gather materials by walking over it."
-	$HealthBar.updateHealthPoint(player.get_node("HealthComponent").currentHealth)
+	var healthComponent = player.get_node("HealthComponent")
+	$HealthBar.setMaxHealth(healthComponent.MaxHealth)
+	$HealthBar.updateHealthPoint(healthComponent.currentHealth)
 	player.get_node("DamageReceiver").healthUpdated.connect($HealthBar.updateHealthPoint)
 
 func _on_texture_button_pressed():

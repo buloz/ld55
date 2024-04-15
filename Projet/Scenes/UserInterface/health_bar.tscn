@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://di8plgh71bb1w"]
+
+[ext_resource type="Script" path="res://Scenes/UserInterface/HealthBar.gd" id="1_wj071"]
+
+[node name="HealthBar" type="HBoxContainer"]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 595.0
+offset_bottom = 55.0
+theme_override_constants/separation = 3
+script = ExtResource("1_wj071")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://8xerjrymahow"]
 
 [ext_resource type="Script" path="res://Scenes/Attacks/Projectile/multiball.gd" id="1_130sv"]
-[ext_resource type="PackedScene" uid="uid://cmb8wpt64u20a" path="res://Scenes/Attacks/Projectile/ConjureBall.tscn" id="2_8art8"]
+[ext_resource type="PackedScene" path="res://Scenes/Attacks/Projectile/ConjureBall.tscn" id="2_8art8"]
 [ext_resource type="PackedScene" uid="uid://blc1sjka6ahc6" path="res://Scenes/Component/attackComponent.tscn" id="3_34b6c"]
 [ext_resource type="Script" path="res://Scenes/Attacks/Projectile/RotationComponent.gd" id="4_h3i0o"]
 
