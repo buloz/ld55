@@ -1,4 +1,4 @@
-extends Node
+class_name CasterComponent extends Node
 
 #Distance for the entity to start a spell cast
 @export_range(0.0, 1000.0) var distanceToCast: float

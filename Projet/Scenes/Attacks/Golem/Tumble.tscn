@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://537pll7tibr6"]
+
+[ext_resource type="Script" path="res://Scenes/Attacks/Charge/Charge.gd" id="1_imajn"]
+[ext_resource type="Script" path="res://Scenes/Component/attackComponent.gd" id="2_g8rlx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gmk2y"]
+radius = 150.0
+
+[node name="GolemTumble" type="Area2D" node_paths=PackedStringArray("attack")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_imajn")
+attack = NodePath("AttackComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gmk2y")
+
+[node name="AttackComponent" type="Node" parent="."]
+script = ExtResource("2_g8rlx")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

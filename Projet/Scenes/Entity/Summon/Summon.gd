@@ -28,23 +28,23 @@ func loadRandomSummon():
 func loadSpellType(spellType:int):
 	match spellType:
 		0:
-			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Haunted/Thunder.tscn")
+			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Golem/Tumble.tscn")
 		1:
 			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Golem/Shockwave.tscn")
 		2:
 			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Golem/Crumbs.tscn")
 		3:
-			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Skeleton/Bomb.tscn")
+			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Ghoul/Spit.tscn")
 		4:
-			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Skeleton/Bomb.tscn")
+			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Ghoul/Leap.tscn")
 		5:
-			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Skeleton/Bomb.tscn")
+			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Ghoul/GhoulMelee.tscn")
 		6:
 			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Skeleton/Bomb.tscn")
 		7:
 			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Skeleton/Multishot.tscn")
 		8:
-			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Skeleton/Bomb.tscn")
+			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Skeleton/SkeletonMelee.tscn")
 		9:
 			$CasterComponent.spellScene = preload("res://Scenes/Attacks/Haunted/Conjure.tscn")
 		10:
