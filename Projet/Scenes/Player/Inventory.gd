@@ -35,7 +35,10 @@ func _slotbar_pressed(value, toggled_on):
 		if storedMaterials[value] > 0:
 			floatingMaterials.append(value)
 			
-			Input.set_custom_mouse_cursor(mouseSummonCursor, 0, Vector2(64, 64))
+			if possibleCrafts.getCraftResult(floatingMaterials):
+				Input.set_custom_mouse_cursor(mouseSummonCursor, 0, Vector2(64, 64))
+			else:
+				Input.set_custom_mouse_cursor(null)
 			
 		else:
 			hotbar.get_node("Slot%d" % (5 + value)).button_pressed = false
@@ -43,9 +46,11 @@ func _slotbar_pressed(value, toggled_on):
 		var index = floatingMaterials.rfind(value)
 		if index > -1 and not toggled_on:
 			floatingMaterials.remove_at(index)
-			if floatingMaterials.is_empty():
+			
+			if floatingMaterials.is_empty() or not possibleCrafts.getCraftResult(floatingMaterials):
 				Input.set_custom_mouse_cursor(null)
-
+			else:
+				Input.set_custom_mouse_cursor(mouseSummonCursor, 0, Vector2(64, 64))
 
 func try_craft():
 	var recipe = possibleCrafts.getCraftResult(floatingMaterials)
