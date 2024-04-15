@@ -1,24 +1,45 @@
 extends ColorRect
 
-var loadedStep: float = 0.0
-var animate: bool = false
 
-# Called when the node enters the scene tree for the first time.
+
+
 func _ready():
 	mouse_filter = MOUSE_FILTER_IGNORE
-	material.set_shader_parameter("screenLoadScale", 0.0)
-	get_tree().create_timer(0.5).timeout.connect(self.start)
+	material.set_shader_parameter("screenLoadScale", 1.0)
 
-func start():
-	animate = true
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if animate:
-		loadedStep += delta * 0.5
-		if loadedStep > 1.0:
-			loadedStep = 1.0
-			animate = false
-		
-		material.set_shader_parameter("screenLoadScale", loadedStep)
-		
+func start(open: bool, call: Callable = Callable()):
+	
+	var tween = create_tween()
+	var from: float
+	var to: float
+	
+	if open:
+		from = 0.0
+		to = 1.0
+	else:
+		from = 1.0
+		to = 0.0
+	
+	tween.set_trans(Tween.TRANS_EXPO)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.tween_method(func(x: float): material.set_shader_parameter("screenLoadScale", x), from, to, 2.0)
+	tween.tween_callback(call)
+	
+#
+## Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+	#if animate:
+		#if open:
+			#loadedStep += delta * 0.5
+			#if loadedStep > 1.0:
+				#loadedStep = 1.0
+				#animate = false
+		#else:
+			#loadedStep -= delta * 0.5
+			#if loadedStep < 0.0:
+				#loadedStep = 0.0
+				#animate = false
+		#
+		#material.set_shader_parameter("screenLoadScale", loadedStep)
+		#

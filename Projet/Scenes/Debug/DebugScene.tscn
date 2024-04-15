@@ -1,17 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://l2wvjjpnjul4"]
+[gd_scene load_steps=6 format=3 uid="uid://cbm6jbfyweonk"]
 
-[ext_resource type="Script" path="res://Scenes/Debug/DebugScene.gd" id="1_2lmlw"]
-[ext_resource type="PackedScene" uid="uid://bu2rqxb6vsfem" path="res://Scenes/Menu/main_scene.tscn" id="2_lp5v5"]
-[ext_resource type="PackedScene" uid="uid://lklc8nrekfu5" path="res://Scenes/Background/Background.tscn" id="3_nqme5"]
-[ext_resource type="PackedScene" uid="uid://blllcwc26unxx" path="res://Scenes/ScreenFilter/ScreenFilter.tscn" id="5_ej77f"]
-[ext_resource type="PackedScene" uid="uid://nxr7b0d625fr" path="res://Scenes/UserInterface/UI.tscn" id="6_yl73a"]
+[ext_resource type="PackedScene" uid="uid://nxr7b0d625fr" path="res://Scenes/UserInterface/UI.tscn" id="1_ateoe"]
+[ext_resource type="Script" path="res://Scenes/Debug/DebugScene.gd" id="1_y7tw8"]
+[ext_resource type="PackedScene" uid="uid://lklc8nrekfu5" path="res://Scenes/Background/Background.tscn" id="2_5chqx"]
+[ext_resource type="PackedScene" uid="uid://bu2rqxb6vsfem" path="res://Scenes/Menu/main_scene.tscn" id="3_bk2pp"]
+[ext_resource type="PackedScene" uid="uid://blllcwc26unxx" path="res://Scenes/ScreenFilter/ScreenFilter.tscn" id="4_tquym"]
 
 [node name="DebugScene" type="Node"]
+script = ExtResource("1_y7tw8")
 
-[node name="MainScene" parent="." instance=ExtResource("1_2ysjv")]
+[node name="UI" parent="." instance=ExtResource("1_ateoe")]
 
-[node name="UI" parent="." instance=ExtResource("2_wnfjq")]
+[node name="Background" parent="." instance=ExtResource("2_5chqx")]
 
-[node name="UI" parent="." instance=ExtResource("6_yl73a")]
+[node name="MainScene" parent="." instance=ExtResource("3_bk2pp")]
 
-[node name="ScreenFilter" parent="." instance=ExtResource("5_ej77f")]
+[node name="ScreenFilter" parent="." instance=ExtResource("4_tquym")]

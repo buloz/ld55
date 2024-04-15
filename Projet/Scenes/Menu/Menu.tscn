@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://c2vgwq4l557w5"]
+[gd_scene load_steps=59 format=3 uid="uid://c2vgwq4l557w5"]
 
 [ext_resource type="Script" path="res://Scenes/Menu/Menu.gd" id="1_u7bgu"]
 [ext_resource type="Texture2D" uid="uid://c7l10bjuekbac" path="res://Ressources/menu/Arbrev2.png" id="2_6m2tl"]
@@ -19,11 +19,12 @@
 [ext_resource type="Texture2D" uid="uid://nyu6h3u6cax8" path="res://Ressources/menu/thunder8.png" id="10_ldu07"]
 [ext_resource type="Texture2D" uid="uid://xie88bmls10y" path="res://Ressources/menu/sphere1024.png" id="14_a6n4p"]
 [ext_resource type="Texture2D" uid="uid://cd3cqscecawe1" path="res://Ressources/menu/sphere_120.png" id="15_qbu6j"]
-[ext_resource type="Texture2D" uid="uid://cnh1gw8kl67b" path="res://Ressources/menu/Title.png" id="18_0qv0n"]
+[ext_resource type="Texture2D" uid="uid://yjoa78rq0cui" path="res://Ressources/menu/Title.png" id="18_0qv0n"]
 [ext_resource type="Texture2D" uid="uid://dgld6ggq1dr5d" path="res://Ressources/menu/Bouton_Jouer.png" id="18_p5la7"]
 [ext_resource type="Texture2D" uid="uid://b420ohbhkh4sr" path="res://Ressources/menu/CraneSelection.png" id="19_o4bvp"]
 [ext_resource type="Texture2D" uid="uid://mq1xddmfvmwa" path="res://Ressources/menu/Bouton_Quit.png" id="19_s3glt"]
-[ext_resource type="Texture2D" uid="uid://b0b8sygkcvn1s" path="res://Ressources/menu/Penta.png" id="19_ubt2v"]
+[ext_resource type="Texture2D" uid="uid://ckyn7kwkoy0r5" path="res://Ressources/menu/Penta.png" id="19_ubt2v"]
+[ext_resource type="PackedScene" uid="uid://blllcwc26unxx" path="res://Scenes/ScreenFilter/ScreenFilter.tscn" id="25_f5md5"]
 
 [sub_resource type="Gradient" id="Gradient_3njgm"]
 colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0.266667)
@@ -1051,3 +1052,5 @@ layout_mode = 2
 text = "ObaniGarage"
 label_settings = SubResource("LabelSettings_gt8d4")
 horizontal_alignment = 1
+
+[node name="ScreenFilter" parent="." instance=ExtResource("25_f5md5")]

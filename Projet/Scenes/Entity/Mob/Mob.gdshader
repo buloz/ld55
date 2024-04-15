@@ -68,12 +68,6 @@ void fragment() {
 	computeXOrientationUV(uv);
 	
 	COLOR = texture(TEXTURE, uv);
-	
-	//Ca
 	COLOR.r += damageState * 0.5;
-	
-	//Ou ca
-	//COLOR.rgb -= (vec3(1.0) - vec3(1.0, 0.0, 0.0)) * damageState;
-	
 
 }

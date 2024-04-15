@@ -21,9 +21,7 @@ func start_game():
 	print("MENU: Start game")
 	set_process_input(false)
 	
-	var tween = create_tween()
-	tween.tween_property(self, "modulate:a", 0.0, 2.0)
-	tween.tween_callback(get_tree().change_scene_to_packed.bind(mainScene))
+	$ScreenFilter/ScreenFilterRect.start(false, get_tree().change_scene_to_packed.bind(mainScene))
 
 func quit():
 	print("MENU: Quit")

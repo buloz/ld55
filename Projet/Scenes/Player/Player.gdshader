@@ -65,7 +65,6 @@ void fragment() {
 	
 	
 	COLOR = texture(TEXTURE, uv);
-	
 	COLOR.r += damageState * 0.5;
 }
 

@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://ce3ujkiyqvpfu"]
 
 [ext_resource type="Script" path="res://Scenes/Menu/GameOver.gd" id="1_06vtk"]
-[ext_resource type="Texture2D" uid="uid://cv4fwg4x2djq5" path="res://Ressources/menu/GameOver.png" id="2_5j0eo"]
-[ext_resource type="Texture2D" uid="uid://cwuq3wf043w6u" path="res://Ressources/menu/Retry.png" id="2_6tvb7"]
+[ext_resource type="Texture2D" uid="uid://dson82pfe4nw2" path="res://Ressources/menu/GameOver.png" id="2_5j0eo"]
+[ext_resource type="Texture2D" uid="uid://b00lckfckxvay" path="res://Ressources/menu/Retry.png" id="2_6tvb7"]
 [ext_resource type="Texture2D" uid="uid://mq1xddmfvmwa" path="res://Ressources/menu/Bouton_Quit.png" id="3_1caxs"]
 
 [node name="GameOver" type="CanvasLayer"]
@@ -42,6 +42,7 @@ texture = ExtResource("2_5j0eo")
 
 [node name="front" type="Line2D" parent="."]
 position = Vector2(0, -324)
-points = PackedVector2Array(0, 0, 1148, 0)
+scale = Vector2(1.00205, 1)
+points = PackedVector2Array(0, 0, 1152, 0)
 width = 648.0
 default_color = Color(0, 0, 0, 1)
