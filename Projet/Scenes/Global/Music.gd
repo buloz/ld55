@@ -1,6 +1,6 @@
 extends Node
 
-const MIN_DB := -40.0
+const MIN_DB := -35.0
 const MAX_DB := -10.0
 const TRANS = 1.0
 
@@ -19,7 +19,7 @@ func play(n : String):
 		if tween: tween.kill()
 		
 		tween = create_tween()
-		tween.set_ease(Tween.EASE_IN_OUT)
+		tween.set_ease(Tween.EASE_OUT)
 		tween.set_trans(Tween.TRANS_SINE)
 		
 		current_music.volume_db = MIN_DB

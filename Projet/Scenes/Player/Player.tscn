@@ -119,11 +119,11 @@ max_polyphony = 5
 
 [node name="damage" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_ss0ri")
-volume_db = -8.0
+volume_db = -12.0
 
 [node name="die" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_audh0")
-volume_db = -8.0
+volume_db = -9.0
 
 [node name="HealthComponent" parent="." instance=ExtResource("11_1nqvj")]
 MaxHealth = 100.0
