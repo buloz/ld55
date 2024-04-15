@@ -1,0 +1,21 @@
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://ioy5w4tp2kvx"]
+
+[sub_resource type="AudioEffectDistortion" id="AudioEffectDistortion_1ds3j"]
+resource_name = "Distortion"
+drive = 0.46
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_f613x"]
+resource_name = "Reverb"
+room_size = 0.52
+
+[resource]
+bus/1/name = &"Howl"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = 0.0
+bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectDistortion_1ds3j")
+bus/1/effect/0/enabled = true
+bus/1/effect/1/effect = SubResource("AudioEffectReverb_f613x")
+bus/1/effect/1/enabled = true
