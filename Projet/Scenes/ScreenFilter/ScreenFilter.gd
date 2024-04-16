@@ -5,8 +5,13 @@ extends ColorRect
 
 func _ready():
 	mouse_filter = MOUSE_FILTER_IGNORE
-	material.set_shader_parameter("screenLoadScale", 1.0)
+	material.set_shader_parameter("screenLoadScale", 0.0)
 
+func hideFilter(hiding: bool):
+	if hiding:
+		material.set_shader_parameter("screenLoadScale", 1.0)
+	else:
+		material.set_shader_parameter("screenLoadScale", 0.0)
 
 func start(open: bool, call: Callable = Callable()):
 	

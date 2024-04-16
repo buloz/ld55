@@ -4,6 +4,7 @@ varying flat vec4 regionInfo;
 
 uniform float col;
 uniform float row;
+uniform float randValue: hint_range(0.0, 1.0);
 
 varying vec2 pos;
 
@@ -48,8 +49,19 @@ void fragment() {
 		float angleStep = 0.5;
 		if (mod((abs(angle) * 1.0 + TIME * 1.0), angleStep) > angleStep * 0.5) {
 			COLOR.a = 3.0;
+			
+			vec3 color1 = vec3(1.0, 1.0, 0.7);
+			vec3 color2 = vec3(1.0, 1.0, 0.85);
+			//
+			float alpha = abs(cos(TIME * 0.75 + -4752541.0 * randValue));
+			
+			vec3 gradient = color1 * alpha + color2 * (1.0 - alpha);
+			
+			COLOR.rgb = gradient;
 		}
 
+		
+		
 		
 		COLOR.a *= (1.0-dist) * 1.0;
 		

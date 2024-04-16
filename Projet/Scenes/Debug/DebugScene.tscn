@@ -13,4 +13,3 @@ script = ExtResource("1_y7tw8")
 [node name="MainScene" parent="." instance=ExtResource("3_bk2pp")]
 
 [node name="ScreenFilter" parent="." instance=ExtResource("4_tquym")]
-visible = false

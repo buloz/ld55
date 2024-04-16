@@ -5,6 +5,9 @@ const mainScene := preload("res://Scenes/Debug/DebugScene.tscn")
 var selected = null
 
 func _ready():
+	
+	$ScreenFilter/ScreenFilterRect.hideFilter(true)
+	
 	if OS.get_name() == "HTML5":
 		$UI/Quit.queue_free()
 	

@@ -9,6 +9,7 @@ resource_local_to_scene = true
 shader = ExtResource("1_xyvrg")
 shader_parameter/col = 1.0
 shader_parameter/row = 1.0
+shader_parameter/randValue = null
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_32p03"]
 atlas = ExtResource("2_40i3o")

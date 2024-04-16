@@ -25,6 +25,7 @@ func _ready():
 	
 	$AnimatedSprite2D.material.set_shader_parameter("col", col + 1)
 	$AnimatedSprite2D.material.set_shader_parameter("row", row + 1)
+	$AnimatedSprite2D.material.set_shader_parameter("randValue", randf())
 	
 func _on_area_2d_body_entered(_body):
 	get_node("/root/Global").Player.gatherMaterial(materialType, 1)

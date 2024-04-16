@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://c2mtxhyk88bpb"]
+[gd_scene load_steps=50 format=3 uid="uid://c2mtxhyk88bpb"]
 
 [ext_resource type="Script" path="res://Scenes/Entity/Summon/Summon.gd" id="1_8wfjq"]
 [ext_resource type="PackedScene" uid="uid://dm7wjxq1yhhha" path="res://Scenes/Component/healthComponent.tscn" id="2_n0cvy"]
@@ -153,10 +153,6 @@ stream_3/weight = 1.0
 stream_4/stream = ExtResource("37_eb5a3")
 stream_4/weight = 1.0
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_stf3n"]
-particle_flag_disable_z = true
-gravity = Vector3(0, 98, 0)
-
 [node name="Summon" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_8wfjq")
@@ -209,7 +205,3 @@ pitch_scale = 1.15
 stream = SubResource("AudioStreamRandomizer_qka3f")
 volume_db = -5.0
 pitch_scale = 0.8
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-position = Vector2(736, 100)
-process_material = SubResource("ParticleProcessMaterial_stf3n")
