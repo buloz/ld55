@@ -29,6 +29,7 @@ func setNewScene(scene:Node2D):
 	$HealthBar.setMaxHealth(healthComponent.MaxHealth)
 	$HealthBar.updateHealthPoint(healthComponent.currentHealth)
 	player.get_node("DamageReceiver").healthUpdated.connect($HealthBar.updateHealthPoint)
+	visible = true
 
 func _on_texture_button_pressed():
 	$TutorialButton.disabled = true

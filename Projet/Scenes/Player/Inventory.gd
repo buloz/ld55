@@ -56,7 +56,6 @@ func _slotbar_pressed(value, toggled_on):
 func try_craft():
 	var recipe = possibleCrafts.getCraftResult(floatingMaterials)
 	if recipe:
-		$pentagram/summon.play()
 		for item in floatingMaterials:
 			storedMaterials[item] -= 1
 			inventoryUpdate.emit(item, storedMaterials[item])

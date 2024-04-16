@@ -1,17 +1,22 @@
-[gd_scene load_steps=18 format=3 uid="uid://nxr7b0d625fr"]
+[gd_scene load_steps=24 format=3 uid="uid://nxr7b0d625fr"]
 
 [ext_resource type="Script" path="res://Scenes/UserInterface/UI.gd" id="1_4p5ls"]
 [ext_resource type="Script" path="res://Scenes/UserInterface/hotbar.gd" id="2_704ia"]
 [ext_resource type="PackedScene" uid="uid://bo0ukg5akkk7i" path="res://Scenes/UserInterface/slot.tscn" id="3_c5nv1"]
 [ext_resource type="Texture2D" uid="uid://cpsd6oce21let" path="res://Ressources/UI/rock.png" id="4_sylqw"]
-[ext_resource type="Texture2D" uid="uid://b0342lb04owk5" path="res://Ressources/menu/interro.png" id="4_wug80"]
+[ext_resource type="Texture2D" uid="uid://cjogodcats6cl" path="res://Ressources/menu/interro.png" id="4_wug80"]
 [ext_resource type="PackedScene" uid="uid://cod1nguf5sfab" path="res://Scenes/UserInterface/Tutorial.tscn" id="5_kivo1"]
 [ext_resource type="Texture2D" uid="uid://eqjpgbv5eboi" path="res://Ressources/UI/bone.png" id="5_vw8t3"]
 [ext_resource type="Texture2D" uid="uid://djefnqxd4ovdf" path="res://Ressources/UI/herb.png" id="6_axdck"]
 [ext_resource type="Texture2D" uid="uid://cklhskx8mt2no" path="res://Ressources/UI/wood.png" id="7_p8u5l"]
 [ext_resource type="Texture2D" uid="uid://eei8a85cj7d2" path="res://Ressources/UI/shroom.png" id="8_d2cv1"]
+[ext_resource type="AudioStream" uid="uid://cdxsa6opiu7aw" path="res://Ressources/sounds/player/click1.wav" id="9_ym2u3"]
+[ext_resource type="AudioStream" uid="uid://cry14ph8ulnoi" path="res://Ressources/sounds/player/click2.wav" id="10_q73ek"]
 [ext_resource type="PackedScene" uid="uid://wdc3ni6egi2a" path="res://Scenes/UserInterface/tutoLabel.tscn" id="10_xfhny"]
+[ext_resource type="AudioStream" uid="uid://iedr2bufhmtq" path="res://Ressources/sounds/player/click3.wav" id="11_ihdal"]
 [ext_resource type="PackedScene" uid="uid://di8plgh71bb1w" path="res://Scenes/UserInterface/health_bar.tscn" id="12_8sgdl"]
+[ext_resource type="AudioStream" uid="uid://c5ghv4gprlgib" path="res://Ressources/sounds/player/click4.wav" id="12_c8ewe"]
+[ext_resource type="AudioStream" uid="uid://c1034r8veig2c" path="res://Ressources/sounds/player/click5.wav" id="13_dts1s"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_eae5c"]
 device = -1
@@ -42,6 +47,20 @@ device = -1
 keycode = 53
 physical_keycode = 53
 unicode = 53
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4n7b4"]
+random_pitch = 1.05
+streams_count = 5
+stream_0/stream = ExtResource("9_ym2u3")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("10_q73ek")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("11_ihdal")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("12_c8ewe")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("13_dts1s")
+stream_4/weight = 1.0
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_4p5ls")
@@ -82,6 +101,11 @@ custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 key = SubResource("InputEventKey_1ttkj")
 additionalTexture = ExtResource("8_d2cv1")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Hotbar"]
+stream = SubResource("AudioStreamRandomizer_4n7b4")
+volume_db = -8.0
+pitch_scale = 0.35
 
 [node name="TutorialButton" type="TextureButton" parent="."]
 custom_minimum_size = Vector2(244, 0)

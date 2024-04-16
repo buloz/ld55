@@ -31,6 +31,7 @@ func _ready():
 	await get_tree().create_timer(delay).timeout
 	
 	$AnimationPlayer.play("thunder")
+	$AudioStreamPlayer2D.play()
 	
 	for area in get_overlapping_areas():
 		if area is HitboxComponent and area.healthComponent and hasTarget:

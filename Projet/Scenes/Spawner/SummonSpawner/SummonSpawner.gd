@@ -15,3 +15,7 @@ func spawnSummon(position: Vector2, info: SummonInfo):
 	newSummon.position = position
 	
 	spawnTargetNode.add_child(newSummon)
+	
+	var summonSound := $SummonSound.duplicate()
+	newSummon.add_child(summonSound)
+	summonSound.play()
