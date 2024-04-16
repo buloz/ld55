@@ -43,9 +43,6 @@
 [ext_resource type="AudioStream" uid="uid://b0skhrdghudth" path="res://Ressources/sounds/summons/spectredeath4.wav" id="41_prsqb"]
 [ext_resource type="AudioStream" uid="uid://cqpfg0egpbd48" path="res://Ressources/sounds/summons/spectredeath5.wav" id="42_wq03n"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ikrt"]
-size = Vector2(40, 40)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qj3d4"]
 shader = ExtResource("9_f7ot6")
 shader_parameter/walkingAlpha = null
@@ -153,6 +150,9 @@ stream_3/weight = 1.0
 stream_4/stream = ExtResource("37_eb5a3")
 stream_4/weight = 1.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_yfpa6"]
+radius = 38.0526
+
 [node name="Summon" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_8wfjq")
@@ -165,13 +165,6 @@ MaxHealth = 20.0
 
 [node name="DamageReceiver" parent="." node_paths=PackedStringArray("hitBoxComponent") instance=ExtResource("3_klaw6")]
 hitBoxComponent = NodePath("../HitBoxComponent")
-
-[node name="HitBoxComponent" parent="." node_paths=PackedStringArray("healthComponent") instance=ExtResource("3_d1y05")]
-collision_mask = 2
-healthComponent = NodePath("../HealthComponent")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
-shape = SubResource("RectangleShape2D_5ikrt")
 
 [node name="AttackComponent" parent="." instance=ExtResource("6_y6iwy")]
 attack_damage = 5.0
@@ -205,3 +198,11 @@ pitch_scale = 1.15
 stream = SubResource("AudioStreamRandomizer_qka3f")
 volume_db = -5.0
 pitch_scale = 0.8
+
+[node name="HitBoxComponent" parent="." node_paths=PackedStringArray("healthComponent") instance=ExtResource("3_d1y05")]
+collision_mask = 2
+healthComponent = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+shape = SubResource("CircleShape2D_yfpa6")
+debug_color = Color(0.913725, 0, 0.713726, 0.419608)

@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://b4g2mvxlwlcjq" path="res://Ressources/sounds/attack/wolf5.wav" id="8_iufgq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5147m"]
+resource_local_to_scene = true
 
 [sub_resource type="Animation" id="Animation_sxgke"]
 length = 0.001
@@ -109,6 +110,7 @@ attack = NodePath("AttackComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5147m")
+debug_color = Color(0.635294, 0.52549, 0.0588235, 0.419608)
 
 [node name="TravelTimer" type="Timer" parent="."]
 wait_time = 0.2
