@@ -1,7 +1,31 @@
-[gd_scene load_steps=8 format=3 uid="uid://cw10k5ipndu4x"]
+[gd_scene load_steps=8 format=3 uid="uid://c7lih2jpo6wqj"]
 
 [ext_resource type="PackedScene" uid="uid://bo0ukg5akkk7i" path="res://Scenes/UserInterface/slot.tscn" id="1_4jp4i"]
-[ext_resource type="Script" path="res://Scenes/UserInterface/hotbar.gd" id="1_usyy2"]
+
+[sub_resource type="GDScript" id="GDScript_sx0px"]
+script/source = "class_name Hotbar extends HBoxContainer
+
+signal slotbar(slot_name, state)
+
+func toggle(id: int, toggled_on: bool):
+	slotbar.emit(id, toggled_on)
+	$AudioStreamPlayer.play()
+
+func _on_slot_5_toggled(toggled_on):
+	toggle(0, toggled_on)
+
+func _on_slot_6_toggled(toggled_on):
+	toggle(1, toggled_on)
+
+func _on_slot_7_toggled(toggled_on):
+	toggle(2, toggled_on)
+
+func _on_slot_8_toggled(toggled_on):
+	toggle(3, toggled_on)
+
+func _on_slot_9_toggled(toggled_on):
+	toggle(4, toggled_on)
+"
 
 [sub_resource type="InputEventKey" id="InputEventKey_eae5c"]
 device = -1
@@ -36,7 +60,7 @@ offset_right = -986.0
 offset_bottom = -618.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_usyy2")
+script = SubResource("GDScript_sx0px")
 
 [node name="Slot0" parent="." instance=ExtResource("1_4jp4i")]
 custom_minimum_size = Vector2(70, 70)

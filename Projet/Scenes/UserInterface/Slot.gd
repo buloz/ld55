@@ -8,3 +8,6 @@ func _ready():
 	$AdditionalTexture.texture = additionalTexture
 	shortcut = Shortcut.new()
 	shortcut.events = [key]
+
+func set_quantity(v: int):
+	$Label.text = str(v)

@@ -105,19 +105,17 @@ func _unhandled_input(event):
 		var summon = $Inventory.try_craft()
 		if summon:
 			$SummonSpawner.spawnSummon(get_global_mouse_position(), summon)
-		if actualTutoStep >= 2 and actualTutoStep < 5:
+		if actualTutoStep >= 2 and actualTutoStep < 4:
 			nextTutoStep()
+
+const tutorialSteps : PackedStringArray = [
+	"Gather materials by walking over it.",
+	"Gather materials by walking over it.",
+	"Summon your first creature by combining materials. (hint : golems loves rocks and herbs)",
+	"There are plenty of tasty recipes in nature.\nTry yours !",
+	"",
+]
 
 func nextTutoStep():
 	actualTutoStep += 1
-	match actualTutoStep:
-		0:
-			tutoStep.emit("Gather materials by walking over it.")
-		1:
-			tutoStep.emit("Gather materials by walking over it.")
-		2:
-			tutoStep.emit("Summon your first creature by combining materials. (hint : golems loves rocks and herbs)")
-		3:
-			tutoStep.emit("There are plenty of tasty recipes in nature.\nTry yours !")
-		4: 
-			tutoStep.emit("")
+	tutoStep.emit(tutorialSteps[actualTutoStep])

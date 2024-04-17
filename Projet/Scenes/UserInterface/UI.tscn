@@ -1,7 +1,6 @@
-[gd_scene load_steps=24 format=3 uid="uid://nxr7b0d625fr"]
+[gd_scene load_steps=23 format=3 uid="uid://nxr7b0d625fr"]
 
 [ext_resource type="Script" path="res://Scenes/UserInterface/UI.gd" id="1_4p5ls"]
-[ext_resource type="Script" path="res://Scenes/UserInterface/hotbar.gd" id="2_704ia"]
 [ext_resource type="PackedScene" uid="uid://bo0ukg5akkk7i" path="res://Scenes/UserInterface/slot.tscn" id="3_c5nv1"]
 [ext_resource type="Texture2D" uid="uid://cpsd6oce21let" path="res://Ressources/UI/rock.png" id="4_sylqw"]
 [ext_resource type="Texture2D" uid="uid://cjogodcats6cl" path="res://Ressources/menu/interro.png" id="4_wug80"]
@@ -17,6 +16,20 @@
 [ext_resource type="PackedScene" uid="uid://di8plgh71bb1w" path="res://Scenes/UserInterface/health_bar.tscn" id="12_8sgdl"]
 [ext_resource type="AudioStream" uid="uid://c5ghv4gprlgib" path="res://Ressources/sounds/player/click4.wav" id="12_c8ewe"]
 [ext_resource type="AudioStream" uid="uid://c1034r8veig2c" path="res://Ressources/sounds/player/click5.wav" id="13_dts1s"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4n7b4"]
+random_pitch = 1.05
+streams_count = 5
+stream_0/stream = ExtResource("9_ym2u3")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("10_q73ek")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("11_ihdal")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("12_c8ewe")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("13_dts1s")
+stream_4/weight = 1.0
 
 [sub_resource type="InputEventKey" id="InputEventKey_eae5c"]
 device = -1
@@ -48,29 +61,19 @@ keycode = 53
 physical_keycode = 53
 unicode = 53
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4n7b4"]
-random_pitch = 1.05
-streams_count = 5
-stream_0/stream = ExtResource("9_ym2u3")
-stream_0/weight = 1.0
-stream_1/stream = ExtResource("10_q73ek")
-stream_1/weight = 1.0
-stream_2/stream = ExtResource("11_ihdal")
-stream_2/weight = 1.0
-stream_3/stream = ExtResource("12_c8ewe")
-stream_3/weight = 1.0
-stream_4/stream = ExtResource("13_dts1s")
-stream_4/weight = 1.0
-
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_4p5ls")
+
+[node name="SlotbarClick" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_4n7b4")
+volume_db = -8.0
+pitch_scale = 0.35
 
 [node name="Hotbar" type="HBoxContainer" parent="."]
 offset_top = 530.0
 offset_right = 1158.0
 offset_bottom = 626.0
 alignment = 1
-script = ExtResource("2_704ia")
 
 [node name="Slot5" parent="Hotbar" instance=ExtResource("3_c5nv1")]
 custom_minimum_size = Vector2(96, 96)
@@ -102,11 +105,6 @@ layout_mode = 2
 key = SubResource("InputEventKey_1ttkj")
 additionalTexture = ExtResource("8_d2cv1")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Hotbar"]
-stream = SubResource("AudioStreamRandomizer_4n7b4")
-volume_db = -8.0
-pitch_scale = 0.35
-
 [node name="TutorialButton" type="TextureButton" parent="."]
 custom_minimum_size = Vector2(244, 0)
 offset_left = 1026.0
@@ -131,9 +129,4 @@ visible = false
 
 [node name="HealthBar" parent="." instance=ExtResource("12_8sgdl")]
 
-[connection signal="toggled" from="Hotbar/Slot5" to="Hotbar" method="_on_slot_5_toggled"]
-[connection signal="toggled" from="Hotbar/Slot6" to="Hotbar" method="_on_slot_6_toggled"]
-[connection signal="toggled" from="Hotbar/Slot7" to="Hotbar" method="_on_slot_7_toggled"]
-[connection signal="toggled" from="Hotbar/Slot8" to="Hotbar" method="_on_slot_8_toggled"]
-[connection signal="toggled" from="Hotbar/Slot9" to="Hotbar" method="_on_slot_9_toggled"]
 [connection signal="pressed" from="TutorialButton" to="." method="_on_texture_button_pressed"]
