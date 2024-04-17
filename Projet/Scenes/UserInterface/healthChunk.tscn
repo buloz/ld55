@@ -1,15 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://cyjl10nkwmh0b"]
 
 [ext_resource type="Texture2D" uid="uid://ch7pmyu34gpt7" path="res://Ressources/UI/health_0.png" id="1_m47s6"]
+[ext_resource type="Script" path="res://Scenes/UserInterface/healthChunk.gd" id="1_o260m"]
 [ext_resource type="Texture2D" uid="uid://bb6tms8r4or74" path="res://Ressources/UI/health_1.png" id="2_kymu1"]
 [ext_resource type="Texture2D" uid="uid://5chknqshmcdn" path="res://Ressources/UI/health_2.png" id="3_y037s"]
-
-[sub_resource type="GDScript" id="GDScript_wbu6l"]
-script/source = "extends Panel
-
-func update(value:int):
-	$sprite.frame = value
-"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_f4wdb"]
 animations = [{
@@ -36,10 +30,10 @@ offset_right = 50.0
 offset_bottom = 50.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-script = SubResource("GDScript_wbu6l")
+script = ExtResource("1_o260m")
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(28, 28)
 scale = Vector2(0.08, 0.08)
 sprite_frames = SubResource("SpriteFrames_f4wdb")
 frame = 2
-centered = false
