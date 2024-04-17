@@ -1,15 +1,38 @@
-[gd_scene load_steps=7 format=3 uid="uid://dwgs0j8x0cbyr"]
+[gd_scene load_steps=11 format=3 uid="uid://dwgs0j8x0cbyr"]
 
 [ext_resource type="Texture2D" uid="uid://diacnel3kwtg5" path="res://Ressources/environement/Arbuste.png" id="1_6jcox"]
-[ext_resource type="Script" path="res://Scenes/Map/Environement/Bush.gd" id="1_w0qte"]
+[ext_resource type="Script" path="res://Scenes/Map/Environement/EnvNode.gd" id="1_w0qte"]
 [ext_resource type="Shader" path="res://Scenes/Map/Environement/Bush.gdshader" id="1_y28qu"]
 [ext_resource type="PackedScene" uid="uid://bbs6el4k23yex" path="res://Scenes/Animation/Environement/EnvironementShaderAnimation.tscn" id="2_qbo7r"]
+[ext_resource type="Texture2D" uid="uid://dydra1vmul83u" path="res://Ressources/environement/Herbe.png" id="5_64wyv"]
+[ext_resource type="Texture2D" uid="uid://4fpreb7ixtdv" path="res://Ressources/environement/herbe02.png" id="6_4877j"]
+[ext_resource type="Texture2D" uid="uid://bx5xc8yn3yq11" path="res://Ressources/environement/herbe03.png" id="7_hwey4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_csgqm"]
 resource_local_to_scene = true
 shader = ExtResource("1_y28qu")
 shader_parameter/randValue = null
 shader_parameter/touched = null
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_26xm4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6jcox")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_64wyv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4877j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_hwey4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0fsnv"]
 radius = 54.0093
@@ -18,13 +41,13 @@ radius = 54.0093
 script = ExtResource("1_w0qte")
 
 [node name="EnvironementShaderAnimation" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("2_qbo7r")]
-sprite = NodePath("../Sprite2D")
+sprite = NodePath("../AnimatedSprite2D")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_csgqm")
 position = Vector2(0, -76)
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("1_6jcox")
+sprite_frames = SubResource("SpriteFrames_26xm4")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
