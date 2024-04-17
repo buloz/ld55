@@ -11,9 +11,6 @@ signal inventoryUpdate(material:int, quantity:int)
 
 var possibleCrafts: PossibleCrafts = preload("res://Scenes/Player/PossibleCrafts.gd").new()
 
-#Mouse cursor
-var mouseSummonCursor = preload("res://Ressources/cursor/summonCursor.png")
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	storedMaterials.resize(get_node("/root/Global").nbMaterials)

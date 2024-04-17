@@ -1,9 +1,8 @@
 extends Node
 
-@export var sprite: Sprite2D
+@export var sprite: Node2D
 
 func _process(delta):
-	
 	if $EnvironementAnimationState.touched >= 0.0:
 		$EnvironementAnimationState.touched -= delta
 		
@@ -14,7 +13,6 @@ func _process(delta):
 
 
 func environementTouchedByArea(area):
-	
 	if area.get_parent() is Summon and not area.get_parent().animationState.walking:
 		$EnvironementAnimationState.touched = 0.5
 	else:
