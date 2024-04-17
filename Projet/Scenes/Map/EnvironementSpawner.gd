@@ -15,13 +15,12 @@ var noise: FastNoiseLite = FastNoiseLite.new()
 
 
 func _ready():
-	noise.seed = randf()
-	noise.fractal_type = 0
+	noise.seed = randi()
+	noise.fractal_type = FastNoiseLite.FRACTAL_NONE
 	noise.frequency = 0.0005
 
 
 func generate(chunkPosition: Vector2i, parentNode: Node2D):
-	
 	var startPosition: Vector2 = Vector2(chunkPosition.x * chunkSize.x, chunkPosition.y * chunkSize.y)
 	var endPosition: Vector2 = startPosition + chunkSize
 	

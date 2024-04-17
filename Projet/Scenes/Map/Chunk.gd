@@ -6,7 +6,7 @@ class_name Chunk extends Node2D
 @export var truePosition: Vector2
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if Engine.get_process_frames () % 12 != 0:
 		return
 	

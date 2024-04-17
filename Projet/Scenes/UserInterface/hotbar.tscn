@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bwc4ic0f204gq"]
+[gd_scene load_steps=8 format=3 uid="uid://cw10k5ipndu4x"]
 
 [ext_resource type="PackedScene" uid="uid://bo0ukg5akkk7i" path="res://Scenes/UserInterface/slot.tscn" id="1_4jp4i"]
 [ext_resource type="Script" path="res://Scenes/UserInterface/hotbar.gd" id="1_usyy2"]

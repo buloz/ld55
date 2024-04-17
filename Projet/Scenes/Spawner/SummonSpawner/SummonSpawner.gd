@@ -7,12 +7,12 @@ extends Node2D
 func _ready():
 	top_level = true
 
-func spawnSummon(position: Vector2, info: SummonInfo):
+func spawnSummon(pos: Vector2, info: SummonInfo):
 	var newSummon: Summon = summonScene.instantiate()
 	
 	newSummon.initializeFromInfo(info)
 	
-	newSummon.position = position
+	newSummon.position = pos
 	
 	spawnTargetNode.add_child(newSummon)
 	

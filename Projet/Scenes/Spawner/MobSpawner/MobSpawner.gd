@@ -28,11 +28,7 @@ var directionAngle: float
 
 var noise: FastNoiseLite = FastNoiseLite.new()
 
-var _isSpawning:bool = false
-
 var _enabled:bool = false
-
-var _frameAwait:int = 2
 
 #MAX_ENNEMIES factor (100% at LifeTime.time_left = 0)
 var _difficulty:float = 0.0
@@ -114,7 +110,7 @@ func spawnMob(count: int):
 	#var y_spawn = randf_range(spawn_pos1.y,spawn_pos2.y)
 	#return Vector2(x_spawn,y_spawn)
 
-func _process(delta):
+func _process(_delta):
 	if Engine.get_process_frames() % 10 != 0:
 		return
 		

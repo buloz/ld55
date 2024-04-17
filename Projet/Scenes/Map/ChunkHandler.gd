@@ -21,7 +21,7 @@ func dealocatedChunk(chunkPosition: Vector2i):
 	#exploredCell.erase(chunkPosition)
 
 func getChunksFromRectMask(targetCell: Vector2i):
-	var chunks: Array[Vector2i]
+	var chunks: Array[Vector2i] = []
 	for y in range(-1, 2):
 		for x in range(-1, 2):
 			chunks.append(Vector2i(targetCell.x + x, targetCell.y + y))
@@ -60,7 +60,7 @@ func explore():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if Engine.get_process_frames () % 12 != 0:
 		return
 	

@@ -16,8 +16,8 @@ func _ready():
 	if get_parent() is CasterComponent:
 		isCharging = true;
 
-func initialize(senderPosition: Vector2, targetPosition: Vector2, playerTeam: bool):
-	collision_mask = 0b10 if playerTeam else 0b01
+func initialize(senderPosition: Vector2, targetPosition: Vector2, _playerTeam: bool):
+	collision_mask = 0b10 if _playerTeam else 0b01
 	
 	positionA = senderPosition
 	positionB = positionA + (senderPosition.direction_to(targetPosition) * distance)

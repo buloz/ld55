@@ -2,19 +2,10 @@ extends HBoxContainer
 
 @onready var healthChunk = preload("res://Scenes/UserInterface/healthChunk.tscn")
 
-var maxHp
+var maxHp : float
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-func setMaxHealth(max:float):
-	maxHp = max
+func setMaxHealth(m:float):
+	maxHp = m
 	for i in 10:
 		var child = healthChunk.instantiate()
 		child.update(2)

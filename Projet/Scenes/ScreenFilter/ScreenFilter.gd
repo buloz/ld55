@@ -13,8 +13,7 @@ func hideFilter(hiding: bool):
 	else:
 		material.set_shader_parameter("screenLoadScale", 0.0)
 
-func start(open: bool, call: Callable = Callable()):
-	
+func start(open: bool, callable: Callable = Callable()):
 	var tween = create_tween()
 	var from: float
 	var to: float
@@ -29,7 +28,7 @@ func start(open: bool, call: Callable = Callable()):
 	tween.set_trans(Tween.TRANS_EXPO)
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.tween_method(func(x: float): material.set_shader_parameter("screenLoadScale", x), from, to, 2.0)
-	tween.tween_callback(call)
+	tween.tween_callback(callable)
 	
 #
 ## Called every frame. 'delta' is the elapsed time since the previous frame.

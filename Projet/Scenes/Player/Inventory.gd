@@ -21,7 +21,6 @@ func _ready():
 	set_pentagram(false)
 
 func _process(_delta):
-	var mp := get_viewport().get_mouse_position()
 	$pentagram.global_position = get_viewport().get_mouse_position()
 
 func set_pentagram(b : bool):

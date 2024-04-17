@@ -27,16 +27,15 @@ class CraftGraphNode:
 	var next: Dictionary
 	var summonInfo: SummonInfo = null
 	
-	func _init(isCorrect: bool, next: Dictionary, summonInfo: SummonInfo = null):
-		self.isCorrect = isCorrect
-		self.next = next
-		self.summonInfo = summonInfo
+	func _init(_isCorrect: bool, _next: Dictionary, _summonInfo: SummonInfo = null):
+		self.isCorrect = _isCorrect
+		self.next = _next
+		self.summonInfo = _summonInfo
 	
 
 var craftDictionary: CraftGraphNode = CraftGraphNode.new(false, {})
 
 func recursiveAdd(currentLevel: CraftGraphNode, bufferToAdd: Array, summonInfo: SummonInfo):
-	
 	if bufferToAdd.is_empty():
 		currentLevel.isCorrect = true
 		currentLevel.summonInfo = summonInfo
