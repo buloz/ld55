@@ -4,7 +4,10 @@ class_name PlayerClass extends CharacterBody2D
 @export var acceleration: float = 6000.0
 @export var friction: float = 4000.0
 
-@onready var animationState: AnimationState = $ShaderAnimation.get_node("AnimationState")
+@onready var animationState: AnimationState = $PlayerSpriteRenderer/ShaderAnimation/AnimationState
+#@onready var animationState: AnimationState = $ShaderAnimation/AnimationState
+
+@export var testProjectile: PackedScene
 
 var actualTutoStep:int = 0
 #[timeAlive, entity killed]
@@ -27,11 +30,11 @@ func gatherMaterial(materialType: int, quantity: int):
 func _ready():
 	$DamageReceiver.healthUpdated.connect(damage)
 	$SummonSpawner.spawnTargetNode = get_parent()
-	#$Inventory.storedMaterials[0] = 999
-	#$Inventory.storedMaterials[1] = 999
-	#$Inventory.storedMaterials[2] = 999
-	#$Inventory.storedMaterials[3] = 999
-	#$Inventory.storedMaterials[4] = 999
+	$Inventory.storedMaterials[0] = 999
+	$Inventory.storedMaterials[1] = 999
+	$Inventory.storedMaterials[2] = 999
+	$Inventory.storedMaterials[3] = 999
+	$Inventory.storedMaterials[4] = 999
 	get_node("/root/Global").Player = self
 	scored.connect(incrementScore)
 	
@@ -63,7 +66,7 @@ func die():
 	
 	
 	$die.play()
-	$ShaderAnimation.get_node("AnimationPlayer").play("death")
+	$PlayerSpriteRenderer/ShaderAnimation.get_node("AnimationPlayer").play("death")
 	get_node("../../MainScene").lose.emit(score)
 
 
@@ -107,6 +110,12 @@ func _unhandled_input(event):
 			$SummonSpawner.spawnSummon(get_global_mouse_position(), summon)
 		if actualTutoStep >= 2 and actualTutoStep < 4:
 			nextTutoStep()
+
+func _input(event):
+	if event is InputEventKey and event.is_action_pressed("test"):
+		var newProjectile = testProjectile.instantiate()
+		newProjectile.initialize(position, get_global_mouse_position(), true)
+		add_child(newProjectile)
 
 const tutorialSteps : PackedStringArray = [
 	"Gather materials by walking over it.",

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cev6kffqmrxuq"]
+
+[ext_resource type="Script" path="res://Scenes/Spells/Projectile/projectile.gd" id="1_vvnyw"]
+[ext_resource type="Shape2D" uid="uid://co8ah52svqai0" path="res://Scenes/Spells/Projectile/Circle.tres" id="2_a68r1"]
+[ext_resource type="PackedScene" uid="uid://d3w3i6cx5om4s" path="res://Scenes/Spells/AttackAnimation.tscn" id="4_xvr4c"]
+
+[node name="Projectile" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_vvnyw")
+speed = 1000.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = ExtResource("2_a68r1")
+
+[node name="LifeSpan" type="Timer" parent="."]
+
+[node name="AttackAnimation" parent="." instance=ExtResource("4_xvr4c")]
+scale = Vector2(0.25, 0.25)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

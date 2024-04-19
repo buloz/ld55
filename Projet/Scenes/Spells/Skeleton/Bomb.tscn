@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://r6jx8ibqickc"]
+
+[ext_resource type="Script" path="res://Scenes/Spells/Projectile/projectile.gd" id="1_wydyr"]
+[ext_resource type="PackedScene" uid="uid://d3w3i6cx5om4s" path="res://Scenes/Spells/AttackAnimation.tscn" id="2_mkoip"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p7j8d"]
+radius = 74.027
+
+[node name="SkeletonBomb" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_wydyr")
+speed = 1000.0
+piercingEntities = 3
+is_top_level = true
+
+[node name="AttackAnimation" parent="." instance=ExtResource("2_mkoip")]
+position = Vector2(-2, 5)
+scale = Vector2(0.75, 0.75)
+animationIndex = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_p7j8d")
+
+[node name="LifeSpan" type="Timer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -10.0
+offset_top = -1.0
+offset_right = 10.0
+offset_bottom = 1.0
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

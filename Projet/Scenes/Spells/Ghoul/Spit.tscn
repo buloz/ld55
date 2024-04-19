@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://0yyiwm2u1dfn"]
+
+[ext_resource type="Script" path="res://Scenes/Spells/Projectile/ball.gd" id="1_sfp2r"]
+[ext_resource type="Shape2D" uid="uid://co8ah52svqai0" path="res://Scenes/Spells/Projectile/Circle.tres" id="2_qkgot"]
+[ext_resource type="PackedScene" uid="uid://d3w3i6cx5om4s" path="res://Scenes/Spells/AttackAnimation.tscn" id="3_v6sej"]
+
+[node name="GhoulSpit" type="Area2D"]
+z_index = -1
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_sfp2r")
+speed = 500.0
+lifeSpan = 4.0
+max_distance = 600.0
+is_top_level = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = ExtResource("2_qkgot")
+
+[node name="AttackAnimation" parent="." instance=ExtResource("3_v6sej")]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmb8wpt64u20a"]
+
+[ext_resource type="Script" path="res://Scenes/Spells/Projectile/ConjureBall.gd" id="1_lttpf"]
+[ext_resource type="PackedScene" uid="uid://d3w3i6cx5om4s" path="res://Scenes/Spells/AttackAnimation.tscn" id="3_v2ika"]
+[ext_resource type="Shape2D" uid="uid://co8ah52svqai0" path="res://Scenes/Spells/Projectile/Circle.tres" id="4_w1lfa"]
+
+[node name="ConjureBall" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_lttpf")
+speed = 200.0
+lifeSpan = 5.0
+max_distance = 300.0
+
+[node name="AttackAnimation" parent="." instance=ExtResource("3_v2ika")]
+animationIndex = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = ExtResource("4_w1lfa")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

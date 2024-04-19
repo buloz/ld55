@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://qj1x3ycma4ia"]
+
+[ext_resource type="Script" path="res://Scenes/Spells/Projectile/multiprojectile.gd" id="1_raicn"]
+[ext_resource type="PackedScene" uid="uid://cev6kffqmrxuq" path="res://Scenes/Spells/Projectile/projectile.tscn" id="2_eb2ek"]
+
+[node name="GolemCrumbs" type="Node2D"]
+script = ExtResource("1_raicn")
+count = 6
+spreadAngle = 1.047
+projectileScene = ExtResource("2_eb2ek")
+time_between_projectile = 0.3
+animationIndex = 1
+animationScale = Vector2(4, 4)

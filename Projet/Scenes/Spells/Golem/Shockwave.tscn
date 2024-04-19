@@ -1,0 +1,126 @@
+[gd_scene load_steps=10 format=3 uid="uid://cxvjv54pmqwge"]
+
+[ext_resource type="Script" path="res://Scenes/Spells/Blast/Blast.gd" id="1_wipep"]
+[ext_resource type="Texture2D" uid="uid://bncquu74b36pu" path="res://Ressources/attacks/FX_Nuage.png" id="2_11p4a"]
+[ext_resource type="AudioStream" uid="uid://d4ac7vndvamuv" path="res://Ressources/sounds/attack/explosion1.wav" id="3_on1i2"]
+[ext_resource type="AudioStream" uid="uid://cesr7dpc84k6h" path="res://Ressources/sounds/attack/explosion2.wav" id="4_5pntv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5147m"]
+resource_local_to_scene = true
+radius = 300.0
+
+[sub_resource type="Animation" id="Animation_ypmgq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.3, 1.3)]
+}
+
+[sub_resource type="Animation" id="Animation_rrg82"]
+resource_name = "shockWave"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.9, 0.9), Vector2(1.3, 1.3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xtvle"]
+_data = {
+"RESET": SubResource("Animation_ypmgq"),
+"shockWave": SubResource("Animation_rrg82")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8lcae"]
+streams_count = 2
+stream_0/stream = ExtResource("3_on1i2")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("4_5pntv")
+stream_1/weight = 1.0
+
+[node name="GolemShockWave" type="Area2D" node_paths=PackedStringArray("attack")]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_wipep")
+targetRadius = 300.0
+offsetRadius = 150.0
+travelTime = 0.5
+attack = NodePath("")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5147m")
+debug_color = Color(0.964706, 0, 0.498039, 0.419608)
+
+[node name="TravelTimer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-1, 24)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_11p4a")
+hframes = 3
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xtvle")
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_8lcae")
+volume_db = -5.0
+pitch_scale = 0.5
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

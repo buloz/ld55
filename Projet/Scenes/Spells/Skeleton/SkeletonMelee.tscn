@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cv8hlpipfbixq"]
+
+[ext_resource type="Script" path="res://Scenes/Spells/Melee/Melee.gd" id="1_3jlxj"]
+[ext_resource type="PackedScene" uid="uid://d3w3i6cx5om4s" path="res://Scenes/Spells/AttackAnimation.tscn" id="2_rssnv"]
+
+[node name="SkeletonMelee" type="Node2D"]
+script = ExtResource("1_3jlxj")
+attackRange = 150.0
+
+[node name="AttackAnimation" parent="." instance=ExtResource("2_rssnv")]
+animationIndex = 3

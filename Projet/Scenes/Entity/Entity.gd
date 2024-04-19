@@ -1,13 +1,22 @@
-class_name Entity extends Node2D
+extends Node2D
 
-#TODO: ces attributs là devrait être stocké dans un component de l'entité qui contient ses propriété (range, speed, etc)
-#A quel distance l'ennemi doit allez de la cible
-@export var confortDistance: float = 0.0
-@export var speed: float = 300.0
+@export var MaxHealth:float
+var currentHealth: float
 
-var chaseTarget: bool
-var hasTarget: bool
-var targetPosition: Vector2
-var distanceToTarget: float
+@onready var animationState: AnimationState = $ShaderAnimation.get_node("AnimationState")
 
-var playerTeam: bool
+func _ready():
+	currentHealth = MaxHealth
+
+func die():
+	pass
+
+func takeDamage(damage: float):
+	currentHealth -= damage
+	animationState.damageTaken = 1.0
+	
+	if currentHealth <= 0:
+		die()
+
+func canAcceptCollision():
+	return currentHealth > 0

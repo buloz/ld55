@@ -1,0 +1,127 @@
+[gd_scene load_steps=21 format=3 uid="uid://bbsjt88j76x2b"]
+
+[ext_resource type="Script" path="res://Scenes/Spells/Strike/Strike.gd" id="1_cnu2f"]
+[ext_resource type="PackedScene" uid="uid://qks2cmf75chg" path="res://Scenes/Component/NearestEnemyFinder.tscn" id="2_6venh"]
+[ext_resource type="Texture2D" uid="uid://ckslmh3jabogk" path="res://Ressources/menu/thunder1.png" id="4_7p0bl"]
+[ext_resource type="Texture2D" uid="uid://bd7hw8bloabbb" path="res://Ressources/menu/thunder2.png" id="5_mffbm"]
+[ext_resource type="Texture2D" uid="uid://pbjvuqb5pj2y" path="res://Ressources/menu/thunder3.png" id="6_pcp3f"]
+[ext_resource type="Texture2D" uid="uid://hgedkqvvwj4r" path="res://Ressources/menu/thunder4.png" id="7_vsld2"]
+[ext_resource type="Texture2D" uid="uid://b65nnxr8aq4c1" path="res://Ressources/menu/thunder5.png" id="8_j3r0h"]
+[ext_resource type="Texture2D" uid="uid://dl81jspd28j05" path="res://Ressources/menu/thunder6.png" id="9_no6fm"]
+[ext_resource type="Texture2D" uid="uid://6ps5p0fn0jk7" path="res://Ressources/menu/thunder7.png" id="10_uixgq"]
+[ext_resource type="Texture2D" uid="uid://nyu6h3u6cax8" path="res://Ressources/menu/thunder8.png" id="11_0e8w8"]
+[ext_resource type="AudioStream" uid="uid://brj4cymmobjd5" path="res://Ressources/sounds/attack/thunder1.wav" id="12_mltq2"]
+[ext_resource type="AudioStream" uid="uid://ey2qnabqgakv" path="res://Ressources/sounds/attack/thunder2.wav" id="13_6m2rp"]
+[ext_resource type="AudioStream" uid="uid://b64q76vab61tn" path="res://Ressources/sounds/attack/thunder3.wav" id="14_61mri"]
+[ext_resource type="AudioStream" uid="uid://dbgmxhowm4xpq" path="res://Ressources/sounds/attack/thunder4.wav" id="15_5ys35"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h1ffr"]
+radius = 111.0
+
+[sub_resource type="Animation" id="Animation_0d50a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_l411i"]
+resource_name = "thunder"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0hwau"]
+_data = {
+"RESET": SubResource("Animation_0d50a"),
+"thunder": SubResource("Animation_l411i")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8rb8h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_7p0bl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_mffbm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_pcp3f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_vsld2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_j3r0h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_no6fm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_uixgq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_0e8w8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6rvvx"]
+random_pitch = 1.25
+streams_count = 4
+stream_0/stream = ExtResource("12_mltq2")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("13_6m2rp")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("14_61mri")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("15_5ys35")
+stream_3/weight = 1.0
+
+[node name="HauntedThunder" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_cnu2f")
+delay = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_h1ffr")
+
+[node name="NearestEnemyFinder" parent="." instance=ExtResource("2_6venh")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0hwau")
+}
+speed_scale = 1.5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(2, -247)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_8rb8h")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_6rvvx")
+volume_db = -6.0

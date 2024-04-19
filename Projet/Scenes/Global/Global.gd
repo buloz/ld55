@@ -7,4 +7,6 @@ var playerPosition: Vector2 = Vector2.ZERO
 var Player: PlayerClass
 var playerDead: bool
 
+var currentMainScene: Node2D
+
 var nbMaterials: int = 5

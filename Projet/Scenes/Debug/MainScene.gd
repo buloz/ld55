@@ -3,6 +3,9 @@ extends Node2D
 signal lose(score:Array)
 
 func _ready():
+	
+	get_node("/root/Global").currentMainScene = self
+	
 	Music.play("Theme")
 	$wind.play()
 	$dong.play()

@@ -1,4 +1,4 @@
-class_name Summon extends "res://Scenes/Entity/Entity.gd"
+class_name Summon extends "res://Scenes/Entity/AiEntity.gd"
 
 var isMovingTowardPlayer: bool = false
 var confortableRangeToPlayer: Vector2 = Vector2(1000, 400)
@@ -9,7 +9,6 @@ var idleNoise: FastNoiseLite = FastNoiseLite.new()
 #Tempo to smooth movements
 var currentDirection: Vector2 = Vector2.ZERO
 
-@onready var animationState: AnimationState = $ShaderAnimation.get_node("AnimationState")
 @onready var sprite := $ShaderAnimation/Sprite2D
 
 func _init():
@@ -38,18 +37,18 @@ func loadSummonData(summonType: int, summonSubtype: int):
 
 
 const SPELLS := [
-	preload("res://Scenes/Attacks/Golem/Tumble.tscn"),
-	preload("res://Scenes/Attacks/Golem/Shockwave.tscn"),
-	preload("res://Scenes/Attacks/Golem/Crumbs.tscn"),
-	preload("res://Scenes/Attacks/Ghoul/Spit.tscn"),
-	preload("res://Scenes/Attacks/Ghoul/Leap.tscn"),
-	preload("res://Scenes/Attacks/Ghoul/GhoulMelee.tscn"),
-	preload("res://Scenes/Attacks/Skeleton/Bomb.tscn"),
-	preload("res://Scenes/Attacks/Skeleton/Multishot.tscn"),
-	preload("res://Scenes/Attacks/Skeleton/SkeletonMelee.tscn"),
-	preload("res://Scenes/Attacks/Haunted/Conjure.tscn"),
-	preload("res://Scenes/Attacks/Haunted/Thunder.tscn"),
-	preload("res://Scenes/Attacks/Haunted/Howl.tscn"),
+	preload("res://Scenes/Spells/Golem/Tumble.tscn"),
+	preload("res://Scenes/Spells/Golem/Shockwave.tscn"),
+	preload("res://Scenes/Spells/Golem/Crumbs.tscn"),
+	preload("res://Scenes/Spells/Ghoul/Spit.tscn"),
+	preload("res://Scenes/Spells/Ghoul/Leap.tscn"),
+	preload("res://Scenes/Spells/Ghoul/GhoulMelee.tscn"),
+	preload("res://Scenes/Spells/Skeleton/Bomb.tscn"),
+	preload("res://Scenes/Spells/Skeleton/Multishot.tscn"),
+	preload("res://Scenes/Spells/Skeleton/SkeletonMelee.tscn"),
+	preload("res://Scenes/Spells/Haunted/Conjure.tscn"),
+	preload("res://Scenes/Spells/Haunted/Thunder.tscn"),
+	preload("res://Scenes/Spells/Haunted/Howl.tscn"),
 ]
 
 var summonInfo : SummonInfo

@@ -77,8 +77,7 @@ func spawnMob(count: int):
 		newMob.position = player.global_position + Vector2.from_angle(newnAngle) * randf_range(minSpawnDistance, maxSpawnDistance)
 		newMob.speed = difficutyScaledSpeed
 		newMob.speedAcceleration = 100 + 200 * _difficulty
-		newMob.get_node("HealthComponent").MaxHealth += mobMaxDificultyHealth * _difficulty
-		
+		newMob.MaxHealth += mobMaxDificultyHealth * _difficulty
 		
 		add_child(newMob)
 

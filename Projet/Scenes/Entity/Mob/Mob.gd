@@ -1,6 +1,6 @@
-class_name Mob extends "res://Scenes/Entity/Entity.gd"
+class_name Mob extends "res://Scenes/Entity/AiEntity.gd"
 
-@onready var animationState: AnimationState = $ShaderAnimation.get_node("AnimationState")
+
 @onready var sprite := $ShaderAnimation/Sprite2D
 
 
@@ -11,7 +11,7 @@ var idleNoise: FastNoiseLite = FastNoiseLite.new()
 func _init():
 	playerTeam = false
 	chaseTarget = true
-
+	
 @onready var MOB_PROPERTIES := [
 	[Vector2(0.5, 0.5), Vector2(0, -325), $biche], #biche
 	[Vector2(0.15, 0.15), Vector2(0, -348), $grenouille], #tortue
@@ -29,6 +29,7 @@ func loadRandomMob():
 	soundFX = MOB_PROPERTIES[index][2]
 
 func _ready():
+	super()
 	loadRandomMob()
 	$ShaderAnimation.setUnique()
 	animationState.walking = true
@@ -41,7 +42,6 @@ func _ready():
 
 func die():
 	$AttackComponent.queue_free()
-	$HealthComponent.queue_free()
 	$NearestEnnemyFinder.queue_free()
 	$HitBoxComponent.queue_free()
 	set_physics_process(false)
@@ -77,6 +77,10 @@ func _physics_process(delta):
 	else:
 		var angleFactor: float = idleNoise.get_noise_2d(position.x + (Time.get_ticks_msec() / 1000.0), position.y - (Time.get_ticks_msec() / 1000.0)) * 1.5
 		
-		position += Vector2.from_angle(2 * PI * angleFactor).normalized() * speed * 0.2 * delta
+		var direction = Vector2.from_angle(2 * PI * angleFactor).normalized()
+		
+		animationState.orientation = direction.normalized().x
+		
+		position += direction * speed * 0.2 * delta
 
 		animationState.walking = false

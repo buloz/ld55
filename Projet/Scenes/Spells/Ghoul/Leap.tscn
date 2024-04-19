@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://dh3wviqu020fg"]
+
+[ext_resource type="Script" path="res://Scenes/Spells/Charge/Charge.gd" id="1_3qjew"]
+[ext_resource type="AudioStream" uid="uid://yy0a0vk843xn" path="res://Ressources/sounds/attack/whoosh1.wav" id="2_1glqu"]
+[ext_resource type="AudioStream" uid="uid://cfk37cmn5ev4g" path="res://Ressources/sounds/attack/whoosh2.wav" id="3_g5ik0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gmk2y"]
+radius = 150.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_cv5hn"]
+random_pitch = 1.25
+streams_count = 2
+stream_0/stream = ExtResource("2_1glqu")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("3_g5ik0")
+stream_1/weight = 1.0
+
+[node name="GhoulLeap" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_3qjew")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gmk2y")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_cv5hn")
+volume_db = -8.0
+pitch_scale = 0.9
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

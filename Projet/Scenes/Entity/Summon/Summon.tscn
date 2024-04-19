@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bgteusoge6g2t" path="res://Scenes/Component/DamageReceiver.tscn" id="3_klaw6"]
 [ext_resource type="PackedScene" uid="uid://blc1sjka6ahc6" path="res://Scenes/Component/attackComponent.tscn" id="6_y6iwy"]
 [ext_resource type="PackedScene" uid="uid://dbsrn80uwk8oo" path="res://Scenes/Component/CasterComponent.tscn" id="7_54uiq"]
-[ext_resource type="PackedScene" uid="uid://cev6kffqmrxuq" path="res://Scenes/Attacks/Projectile/projectile.tscn" id="8_tl8yr"]
+[ext_resource type="PackedScene" uid="uid://cev6kffqmrxuq" path="res://Scenes/Spells/Projectile/projectile.tscn" id="7_b6qh6"]
 [ext_resource type="PackedScene" uid="uid://b3w25xcfvrnug" path="res://Scenes/Animation/ShaderAnimation.tscn" id="9_bnuen"]
 [ext_resource type="Shader" path="res://Scenes/Entity/Mob/Mob.gdshader" id="9_f7ot6"]
 [ext_resource type="Texture2D" uid="uid://vpg0dd0gaa8u" path="res://Ressources/sprites/Summon/Squelette.png" id="11_5nndw"]
@@ -49,6 +49,8 @@ shader_parameter/walkingAlpha = null
 shader_parameter/xOrientation = null
 shader_parameter/damageState = null
 shader_parameter/spawnState = null
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 1.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7tkqq"]
 animations = [{
@@ -171,7 +173,7 @@ attack_damage = 5.0
 attack_cooldown = 0.1
 
 [node name="CasterComponent" parent="." node_paths=PackedStringArray("attackComponent") instance=ExtResource("7_54uiq")]
-spellScene = ExtResource("8_tl8yr")
+spellScene = ExtResource("7_b6qh6")
 attackComponent = NodePath("../AttackComponent")
 
 [node name="ShaderAnimation" parent="." instance=ExtResource("9_bnuen")]

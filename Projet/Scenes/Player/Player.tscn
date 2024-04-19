@@ -1,7 +1,10 @@
-[gd_scene load_steps=43 format=3 uid="uid://b433p5ck6nm4g"]
+[gd_scene load_steps=50 format=3 uid="uid://b433p5ck6nm4g"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_sxh4x"]
+[ext_resource type="PackedScene" uid="uid://8xerjrymahow" path="res://Scenes/Spells/Haunted/Conjure.tscn" id="2_k18yn"]
 [ext_resource type="PackedScene" uid="uid://d3giiljxtfpns" path="res://Scenes/Player/Inventory.tscn" id="2_lnnje"]
+[ext_resource type="Shader" path="res://Scenes/Player/Back.gdshader" id="3_88sto"]
+[ext_resource type="Shader" path="res://Scenes/Player/Outline.gdshader" id="3_vm8hm"]
 [ext_resource type="PackedScene" uid="uid://c26ht80nke8hf" path="res://Scenes/Spawner/SummonSpawner/SummonSpawner.tscn" id="6_ua7c7"]
 [ext_resource type="Texture2D" uid="uid://ct74omi3gprcy" path="res://Ressources/sprites/Perso_Principal.png" id="7_foaxm"]
 [ext_resource type="Shader" path="res://Scenes/Player/Player.gdshader" id="7_h3iq2"]
@@ -32,6 +35,18 @@
 [ext_resource type="AudioStream" uid="uid://b0gfgij504dns" path="res://Ressources/sounds/player/playerdeath4.wav" id="24_fc31p"]
 [ext_resource type="AudioStream" uid="uid://b0sgl0850vai7" path="res://Ressources/sounds/player/playerdeath5.wav" id="25_33hv5"]
 [ext_resource type="AudioStream" uid="uid://b050m3ye4suv7" path="res://Ressources/sounds/player/playerdeath6.wav" id="26_a03g2"]
+[ext_resource type="PackedScene" uid="uid://ckcs3tp3esw28" path="res://Scenes/Map/Environement/Tree.tscn" id="33_uaufa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x1nwh"]
+shader = ExtResource("3_vm8hm")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ftlxl"]
+viewport_path = NodePath("PlayerSpriteRenderer")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_csb2l"]
+shader = ExtResource("3_88sto")
+shader_parameter/line_color = Color(0, 0, 0, 1)
+shader_parameter/line_thickness = 3.021
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ifevx"]
 shader = ExtResource("7_h3iq2")
@@ -159,21 +174,37 @@ y_sort_enabled = true
 collision_layer = 9
 collision_mask = 7
 script = ExtResource("1_sxh4x")
+testProjectile = ExtResource("2_k18yn")
 
 [node name="Inventory" parent="." instance=ExtResource("2_lnnje")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_x1nwh")
+texture = SubResource("ViewportTexture_ftlxl")
+offset = Vector2(0, -70)
+
+[node name="BackSprite" type="Sprite2D" parent="Sprite2D"]
+z_index = 10
+material = SubResource("ShaderMaterial_csb2l")
+texture = SubResource("ViewportTexture_ftlxl")
+offset = Vector2(0, -70)
 
 [node name="SummonSpawner" parent="." instance=ExtResource("6_ua7c7")]
 z_index = 0
 
-[node name="ShaderAnimation" parent="." instance=ExtResource("9_hk5ia")]
+[node name="PlayerSpriteRenderer" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(480, 350)
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="ShaderAnimation"]
+[node name="ShaderAnimation" parent="PlayerSpriteRenderer" instance=ExtResource("9_hk5ia")]
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="PlayerSpriteRenderer/ShaderAnimation"]
 material = SubResource("ShaderMaterial_ifevx")
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_fto0r")
-offset = Vector2(0, -466)
+centered = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ShaderAnimation"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerSpriteRenderer/ShaderAnimation"]
 libraries = {
 "": SubResource("AnimationLibrary_h10l0")
 }
@@ -208,3 +239,7 @@ shape = SubResource("CircleShape2D_k14d5")
 
 [node name="DamageReceiver" parent="." node_paths=PackedStringArray("hitBoxComponent") instance=ExtResource("13_8cqv2")]
 hitBoxComponent = NodePath("../HitBoxComponent")
+
+[node name="Tree" parent="." instance=ExtResource("33_uaufa")]
+visible = false
+position = Vector2(31, 92)

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://8xerjrymahow"]
+
+[ext_resource type="Script" path="res://Scenes/Spells/Projectile/RotatingMultiball.gd" id="1_d36c5"]
+[ext_resource type="PackedScene" uid="uid://cmb8wpt64u20a" path="res://Scenes/Spells/Projectile/ConjureBall.tscn" id="2_jfnfy"]
+
+[node name="HauntedConjure" type="Node2D"]
+script = ExtResource("1_d36c5")
+projectileScene = ExtResource("2_jfnfy")
+damage = 10.0

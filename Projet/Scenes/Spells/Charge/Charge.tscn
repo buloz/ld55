@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c48xcylkbj458"]
+
+[ext_resource type="Script" path="res://Scenes/Spells/Charge/Charge.gd" id="1_xygwc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gmk2y"]
+radius = 150.0
+
+[node name="Charge" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_xygwc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gmk2y")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
