@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://b433p5ck6nm4g"]
+[gd_scene load_steps=44 format=3 uid="uid://b433p5ck6nm4g"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_sxh4x"]
 [ext_resource type="PackedScene" uid="uid://d3giiljxtfpns" path="res://Scenes/Player/Inventory.tscn" id="2_lnnje"]
@@ -32,6 +32,7 @@
 [ext_resource type="AudioStream" uid="uid://b0gfgij504dns" path="res://Ressources/sounds/player/playerdeath4.wav" id="24_fc31p"]
 [ext_resource type="AudioStream" uid="uid://b0sgl0850vai7" path="res://Ressources/sounds/player/playerdeath5.wav" id="25_33hv5"]
 [ext_resource type="AudioStream" uid="uid://b050m3ye4suv7" path="res://Ressources/sounds/player/playerdeath6.wav" id="26_a03g2"]
+[ext_resource type="Script" path="res://Scenes/Player/MultitouchController.gd" id="33_7asqy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ifevx"]
 shader = ExtResource("7_h3iq2")
@@ -208,3 +209,6 @@ shape = SubResource("CircleShape2D_k14d5")
 
 [node name="DamageReceiver" parent="." node_paths=PackedStringArray("hitBoxComponent") instance=ExtResource("13_8cqv2")]
 hitBoxComponent = NodePath("../HitBoxComponent")
+
+[node name="MultitouchController" type="Node" parent="."]
+script = ExtResource("33_7asqy")

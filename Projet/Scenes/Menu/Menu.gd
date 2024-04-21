@@ -66,5 +66,11 @@ func _input(event):
 			select($UI/Quit, "select_quit")
 		else:
 			unselect()
-	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		accept()
+
+func _on_play_pressed():
+	select($UI/Play, "select_play")
+	start_game()
+
+func _on_quit_pressed():
+	select($UI/Quit, "select_quit")
+	quit()

@@ -17,8 +17,11 @@ func _ready():
 	UI.slotbar.connect(_slotbar_pressed)
 	set_pentagram(false)
 
-func _process(_delta):
-	$pentagram.global_position = get_viewport().get_mouse_position()
+func _unhandled_input(event):
+	if event is InputEventMouseMotion or event.is_action_pressed("primary_action"):
+		$pentagram.global_position = event.position
+	if event is InputEventScreenTouch or event is InputEventScreenDrag:
+		$pentagram.global_position = event.position
 
 func set_pentagram(b : bool):
 	$pentagram.visible = b
@@ -41,6 +44,7 @@ func _slotbar_pressed(value, toggled_on):
 			set_pentagram(possibleCrafts.getCraftResult(floatingMaterials) != null)
 		else:
 			UI.slotbarReset(value)
+			pass
 	else:
 		var index = floatingMaterials.rfind(value)
 		if index > -1 and not toggled_on:
@@ -58,6 +62,7 @@ func try_craft():
 	floatingMaterials.clear()
 	for slot in UI.slots:
 		slot.set_pressed_no_signal(false)
+		pass
 	
 	set_pentagram(false)
 	

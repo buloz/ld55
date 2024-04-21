@@ -18,6 +18,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 #Score
 signal scored(points : int)
 
+@onready var shortcuts := {}
+
 func gatherMaterial(materialType: int, quantity: int):
 	if actualTutoStep <= 1:
 		nextTutoStep()
@@ -27,17 +29,16 @@ func gatherMaterial(materialType: int, quantity: int):
 func _ready():
 	$DamageReceiver.healthUpdated.connect(damage)
 	$SummonSpawner.spawnTargetNode = get_parent()
-	#$Inventory.storedMaterials[0] = 999
-	#$Inventory.storedMaterials[1] = 999
-	#$Inventory.storedMaterials[2] = 999
-	#$Inventory.storedMaterials[3] = 999
-	#$Inventory.storedMaterials[4] = 999
+	$Inventory.storedMaterials[0] = 999
+	$Inventory.storedMaterials[1] = 999
+	$Inventory.storedMaterials[2] = 999
+	$Inventory.storedMaterials[3] = 999
+	$Inventory.storedMaterials[4] = 999
 	get_node("/root/Global").Player = self
 	scored.connect(incrementScore)
-	
+
 func incrementScore(value : int):
 	score[1] += value
-	
 
 func damage(v: int):
 	if v == 0:
@@ -66,12 +67,11 @@ func die():
 	$ShaderAnimation.get_node("AnimationPlayer").play("death")
 	get_node("../../MainScene").lose.emit(score)
 
-
 func _physics_process(delta):
 	var direction = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down")).normalized()
 	
 	if direction == Vector2.ZERO:
-		if velocity.length() > (friction * delta):			
+		if velocity.length() > (friction * delta):
 			velocity -= velocity.normalized() * (friction * delta)
 		
 		else:
@@ -87,8 +87,7 @@ func _physics_process(delta):
 		animationState.walking = true
 		animationState.orientation = velocity.normalized().x
 	
-
-		#
+	#
 	#velocity.x = direction.x * speed if direction.x else move_toward(velocity.x, 0, speed)
 	#velocity.y = direction.y * speed if direction.y else move_toward(velocity.y, 0, speed)
 	#
@@ -101,12 +100,15 @@ func _process(delta):
 	score[0] += delta
 
 func _unhandled_input(event):
-	if event.is_action_pressed("primary_action") and not get_node("/root/Global").playerDead:
-		var summon = $Inventory.try_craft()
-		if summon:
-			$SummonSpawner.spawnSummon(get_global_mouse_position(), summon)
-		if actualTutoStep >= 2 and actualTutoStep < 4:
-			nextTutoStep()
+	if event is InputEventScreenTouch and !event.is_pressed() and not get_node("/root/Global").playerDead:
+		_summon(event.position)
+
+func _summon(position):
+	var summon = $Inventory.try_craft()
+	if summon:
+		$SummonSpawner.spawnSummon(position, summon)
+	if actualTutoStep >= 2 and actualTutoStep < 4:
+		nextTutoStep()
 
 const tutorialSteps : PackedStringArray = [
 	"Gather materials by walking over it.",

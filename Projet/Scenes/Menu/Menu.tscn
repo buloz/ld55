@@ -1054,3 +1054,6 @@ label_settings = SubResource("LabelSettings_gt8d4")
 horizontal_alignment = 1
 
 [node name="ScreenFilter" parent="." instance=ExtResource("25_f5md5")]
+
+[connection signal="pressed" from="UI/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="UI/Quit" to="." method="_on_quit_pressed"]
