@@ -8,8 +8,9 @@ var floatingMaterials: Array[int]
 @onready var UI = get_node("/root/DebugScene/UI")
 
 signal inventoryUpdate(material:int, quantity:int)
+signal materialOnCooldown(material:int, cooldown:float)
 
-var possibleCrafts: PossibleCrafts = preload("res://Scenes/Player/PossibleCrafts.gd").new()
+var possibleCrafts: PossibleCrafts = preload("res://Scenes/Player/Inventory/PossibleCrafts.gd").new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -54,7 +55,10 @@ func try_craft():
 	if recipe:
 		for item in floatingMaterials:
 			storedMaterials[item] -= 1
+			#TODO: ADD CD
 			inventoryUpdate.emit(item, storedMaterials[item])
+			materialOnCooldown.emit(item, get_parent().materialCdr)
+			
 	floatingMaterials.clear()
 	for slot in UI.slots:
 		slot.set_pressed_no_signal(false)

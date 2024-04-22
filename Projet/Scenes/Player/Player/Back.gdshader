@@ -3,6 +3,8 @@ shader_type canvas_item;
 uniform vec4 line_color : source_color = vec4(1);
 uniform float line_thickness : hint_range(0, 10) = 1.0;
 
+uniform float damageTaken = 0.0;
+
 const vec2 OFFSETS[8] = {
 	vec2(-1, -1), vec2(-1, 0), vec2(-1, 1), vec2(0, -1), vec2(0, 1), 
 	vec2(1, -1), vec2(1, 0), vec2(1, 1)
@@ -24,7 +26,7 @@ void fragment() {
 	
 	//vec4 outlined_result = mix(color, line_color, outline + inline);
 	
-	COLOR = vec4(line_color.rgb, outline + inline);
+	COLOR = vec4(vec3(mix(line_color.r, 0.5, damageTaken), line_color.g, line_color.b), outline + inline);
 	//COLOR.a = outline + inline;
 	
 	//COLOR = mix(color, outlined_result, outlined_result.a);

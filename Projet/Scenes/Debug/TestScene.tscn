@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://hric3rcg0ha5"]
+
+[ext_resource type="Script" path="res://Scenes/Debug/DebugScene.gd" id="1_mqf4u"]
+[ext_resource type="PackedScene" uid="uid://nxr7b0d625fr" path="res://Scenes/UserInterface/UI.tscn" id="2_j3v5t"]
+[ext_resource type="PackedScene" uid="uid://bu2rqxb6vsfem" path="res://Scenes/Debug/main_scene.tscn" id="3_24svy"]
+[ext_resource type="PackedScene" uid="uid://cors53e4tat2p" path="res://Scenes/Environment/DefaultEnvironment.tscn" id="5_dq6ul"]
+[ext_resource type="PackedScene" uid="uid://ckcs3tp3esw28" path="res://Scenes/Map/Environement/Tree.tscn" id="5_fovgd"]
+[ext_resource type="PackedScene" uid="uid://dwgs0j8x0cbyr" path="res://Scenes/Map/Environement/Bush.tscn" id="6_kocf6"]
+[ext_resource type="PackedScene" uid="uid://b8pgrd6ikylfl" path="res://Scenes/Player/Soul/Soul.tscn" id="7_8r41p"]
+[ext_resource type="PackedScene" uid="uid://c07qpjoa0naiq" path="res://Scenes/Material/Material.tscn" id="8_hns31"]
+
+[node name="TestScene" type="Node"]
+script = ExtResource("1_mqf4u")
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("5_dq6ul")]
+
+[node name="UI" parent="." instance=ExtResource("2_j3v5t")]
+
+[node name="MainScene" parent="." instance=ExtResource("3_24svy")]
+
+[node name="Tree" parent="MainScene" instance=ExtResource("5_fovgd")]
+position = Vector2(176, 139)
+
+[node name="Tree2" parent="MainScene" instance=ExtResource("5_fovgd")]
+position = Vector2(-443, 785)
+
+[node name="Tree3" parent="MainScene" instance=ExtResource("5_fovgd")]
+position = Vector2(1527, 908)
+
+[node name="Tree4" parent="MainScene" instance=ExtResource("5_fovgd")]
+position = Vector2(673, 1047)
+
+[node name="Tree5" parent="MainScene" instance=ExtResource("5_fovgd")]
+position = Vector2(144, 732)
+
+[node name="Tree6" parent="MainScene" instance=ExtResource("5_fovgd")]
+position = Vector2(1319, 33)
+
+[node name="Bush" parent="MainScene" instance=ExtResource("6_kocf6")]
+position = Vector2(101, 924)
+
+[node name="Bush2" parent="MainScene" instance=ExtResource("6_kocf6")]
+position = Vector2(1030, 785)
+
+[node name="Bush3" parent="MainScene" instance=ExtResource("6_kocf6")]
+position = Vector2(1281, 219)
+
+[node name="Bush4" parent="MainScene" instance=ExtResource("6_kocf6")]
+position = Vector2(683, -133)
+
+[node name="Bush5" parent="MainScene" instance=ExtResource("6_kocf6")]
+position = Vector2(875, 219)
+
+[node name="Bush6" parent="MainScene" instance=ExtResource("6_kocf6")]
+position = Vector2(1313, 1181)
+
+[node name="Soul" parent="MainScene" instance=ExtResource("7_8r41p")]
+position = Vector2(1115, 200)
+
+[node name="Soul2" parent="MainScene" instance=ExtResource("7_8r41p")]
+position = Vector2(381, 140)
+
+[node name="Material" parent="MainScene" instance=ExtResource("8_hns31")]
+position = Vector2(1003, 307)
+
+[node name="Material2" parent="MainScene" instance=ExtResource("8_hns31")]
+position = Vector2(1083, 382)
+
+[node name="Material3" parent="MainScene" instance=ExtResource("8_hns31")]
+position = Vector2(932, 408)
+
+[node name="Material4" parent="MainScene" instance=ExtResource("8_hns31")]
+position = Vector2(1041, 479)

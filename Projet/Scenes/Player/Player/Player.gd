@@ -1,13 +1,26 @@
 class_name PlayerClass extends CharacterBody2D
 
+"""
+Note: Balance / boost stats :
+	- maxSpeed
+	- materialCdr (note: maybe we should put cdr on specific summon and not on material)
+"""
+
 @export var maxSpeed: float = 700.0
 @export var acceleration: float = 6000.0
 @export var friction: float = 4000.0
+
+@export var materialCdr: float = 2.0
+
+#Soul
+var soulsCount = 0.0
+signal soulUpdated(totalSouls: float)
 
 @onready var animationState: AnimationState = $PlayerSpriteRenderer/ShaderAnimation/AnimationState
 #@onready var animationState: AnimationState = $ShaderAnimation/AnimationState
 
 @export var testProjectile: PackedScene
+
 
 var actualTutoStep:int = 0
 #[timeAlive, entity killed]
@@ -27,20 +40,36 @@ func gatherMaterial(materialType: int, quantity: int):
 	$Inventory.addMaterial(materialType, quantity)
 	$gather.play()
 
+func gatherSoul(soulSize: float):
+	soulsCount += soulSize
+	soulUpdated.emit(soulsCount)
+	
+
 func _ready():
 	$DamageReceiver.healthUpdated.connect(damage)
 	$SummonSpawner.spawnTargetNode = get_parent()
+	
+	#For debug purpose !!!
 	$Inventory.storedMaterials[0] = 999
+	$Inventory.inventoryUpdate.emit(0, $Inventory.storedMaterials[0])
+	
 	$Inventory.storedMaterials[1] = 999
+	$Inventory.inventoryUpdate.emit(1, $Inventory.storedMaterials[1])
+	
 	$Inventory.storedMaterials[2] = 999
+	$Inventory.inventoryUpdate.emit(2, $Inventory.storedMaterials[2])
+	
 	$Inventory.storedMaterials[3] = 999
+	$Inventory.inventoryUpdate.emit(3, $Inventory.storedMaterials[3])
+	
 	$Inventory.storedMaterials[4] = 999
+	$Inventory.inventoryUpdate.emit(4, $Inventory.storedMaterials[4])
+	
 	get_node("/root/Global").Player = self
 	scored.connect(incrementScore)
 	
 func incrementScore(value : int):
 	score[1] += value
-	
 
 func damage(v: int):
 	if v == 0:
@@ -102,6 +131,7 @@ func _physics_process(delta):
 
 func _process(delta):
 	score[0] += delta
+	$Sprite2D/BackSprite.material.set_shader_parameter("damageTaken", animationState.damageTaken)
 
 func _unhandled_input(event):
 	if event.is_action_pressed("primary_action") and not get_node("/root/Global").playerDead:

@@ -2,6 +2,9 @@ extends Panel
 
 func _ready():
 	shake()
+	
+func setCurrent():
+	$sprite.material.set_shader_parameter("current", 1.0)
 
 func shake():
 	var t := create_tween()

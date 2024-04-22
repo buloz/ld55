@@ -12,6 +12,11 @@ func die():
 	pass
 
 func takeDamage(damage: float):
+	
+	#To prevent multiple death in one frame if there is too many projectiles
+	if currentHealth <= 0:
+		return
+	
 	currentHealth -= damage
 	animationState.damageTaken = 1.0
 	

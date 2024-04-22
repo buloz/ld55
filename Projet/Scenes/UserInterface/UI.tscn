@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://nxr7b0d625fr"]
+[gd_scene load_steps=33 format=3 uid="uid://nxr7b0d625fr"]
 
 [ext_resource type="Script" path="res://Scenes/UserInterface/UI.gd" id="1_4p5ls"]
 [ext_resource type="PackedScene" uid="uid://bo0ukg5akkk7i" path="res://Scenes/UserInterface/slot.tscn" id="3_c5nv1"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://djefnqxd4ovdf" path="res://Ressources/UI/herb.png" id="6_axdck"]
 [ext_resource type="Texture2D" uid="uid://cklhskx8mt2no" path="res://Ressources/UI/wood.png" id="7_p8u5l"]
 [ext_resource type="Texture2D" uid="uid://eei8a85cj7d2" path="res://Ressources/UI/shroom.png" id="8_d2cv1"]
+[ext_resource type="Shader" path="res://Scenes/UserInterface/slot.gdshader" id="8_d8xt1"]
 [ext_resource type="AudioStream" uid="uid://cdxsa6opiu7aw" path="res://Ressources/sounds/player/click1.wav" id="9_ym2u3"]
 [ext_resource type="AudioStream" uid="uid://cry14ph8ulnoi" path="res://Ressources/sounds/player/click2.wav" id="10_q73ek"]
 [ext_resource type="PackedScene" uid="uid://wdc3ni6egi2a" path="res://Scenes/UserInterface/tutoLabel.tscn" id="10_xfhny"]
@@ -16,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://di8plgh71bb1w" path="res://Scenes/UserInterface/health_bar.tscn" id="12_8sgdl"]
 [ext_resource type="AudioStream" uid="uid://c5ghv4gprlgib" path="res://Ressources/sounds/player/click4.wav" id="12_c8ewe"]
 [ext_resource type="AudioStream" uid="uid://c1034r8veig2c" path="res://Ressources/sounds/player/click5.wav" id="13_dts1s"]
+[ext_resource type="FontFile" uid="uid://cl0pbq4447gfh" path="res://Ressources/fonts/Billy_2.0.otf" id="17_xau6h"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4n7b4"]
 random_pitch = 1.05
@@ -31,11 +33,42 @@ stream_3/weight = 1.0
 stream_4/stream = ExtResource("13_dts1s")
 stream_4/weight = 1.0
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vb67d"]
+noise_type = 2
+seed = 13
+frequency = 0.0003
+fractal_octaves = 10
+fractal_lacunarity = 4.505
+cellular_distance_function = 1
+cellular_return_type = 2
+domain_warp_enabled = true
+domain_warp_type = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7tr8v"]
+seamless = true
+noise = SubResource("FastNoiseLite_vb67d")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5qq0k"]
+resource_local_to_scene = true
+shader = ExtResource("8_d8xt1")
+shader_parameter/outlineColor = Color(1.75, 1.75, 1.75, 1)
+shader_parameter/randomOffset = Vector2(0, 0)
+shader_parameter/cooldown = 0.0
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_7tr8v")
+
 [sub_resource type="InputEventKey" id="InputEventKey_eae5c"]
 device = -1
 keycode = 49
 physical_keycode = 49
 unicode = 49
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_84ec4"]
+resource_local_to_scene = true
+shader = ExtResource("8_d8xt1")
+shader_parameter/outlineColor = Color(1.75, 1.75, 1.75, 1)
+shader_parameter/randomOffset = Vector2(0, 0)
+shader_parameter/cooldown = 0.0
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_7tr8v")
 
 [sub_resource type="InputEventKey" id="InputEventKey_iisfl"]
 device = -1
@@ -43,11 +76,27 @@ keycode = 50
 physical_keycode = 50
 unicode = 50
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bbuni"]
+resource_local_to_scene = true
+shader = ExtResource("8_d8xt1")
+shader_parameter/outlineColor = Color(1.75, 1.75, 1.75, 1)
+shader_parameter/randomOffset = Vector2(0, 0)
+shader_parameter/cooldown = 0.0
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_7tr8v")
+
 [sub_resource type="InputEventKey" id="InputEventKey_6ut7r"]
 device = -1
 keycode = 51
 physical_keycode = 51
 unicode = 51
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2olpq"]
+resource_local_to_scene = true
+shader = ExtResource("8_d8xt1")
+shader_parameter/outlineColor = Color(1.75, 1.75, 1.75, 1)
+shader_parameter/randomOffset = Vector2(0, 0)
+shader_parameter/cooldown = 0.0
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_7tr8v")
 
 [sub_resource type="InputEventKey" id="InputEventKey_aknxl"]
 device = -1
@@ -55,11 +104,23 @@ keycode = 52
 physical_keycode = 52
 unicode = 52
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lbjub"]
+resource_local_to_scene = true
+shader = ExtResource("8_d8xt1")
+shader_parameter/outlineColor = Color(1.75, 1.75, 1.75, 1)
+shader_parameter/randomOffset = Vector2(0, 0)
+shader_parameter/cooldown = 0.0
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_7tr8v")
+
 [sub_resource type="InputEventKey" id="InputEventKey_1ttkj"]
 device = -1
 keycode = 53
 physical_keycode = 53
 unicode = 53
+
+[sub_resource type="LabelSettings" id="LabelSettings_lrmra"]
+font = ExtResource("17_xau6h")
+font_size = 50
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_4p5ls")
@@ -75,31 +136,36 @@ offset_right = 1158.0
 offset_bottom = 626.0
 alignment = 1
 
-[node name="Slot5" parent="Hotbar" instance=ExtResource("3_c5nv1")]
+[node name="Slot1" parent="Hotbar" instance=ExtResource("3_c5nv1")]
+material = SubResource("ShaderMaterial_5qq0k")
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 key = SubResource("InputEventKey_eae5c")
 additionalTexture = ExtResource("4_sylqw")
 
-[node name="Slot6" parent="Hotbar" instance=ExtResource("3_c5nv1")]
+[node name="Slot2" parent="Hotbar" instance=ExtResource("3_c5nv1")]
+material = SubResource("ShaderMaterial_84ec4")
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 key = SubResource("InputEventKey_iisfl")
 additionalTexture = ExtResource("5_vw8t3")
 
-[node name="Slot7" parent="Hotbar" instance=ExtResource("3_c5nv1")]
+[node name="Slot3" parent="Hotbar" instance=ExtResource("3_c5nv1")]
+material = SubResource("ShaderMaterial_bbuni")
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 key = SubResource("InputEventKey_6ut7r")
 additionalTexture = ExtResource("6_axdck")
 
-[node name="Slot8" parent="Hotbar" instance=ExtResource("3_c5nv1")]
+[node name="Slot4" parent="Hotbar" instance=ExtResource("3_c5nv1")]
+material = SubResource("ShaderMaterial_2olpq")
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 key = SubResource("InputEventKey_aknxl")
 additionalTexture = ExtResource("7_p8u5l")
 
-[node name="Slot9" parent="Hotbar" instance=ExtResource("3_c5nv1")]
+[node name="Slot5" parent="Hotbar" instance=ExtResource("3_c5nv1")]
+material = SubResource("ShaderMaterial_lbjub")
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 key = SubResource("InputEventKey_1ttkj")
@@ -121,6 +187,7 @@ texture_focused = ExtResource("4_wug80")
 stretch_mode = 3
 
 [node name="TutoPanel" parent="." instance=ExtResource("10_xfhny")]
+visible = false
 position = Vector2(230, 286.956)
 scale = Vector2(0.293186, 0.316793)
 
@@ -128,5 +195,13 @@ scale = Vector2(0.293186, 0.316793)
 visible = false
 
 [node name="HealthBar" parent="." instance=ExtResource("12_8sgdl")]
+
+[node name="SoulCountainer" type="Label" parent="."]
+offset_left = 16.0
+offset_top = 70.0
+offset_right = 56.0
+offset_bottom = 114.0
+text = "0"
+label_settings = SubResource("LabelSettings_lrmra")
 
 [connection signal="pressed" from="TutorialButton" to="." method="_on_texture_button_pressed"]

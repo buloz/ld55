@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://b8pgrd6ikylfl"]
+
+[ext_resource type="Shader" path="res://Scenes/Player/Soul/Soul.gdshader" id="1_lr1bb"]
+[ext_resource type="Script" path="res://Scenes/Player/Soul/Soul.gd" id="1_sbvv0"]
+[ext_resource type="Shader" path="res://Scenes/Player/Soul/SoulSprite.gdshader" id="3_boqww"]
+[ext_resource type="Texture2D" uid="uid://bjhpuotlsbmkj" path="res://Ressources/attacks/proj_1.png" id="4_mlxlh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_186jl"]
+shader = ExtResource("1_lr1bb")
+
+[sub_resource type="Curve" id="Curve_t1gix"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.146341, 1), 0.0, 0.0, 0, 0, Vector2(0.652439, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_hax2q"]
+curve = SubResource("Curve_t1gix")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gpemq"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+velocity_pivot = Vector3(0, -50, 0)
+direction = Vector3(0, -1, 0)
+spread = 120.0
+initial_velocity_min = 5.0
+initial_velocity_max = 25.0
+orbit_velocity_min = -0.1
+orbit_velocity_max = 0.1
+gravity = Vector3(0, -20, 0)
+scale_min = 40.0
+scale_max = 40.0
+color = Color(0, 1, 1, 1)
+alpha_curve = SubResource("CurveTexture_hax2q")
+hue_variation_min = -0.05
+hue_variation_max = 0.05
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y0n6q"]
+radius = 27.0185
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2q0r4"]
+shader = ExtResource("3_boqww")
+
+[node name="Soul" type="Node2D"]
+script = ExtResource("1_sbvv0")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_186jl")
+amount = 24
+process_material = SubResource("ParticleProcessMaterial_gpemq")
+lifetime = 3.0
+randomness = 1.0
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -12)
+shape = SubResource("CircleShape2D_y0n6q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 1, 1)
+material = SubResource("ShaderMaterial_2q0r4")
+position = Vector2(0, -10)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_mlxlh")
+hframes = 7
+vframes = 8
+
+[connection signal="finished" from="GPUParticles2D" to="." method="_on_gpu_particles_2d_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

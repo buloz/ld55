@@ -49,8 +49,6 @@ shader_parameter/walkingAlpha = null
 shader_parameter/xOrientation = null
 shader_parameter/damageState = null
 shader_parameter/spawnState = null
-shader_parameter/line_color = Color(1, 1, 1, 1)
-shader_parameter/line_thickness = 1.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7tkqq"]
 animations = [{

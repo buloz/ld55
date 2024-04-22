@@ -152,11 +152,10 @@ MaxHealth = 100.0
 attack_damage = 10.0
 attack_cooldown = 1.0
 
-[node name="HitBoxComponent" parent="." node_paths=PackedStringArray("healthComponent") instance=ExtResource("4_il1u3")]
+[node name="HitBoxComponent" parent="." instance=ExtResource("4_il1u3")]
 collision_layer = 2
-healthComponent = NodePath("")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="HitBoxComponent"]
+[node name="CollisionShape" type="CollisionShape2D" parent="HitBoxComponent"]
 position = Vector2(-2, 7)
 shape = SubResource("CircleShape2D_itvn1")
 

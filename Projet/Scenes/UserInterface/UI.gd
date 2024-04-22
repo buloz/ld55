@@ -5,10 +5,18 @@ signal slotbar(slot_name, state)
 @onready var tutoLabel = preload("res://Scenes/UserInterface/tutoLabel.tscn")
 @onready var slots := $Hotbar.get_children()
 
+func debugSoul(totalSouls: float):
+	$SoulCountainer.text = str(totalSouls)
+
 func _ready():
-	var player = get_parent().get_tree().get_first_node_in_group("player")
+	var player: PlayerClass = get_parent().get_tree().get_first_node_in_group("player")
+	
+	player.soulUpdated.connect(debugSoul)
 	player.tutoStep.connect(updateText)
+	
 	player.get_node("Inventory").inventoryUpdate.connect(updateSlotTooltip)
+	player.get_node("Inventory").materialOnCooldown.connect(setSlotOnCooldown)
+	
 	player.get_node("DamageReceiver").healthUpdated.connect($HealthBar.updateHealthPoint)
 	
 	$Tutorial.exit_tutorial.connect(reactivate_button)
@@ -23,9 +31,13 @@ func _ready():
 func setNewScene(scene:Node2D):
 	var player = scene.get_node("Player")
 	var inventory = player.get_node("Inventory")
+	
 	inventory.inventoryUpdate.connect(updateSlotTooltip)
+	inventory.materialOnCooldown.connect(setSlotOnCooldown)
+	
 	for index in inventory.storedMaterials.size():
 		updateSlotTooltip(index, inventory.storedMaterials[index])
+	
 	if($Label):
 		add_child(tutoLabel.instantiate())
 		player.tutoStep.connect(updateText)
@@ -61,3 +73,6 @@ func slotbarToggle(toggled_on: bool, id: int):
 
 func updateSlotTooltip(material:int, quantity:int):
 	slots[material].set_quantity(quantity)
+	
+func setSlotOnCooldown(material:int, cooldown: float):
+	slots[material].setOnCooldown(cooldown)

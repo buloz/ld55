@@ -57,13 +57,14 @@ void fragment() {
 			
 			vec3 gradient = color1 * alpha + color2 * (1.0 - alpha);
 			
-			COLOR.rgb = gradient;
+			COLOR.rgb = gradient * 1.5;
+
 		}
 
 		
 		
 		
-		COLOR.a *= (1.0-dist) * 1.0;
+		COLOR.a *= (1.0-min(dist, 1.0)) * 1.0;
 		
 		//COLOR.rgb = vec3(uv.x, uv.y, 0.0);
 		

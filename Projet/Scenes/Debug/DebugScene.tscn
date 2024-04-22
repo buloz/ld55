@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbm6jbfyweonk"]
+[gd_scene load_steps=6 format=3 uid="uid://cbm6jbfyweonk"]
 
 [ext_resource type="PackedScene" uid="uid://nxr7b0d625fr" path="res://Scenes/UserInterface/UI.tscn" id="1_ateoe"]
 [ext_resource type="Script" path="res://Scenes/Debug/DebugScene.gd" id="1_y7tw8"]
 [ext_resource type="PackedScene" uid="uid://bu2rqxb6vsfem" path="res://Scenes/Debug/main_scene.tscn" id="3_bk2pp"]
 [ext_resource type="PackedScene" uid="uid://blllcwc26unxx" path="res://Scenes/ScreenFilter/ScreenFilter.tscn" id="4_tquym"]
+[ext_resource type="PackedScene" uid="uid://cors53e4tat2p" path="res://Scenes/Environment/DefaultEnvironment.tscn" id="5_fwf6a"]
 
 [node name="DebugScene" type="Node"]
 script = ExtResource("1_y7tw8")
@@ -13,3 +14,5 @@ script = ExtResource("1_y7tw8")
 [node name="MainScene" parent="." instance=ExtResource("3_bk2pp")]
 
 [node name="ScreenFilter" parent="." instance=ExtResource("4_tquym")]
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("5_fwf6a")]

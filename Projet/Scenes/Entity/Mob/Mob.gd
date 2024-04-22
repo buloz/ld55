@@ -8,6 +8,10 @@ class_name Mob extends "res://Scenes/Entity/AiEntity.gd"
 
 var idleNoise: FastNoiseLite = FastNoiseLite.new()
 
+#Soul (for death)
+var soulScene: PackedScene = preload("res://Scenes/Player/Soul/Soul.tscn")
+
+
 func _init():
 	playerTeam = false
 	chaseTarget = true
@@ -41,6 +45,12 @@ func _ready():
 	idleNoise.fractal_lacunarity = 1.4
 
 func die():
+	
+	#Drop soul
+	var newSoul = soulScene.instantiate()
+	newSoul.position = position
+	get_node("/root/Global").currentMainScene.add_child(newSoul)
+	
 	$AttackComponent.queue_free()
 	$NearestEnnemyFinder.queue_free()
 	$HitBoxComponent.queue_free()

@@ -1,8 +1,32 @@
-[gd_scene load_steps=6 format=3 uid="uid://bo0ukg5akkk7i"]
+[gd_scene load_steps=10 format=3 uid="uid://bo0ukg5akkk7i"]
 
 [ext_resource type="Texture2D" uid="uid://bhpv0bjh78x5s" path="res://Ressources/UI/Slot_UI.png" id="1_8kcyh"]
+[ext_resource type="Shader" path="res://Scenes/UserInterface/slot.gdshader" id="1_u5bxs"]
 [ext_resource type="Script" path="res://Scenes/UserInterface/Slot.gd" id="2_4ur33"]
 [ext_resource type="Texture2D" uid="uid://bduhbjqk7hwpw" path="res://Ressources/UI/Slot_UI_Toggle.png" id="2_fn3x6"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vb67d"]
+noise_type = 2
+seed = 13
+frequency = 0.0003
+fractal_octaves = 10
+fractal_lacunarity = 4.505
+cellular_distance_function = 1
+cellular_return_type = 2
+domain_warp_enabled = true
+domain_warp_type = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7tr8v"]
+seamless = true
+noise = SubResource("FastNoiseLite_vb67d")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7wi4b"]
+resource_local_to_scene = true
+shader = ExtResource("1_u5bxs")
+shader_parameter/outlineColor = Color(1.75, 1.75, 1.75, 1)
+shader_parameter/randomOffset = Vector2(0, 0)
+shader_parameter/cooldown = 0.0
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_7tr8v")
 
 [sub_resource type="Shortcut" id="Shortcut_3cax2"]
 
@@ -11,6 +35,7 @@ font_size = 20
 font_color = Color(0, 0, 0, 1)
 
 [node name="Slot" type="TextureButton"]
+material = SubResource("ShaderMaterial_7wi4b")
 custom_minimum_size = Vector2(30, 30)
 anchors_preset = -1
 anchor_right = 0.067
